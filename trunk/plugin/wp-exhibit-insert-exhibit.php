@@ -56,7 +56,7 @@ class WpExhibitHtmlBuilder {
 			if (!$guessurl = site_url())
 		    	$guessurl = wp_guess_url();
 		    $baseuri = $guessurl;
-		    $exhibituri = $baseuri . '/wp-content/plugins/wp-exhibit';
+		    $exhibituri = $baseuri . '/wp-content/plugins/datapress';
         	$exhibit_html = "<a href='$exhibituri/wp-exhibit-only.php?id=" . $exhibit->get('id') . "' class='exhibit_link'>";			
         	$exhibit_html .= "<img src='http://projects.csail.mit.edu/datapress/static/exhibit_lightbox.png?" . $exhibit->getStatisticReport('collapsed') . "' />";
 			$exhibit_html .= "</a>";

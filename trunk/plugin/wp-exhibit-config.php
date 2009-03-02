@@ -1,7 +1,7 @@
 <?php
 
 class WpExhibitConfig {
-    // wp-exhibit schema version
+    // datapress schema version
     public static $DB_VERSION = "2";
 
     // table keys

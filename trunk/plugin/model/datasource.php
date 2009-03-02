@@ -52,7 +52,7 @@ class WpExhibitDatasource extends WpExhibitModel {
 				if (!$guessurl = site_url())
 					$guessurl = wp_guess_url();
 				$baseuri = $guessurl;
-				$exhibituri = $baseuri . '/wp-content/plugins/wp-exhibit';
+				$exhibituri = $baseuri . '/wp-content/plugins/datapress';
 				$parrotbase = $exhibituri . '/proxy/parrot.php';
 				return "<link href=\"$parrotbase" . '?url=' . "$uri\" type=\"application/json\" rel=\"exhibit/data\" alt=\"$sourcename\" />";											
 			}

@@ -1,10 +1,10 @@
 <?php
 /*
-Plugin Name: Exhibit
-Plugin URI: http://people.csail.mit.edu/eob/projects/wp-exhibit
+Plugin Name: Datapress
+Plugin URI: http://projects.csail.mit.edu/datapress
 Description: A Wordpress Plugin for the Exhibit Web Framework
-Version: 0.2
-Author: Edward Benson and Adam Marcus
+Version: 1.0
+Author: The Haystack Group @ MIT
 Author URI: http://haystack.csail.mit.edu/
 */
 
