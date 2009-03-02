@@ -2,7 +2,7 @@
 if (!$guessurl = site_url())
 	$guessurl = wp_guess_url();
 $baseuri = $guessurl;
-$exhibituri = $baseuri . '/wp-content/plugins/wp-exhibit';
+$exhibituri = $baseuri . '/wp-content/plugins/datapress';
 ?>
 <script type='text/javascript' src='<?php echo $baseuri ?>/wp-includes/js/jquery/ui.tabs.js?ver=1.5.1'></script>
 <script type='text/javascript' src='<?php echo $exhibituri ?>/sheet/jquery.sheet.calc.js'></script>

@@ -2,7 +2,7 @@
 if (!$guessurl = site_url())
 	$guessurl = wp_guess_url();
 $baseuri = $guessurl;
-$exhibituri = $baseuri . '/wp-content/plugins/wp-exhibit';
+$exhibituri = $baseuri . '/wp-content/plugins/datapress';
 ?>
 <p><b>A <i>Tag Cloud Facet</i> lets you browse through buckets of items in you
 Exhibit data, displaying those buckets as a cloud of words.</b></p>

@@ -2,7 +2,7 @@
 if (!$guessurl = site_url())
 	$guessurl = wp_guess_url();
 $baseuri = $guessurl;
-$exhibituri = $baseuri . '/wp-content/plugins/wp-exhibit';
+$exhibituri = $baseuri . '/wp-content/plugins/datapress';
 ?>
 <p><b>A <i>List Facet</i> lets you browse through buckets of items in you Exhibit data.</b></p>
 <form id="facet-search-form">

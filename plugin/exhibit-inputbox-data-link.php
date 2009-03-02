@@ -2,7 +2,7 @@
 if (!$guessurl = site_url())
 	$guessurl = wp_guess_url();
 $baseuri = $guessurl;
-$exhibituri = $baseuri . '/wp-content/plugins/wp-exhibit';
+$exhibituri = $baseuri . '/wp-content/plugins/datapress';
 ?>
 
 <p><b>Link to data on the web.</b><br/>Any remote changes in that data will be reflected in your Exhibit.</p>
