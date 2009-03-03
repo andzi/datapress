@@ -17,7 +17,6 @@ class WpExhibitActivationTools {
 		update_option( 'datapress_et_phone_home', "Y" );
     }
 
-
     static function deactivate_plugin() {
         // Make the DB schema version equal something different, so that
         // if we reactivate, we force the DB tables to be re-aligned to the
