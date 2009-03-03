@@ -12,8 +12,8 @@ function is_parrotable($url) {
 
 $url = $_GET['url'];   
 if (is_parrotable($url)) {
-	//$contents = WebTools::do_get_request($url);
-	$contents = file_get_contents($url);
+	$contents = WebTools::do_get_request($url);
+	//$contents = file_get_contents($url);
 	echo "$contents";
 } else {
     echo "URL not parrotable";
