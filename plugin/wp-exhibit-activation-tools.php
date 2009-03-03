@@ -12,6 +12,9 @@ class WpExhibitActivationTools {
             add_option(WpExhibitConfig::$WP_EXHIBIT_DB_VERSION_KEY,
                        WpExhibitConfig::$DB_VERSION);
         }
+
+		// Participate in usage study by default
+		update_option( 'datapress_et_phone_home', "Y" );
     }
 
 
