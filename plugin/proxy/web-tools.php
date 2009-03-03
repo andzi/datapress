@@ -2,7 +2,35 @@
 
 // borrows code examples from comments in http://us.php.net/fsockopen
 class WebTools {
-    static function do_get_request($url) {
+    static function do_get_request( $url ) {
+        $parsed = parse_url($url);
+        $host = $parsed['host'];
+        $port = 80;
+        if (array_key_exists('port', $parsed)) {
+            $port = $parsed['port'];
+        }
+        $path = $parsed['path'];
+        $query = isset($parsed['query']) ? "?" . $parsed['query'] : "";
+        $fragment = isset($parsed['fragment']) ? "#" . $parsed['fragment'] : "";
+        $path = "$path$query$fragment";
+        $request = "GET $path HTTP/1.0\r\nHost: $host\r\n\r\n";
+        $fp = fsockopen($host, $port, $errno, $errstr, 30);
+        if ($fp) {
+            fputs( $fp, $request );
+            $result = '';
+            $headerpassed = false;
+            while( !feof($fp) ) {
+                $result .= fgets($fp, 4096);
+            }
+                        
+            $hunks = explode("\r\n\r\n", $result);
+            fclose($fp);
+            array_shift($hunks);
+            return implode($hunks);
+        }
+    
+    }
+    static function do_get_request_http11($url) {
         $parsed = parse_url($url);
         $host = $parsed['host'];
         $port = 80;
@@ -46,7 +74,7 @@ class WebTools {
         $headers = explode("\n",$header);
         unset($hunks);
         unset($header);
-
+        
         if (in_array('Transfer-Coding: chunked',$headers)) {
             return trim(self::unchunkHttpResponse($body));
         } else {
