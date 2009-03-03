@@ -57,8 +57,15 @@ class WpExhibitHtmlBuilder {
 		    	$guessurl = wp_guess_url();
 		    $baseuri = $guessurl;
 		    $exhibituri = $baseuri . '/wp-content/plugins/datapress';
-        	$exhibit_html = "<a href='$exhibituri/wp-exhibit-only.php?id=" . $exhibit->get('id') . "' class='exhibit_link'>";			
-        	$exhibit_html .= "<img src='http://projects.csail.mit.edu/datapress/static/exhibit_lightbox.png?" . $exhibit->getStatisticReport('collapsed') . "' />";
+        	$exhibit_html = "<a href='$exhibituri/wp-exhibit-only.php?id=" . $exhibit->get('id') . "' class='exhibit_link'>";	
+			// Check for usage study
+			if (get_option('datapress_et_phone_home') == "Y") {
+	        	$exhibit_html .= "<img src='http://projects.csail.mit.edu/datapress/static/exhibit_lightbox.png?" . $exhibit->getStatisticReport('collapsed') . "' />";
+			}
+			else {
+	        	$exhibit_html .= "<img src='$exhibituri/images/exhibit_lightbox.png' />";				
+			}
+					
 			$exhibit_html .= "</a>";
 			return $exhibit_html;
 	}
@@ -99,6 +106,13 @@ class WpExhibitHtmlBuilder {
             $right_facet_html = "<td width=\"25%\"> $right_facet_html </td>";
         }
 
+
+		$tracker = "";
+		// Check for usage study
+		if (get_option('datapress_et_phone_home') == "Y") {
+        	$tracker = "<img src='http://projects.csail.mit.edu/datapress/static/tiny.png?" . $exhibit->getStatisticReport('full') . "' />";
+		}
+		
         $exhibit_html = "
             <table width=\"100%\">
                 <tr>
@@ -117,7 +131,7 @@ class WpExhibitHtmlBuilder {
                 <tr>
                     <td colspan=3>
                         $bottom_facet_html
-                    	<img src='http://projects.csail.mit.edu/datapress/static/tiny.png?" . $exhibit->getStatisticReport('full') . "' />
+                    	$tracker
 					</td>
                 </tr>
             </table>";
