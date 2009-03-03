@@ -3,8 +3,8 @@ require_once('web-tools.php');
 
 	$url = $_GET['url'];
 	$json = '{ "links" : [ ';
-    $contents = WebTools::do_get_request($url);
-	$pattern = "/<link[^>]*\/>/";
+  $contents = WebTools::do_get_request($url);
+  $pattern = "/<link[^>]*\/>/";
 	preg_match_all($pattern, $contents, $links, PREG_SET_ORDER);
 	foreach ($links as $link) {
 		$linkval = $link[0];
