@@ -45,7 +45,7 @@ class WpExhibit {
 	}
 
 	function add_options_page() {
-		add_options_page('Exhibit', 'Exhibit', 8, 'exhibitoptions', 'exhibit_options_page');		
+		add_options_page('Datapress', 'Datapress', 8, 'exhibitoptions', 'exhibit_options_page');		
 	}
 	
 	function edit_page_inclusions() {
