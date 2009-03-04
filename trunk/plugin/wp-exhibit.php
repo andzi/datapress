@@ -75,7 +75,11 @@ class WpExhibit {
         InsertParrotableUrl::insert_url();
 	    die;
 	}
-	
+
+  function make_exhibit_button() {
+    echo '<a href="blah"><img src="' . wp_guess_url() . '/wp-content/plugins/datapress/images/exhibit-small-RoyalBlue.png"></a>';
+  }
+
 	function insert_exhibit($content) {
 		global $wp_query;
 		if ($wp_query->post->datapress_exhibit != nil) {
@@ -102,6 +106,7 @@ add_action('edit_form_advanced', array($exhibit, 'edit_page_inclusions'));
 
 add_action('wp', array($exhibit, 'load_exhibit'));
 add_action('wp_ajax_insert_parrotable_url', array($exhibit, 'insert_parrotable_url') );
+add_action('media_buttons', array($exhibit, 'make_exhibit_button'));
 
 add_filter('save_post', array($exhibit, 'save_post'));
 add_filter('the_content', array($exhibit, 'insert_exhibit'));
