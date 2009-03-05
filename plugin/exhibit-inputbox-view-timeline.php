@@ -19,6 +19,10 @@
 			<td><select id="view-timeline-color" class="allpropbox"></select></td>
 		</tr>
 		<tr>
+			<td><i>Proxy:</i><br /><b>(Optional, Advaiced)</b></td>
+			<td><select id="view-timeline-proxy" class="allpropbox"></select></td>
+		</tr>
+		<tr>
 			<td><i>Extra Attributes</i><br />(Optional, Advanced)</td>
 			<td><input id="view-timeline-extra-attributes" type="text" size=40" /></td>
 		</tr>
@@ -36,6 +40,8 @@ function submit_view_timeline_facet() {
 	var start = jQuery('#view-timeline-start').val();
 	var end = jQuery('#view-timeline-end').val();
 	var color = jQuery('#view-timeline-color').val();
+	var proxy = jQuery('#view-timeline-proxy').val();
+	
 	var extra_attributes = jQuery('#view-timeline-extra-attributes').val();
 	
 	var params = {
@@ -53,6 +59,9 @@ function submit_view_timeline_facet() {
 	if (extra_attributes != null) {
 		params['extra_attributes'] = extra_attributes;
 	}	
+	if (proxy != null) {
+		params['proxy'] = proxy;		
+	}
 	
 	addExhibitElementLink("views-list", "Timeline: " + label, 'view', params);
 }

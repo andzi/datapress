@@ -19,6 +19,12 @@ class WpExhibitView extends WpExhibitModel {
 		'xScale' => NULL,
 		'color' => NULL,
 		'sortby' => NULL,
+		'proxy' => NULL,
+		'icon' => NULL,
+		'bubblewidth' => NULL,
+		'bubbleheight' => NULL,		
+		'markerwidth' => NULL,
+		'markerheight' => NULL,		
 		'extra_attributes' => NULL
 	);
 	
@@ -70,7 +76,14 @@ class WpExhibitView extends WpExhibitModel {
 		if ($kind == "view-timeline") {
 			// Todo: add the actual date and time stuff
 			$start = $this->get('field');
-			$ret =  "<div ex:role=\"view\" ex:viewClass=\"Timeline\" ex:bubbleWidth='320' ex:topBandPixelsPerUnit='400' ex:timelineHeight='170' ex:label=\"$label\" ex:start=\".$start\"";
+			
+			$proxy = $this->get('proxy');
+			$inner = "";
+			if ($proxy != NULL) {
+				$inner .= " ex:proxy='.$proxy' ";
+			}
+						
+			$ret =  "<div ex:role=\"view\" ex:viewClass=\"Timeline\" ex:bubbleWidth='320' ex:topBandPixelsPerUnit='400' $inner ex:timelineHeight='170' ex:label=\"$label\" ex:start=\".$start\"";
 			if ($this->get('end') != null) {
 				$end = $this->get('end');
 				$ret = $ret . " ex:end=\".$end\"";
@@ -83,16 +96,25 @@ class WpExhibitView extends WpExhibitModel {
 			$field = $this->get('field');
 			$locationtype = $this->get('locationtype');
 			$where = "ex:latlng='.$field'";
-			$coderfield = $this->get('coderfield');
+			$icon = $this->get('icon');
+			$proxy = $this->get('proxy');
+			$bw = $this->get('bubblewidth');
+			$bh = $this->get('bubbleheight');
+			$mw = $this->get('markerwidth');
+			$mh = $this->get('markerheight');
+			
 			$after = "";
 			$inner = "";
-			if ($coderfield != NULL) {				
-				$after = '<div ex:role="coder" id="' . $coderfield . '-coder"';
-				$after .= 'ex:coderClass="SizeGradient" ex:gradientPoints="30, 10; 75, 70"></div>';
-				$inner = " ex:sizeKey='.$coderfield' ex:sizeCoder='$coderfield" . "-coder' ";				
+
+			if ($icon != NULL) {
+				$inner .= " ex:icon='.$icon' ";
 			}
+			if ($proxy != NULL) {
+				$inner .= " ex:proxy='.$proxy' ";
+			}
+
 			// NOTE: There is currently no nocderfeld thing being put in here.
-			$ret = "<div ex:role='view' ex:viewClass='Map' ex:label='$label' ex:latlng='.$field' ex:bubbleWidth='200' ex:bubbleHeight='200'></div>";   
+			$ret = "<div ex:role='view' ex:viewClass='Map' ex:label='$label' ex:latlng='.$field' ex:bubbleWidth='$bw' ex:bubbleHeight='$bh' ex:shapeWidth='$mw' ex:shapeHeight='$mh' $inner ></div>";   
 			return $ret;
 		}
 		else if ($kind == "view-table") {

@@ -101,11 +101,15 @@ add_action('wp_head', array($exhibit, 'exhibit_include'));
 add_action('admin_head', array($exhibit, 'exhibit_admin_include'));
 add_action('admin_menu', array($exhibit, 'add_options_page'));
 
-add_action('edit_page_form', array($exhibit, 'edit_page_inclusions'));
-add_action('edit_form_advanced', array($exhibit, 'edit_page_inclusions'));
+#
+# Old lozenge interface.
+# add_action('edit_page_form', array($exhibit, 'edit_page_inclusions'));
+# add_action('edit_form_advanced', array($exhibit, 'edit_page_inclusions'));
+#
 
 add_action('wp', array($exhibit, 'load_exhibit'));
 add_action('wp_ajax_insert_parrotable_url', array($exhibit, 'insert_parrotable_url') );
+
 add_action('media_buttons', array($exhibit, 'make_exhibit_button'));
 
 add_filter('save_post', array($exhibit, 'save_post'));
