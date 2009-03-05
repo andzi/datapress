@@ -77,7 +77,7 @@ class WpExhibit {
 	}
 
   function make_exhibit_button() {
-    echo '<a href="blah"><img src="' . wp_guess_url() . '/wp-content/plugins/datapress/images/exhibit-small-RoyalBlue.png"></a>';
+    echo "Datapress<a href='" . wp_guess_url() . "/wp-content/plugins/datapress/exhibit-inputbox.php?' class='exhibit_link'><img src='" . wp_guess_url() . "/wp-content/plugins/datapress/images/exhibit-small-RoyalBlue.png'></a>";
   }
 
 	function insert_exhibit($content) {
