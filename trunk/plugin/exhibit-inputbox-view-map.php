@@ -14,6 +14,18 @@
 			</td>
 		</tr>	
 		<tr>
+			<td><i>Popup Size</i><br /><b>(Optional)</b></td>
+			<td>Width: <input id="view-map-bw" value="200" style="width: 40px;" />px, Height: <input style="width: 40px;" id="view-map-bh" value="200" />px</td>
+		</tr>
+		<tr>
+			<td><i>Marker Size</i><br /><b>(Optional)</b></td>
+			<td>Width: <input id="view-map-mw" value="60" style="width: 40px;" />px, Height: <input style="width: 40px;" id="view-map-mh" value="60" />px</td>
+		</tr>
+		<tr>
+			<td><i>Icon</i><br /><b>(Optional)</b></td>
+			<td><select id="view-map-icon" class="allpropbox"></select></td>
+		</tr>
+		<tr>
 			<td><i>Extra Attributes</i><br /><b>(Optional, Advanced)</b></td>
 			<td> <input id="view-map-extra-attributes" type="text" size="30" /></td>
 		</tr>	
@@ -35,17 +47,29 @@ function submit_view_map_facet() {
 	var coderfield = jQuery('#view-map-coderfield').val();
 	var locationtype = jQuery('#view-map-field-type').val();
 	var extra_attributes = jQuery('#view-map-extra-attributes').val();
+	var icon = jQuery('#view-map-icon').val();
+	var bw = jQuery('#view-map-bw').val();
+	var bh = jQuery('#view-map-bh').val();
+	var mw = jQuery('#view-map-mw').val();
+	var mh = jQuery('#view-map-mh').val();
 	
 	var params = {
 		kind: kind,
 		field: field,
 		label: label,
+		bubblewidth: bw,
+		bubbleheight: bh,		
+		markerwidth: mw,
+		markerheight: mh,		
 		coderfield: coderfield,
 		locationtype: locationtype
 	};
 	
 	if (extra_attributes != null) {
 		params['extra_attributes'] = extra_attributes;
+	}
+	if (icon != null) {
+		params['icon'] = icon;
 	}
 	
 	addExhibitElementLink("views-list", "Map: " + label, 'view', params);

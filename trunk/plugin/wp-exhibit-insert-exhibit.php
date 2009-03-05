@@ -99,11 +99,11 @@ class WpExhibitHtmlBuilder {
         $colspan = 1;
         if (strlen($left_facet_html) > 0) {
             $colspan++;
-            $left_facet_html = "<td width=\"25%\"> $left_facet_html </td>";
+            $left_facet_html = "<td width=\"15%\"> $left_facet_html </td>";
         }
         if (strlen($right_facet_html) > 0) {
             $colspan++;
-            $right_facet_html = "<td width=\"25%\"> $right_facet_html </td>";
+            $right_facet_html = "<td width=\"15%\"> $right_facet_html </td>";
         }
 
 
@@ -122,7 +122,7 @@ class WpExhibitHtmlBuilder {
                 </tr>
                 <tr valign=\"top\">
                     $left_facet_html
-                    <td width=\"50%\" ex:role=\"viewPanel\">
+                    <td ex:role=\"viewPanel\">
 						$lens_html
                         $view_html
                     </td>
