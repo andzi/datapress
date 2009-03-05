@@ -8,10 +8,16 @@
  * TODO:
  *  - Protect so that only admins can load this page
  *  - Load an existing exhibit if ID is present.
- *  - Create save button which posts exhibit, receives the exhibit id, and transmits exhibit id back to root page.
+ *  - Create save button which posts exhibit, receives the exhibit id, and transmits 
+ *      exhibit id back to root page.
  *  - Cancel button, which gets the hell out!
  */
 
+
+/* -------------------------------------------------
+ * Load up Wordpress
+ * -------------------------------------------------
+ */
 	ob_start();
       $root = dirname(dirname(dirname(dirname(__FILE__))));
       if (file_exists($root.'/wp-load.php')) {
@@ -29,6 +35,22 @@
 		$guessurl = wp_guess_url();
 	$baseuri = $guessurl;
 	$exhibituri = $baseuri . '/wp-content/plugins/datapress';
+
+/* -------------------------------------------------
+ * Load up the exhibit if it exists
+ * -------------------------------------------------
+ */
+
+$exhibitID = $_GET['exhibitid'];
+$exhibitConfig = NULL;
+if ($exhibitID != NULL) {
+	// See if we know about any data sources associated with this item.
+	$exhibitConfig = new WpPostExhibit();
+	$ex_success = DbMethods::loadFromDatabase($exhibitConfig, $exhibitID);
+	if (! $ex_success) {
+		$exhibitConfig = NULL;
+	}
+}
 ?>
 <html>
 	<head>
