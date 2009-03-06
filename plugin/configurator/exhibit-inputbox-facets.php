@@ -5,19 +5,13 @@
 <ul id="facet-list">
 </ul>
 <?php
-	$postID = $_GET['post'];
-	if ($postID != NULL) {
-		// See if we know about any data sources associated with this item.
-		$ex_exhibit = new WpPostExhibit();
-		$ex_success = DbMethods::loadFromDatabase($ex_exhibit, $postID, 'postid');
-		if ($ex_success == true) {
-			echo '<script type="text/javascript">';
-	        $facets = $ex_exhibit->get('facets');
-	        foreach ($facets as $facet) {
-				echo $facet->getAddLink('facet-list');
-	        }
-			echo '</script>';				
+	if ($exhibitConfig != NULL) {
+		echo '<script type="text/javascript">';
+		$facets = $exhibitConfig->get('facets');
+		foreach ($facets as $facet) {
+			echo $facet->getAddLink('facet-list');
 		}
+		echo '</script>';
 	}
 ?>
 </div>

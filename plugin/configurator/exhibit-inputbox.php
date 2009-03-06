@@ -19,7 +19,7 @@
  * -------------------------------------------------
  */
 	ob_start();
-      $root = dirname(dirname(dirname(dirname(__FILE__))));
+      $root = dirname(dirname(dirname(dirname(dirname(__FILE__)))));
       if (file_exists($root.'/wp-load.php')) {
           // WP 2.6
           require_once($root.'/wp-load.php');
@@ -157,6 +157,8 @@ if ($exhibitID != NULL) {
 	    db = Exhibit.Database.create();
 		db.loadDataLinks(ex_data_types_changed);		
 	}
+	
+	THOR = window.frames;
 	
 	</script>
 </head>
