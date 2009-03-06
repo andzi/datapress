@@ -5,21 +5,15 @@
 <div class="current">
 <ul id="data-source-list">
 	<?php
-		$postID = $_GET['post'];
-		if ($postID != NULL) {
-			// See if we know about any data sources associated with this item.
-			$ex_exhibit = new WpPostExhibit();		
-			$ex_success = DbMethods::loadFromDatabase($ex_exhibit, $postID, 'postid');
-			if ($ex_success == true) {
-				$ex_dataSources = $ex_exhibit->get('datasources');
-				echo '<script type="text/javascript">';
-				foreach ($ex_dataSources as $ex_dataSource) {
-						echo 'var remove_id = ' . $ex_dataSource->getAddLink('data-source-list');
-						echo("ex_add_head_link('" . $ex_dataSource->get('uri') . "', '" . $ex_dataSource->get('kind') . "', remove_id);");
-					}
-				}
-				echo '</script>';				
+		if ($exhibitConfig != NULL) {
+			$ex_dataSources = $exhibitConfig->get('datasources');
+			echo '<script type="text/javascript">';
+			foreach ($ex_dataSources as $ex_dataSource) {
+				echo 'var remove_id = ' . $ex_dataSource->getAddLink('data-source-list');
+				echo("ex_add_head_link('" . $ex_dataSource->get('uri') . "', '" . $ex_dataSource->get('kind') . "', remove_id);");
 			}
+			echo '</script>';				
+		}
 	?>		
 </ul>
 </div>

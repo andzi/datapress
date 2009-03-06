@@ -13,9 +13,9 @@
 		// For now we're only concerned with PAGES that contain Exhibits for simplicity.
 		?>
 
-		<script src="<?php echo $exhibituri ?>/js/jquery-1.2.6.min.js" type="text/javascript"></script>
-        <script src="<?php echo $exhibituri ?>/js/jquery.fancybox-1.0.0.js" type="text/javascript"></script> 
-        <link rel="stylesheet" href="<?php echo $exhibituri ?>/css/fancy.css" type="text/css" media="screen"/>
+		<script src="<?php echo $exhibituri ?>/js/jquery-1.3.2.min.js" type="text/javascript"></script>
+        <script src="<?php echo $exhibituri ?>/js/jquery.fancybox-1.2.0.pack.js" type="text/javascript"></script> 
+        <link rel="stylesheet" href="<?php echo $exhibituri ?>/css/jquery.fancybox.css" type="text/css" media="screen"/>
     
   		<script type="text/javascript">
         $(document).ready(function() { 
