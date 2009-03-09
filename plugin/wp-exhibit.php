@@ -77,9 +77,8 @@ class WpExhibit {
 	}
 
   function make_exhibit_button() {
-	echo "Datapress <a href='" . wp_guess_url() . "/wp-admin/admin-ajax.php?action=show_datapress_configurator&TB_iframe=true' id='add_exhibit' class='thickbox' title='Add an Exhibit'><img src='" . wp_guess_url() . "/wp-content/plugins/datapress/images/exhibit-small-RoyalBlue.png' alt='Add an Image' /></a> &nbsp; &nbsp;";
+	echo "Datapress <a href='" . wp_guess_url() . "/wp-admin/admin-ajax.php?action=datapress_configurator&TB_iframe=true' id='add_exhibit' class='thickbox' title='Add an Exhibit'><img src='" . wp_guess_url() . "/wp-content/plugins/datapress/images/exhibit-small-RoyalBlue.png' alt='Add an Image' /></a> &nbsp; &nbsp;";
     // echo "Datapress<a href='" . wp_guess_url() . "/wp-content/plugins/datapress/configurator/exhibit-inputbox.php?iframe=true' class='exhibit_link'><img src=''></a>";
- 
  }
 
 	function insert_exhibit($content) {
@@ -121,5 +120,33 @@ add_filter('the_content', array($exhibit, 'insert_exhibit'));
 register_activation_hook(__FILE__, array($exhibit, 'activate_plugin'));
 register_deactivation_hook(__FILE__, array($exhibit, 'deactivate_plugin'));
 
+
+/* ---------------------------------------------------------------------------
+ * JavaScript Registration
+ * --------------------------------------------------------------------------- */
+
+if (!$guessurl = site_url())
+	$guessurl = wp_guess_url();
+$baseuri = $guessurl;
+
+wp_register_script( 'exhibit-api', 'http://static.simile.mit.edu/exhibit/api-2.0/exhibit-api.js', array(  ) );
+wp_register_script( 'exhibit-chart', 'http://static.simile.mit.edu/exhibit/extensions-2.0/chart/chart-extension.js', array( 'exhibit-api' ) );
+wp_register_script( 'exhibit-time', 'http://static.simile.mit.edu/exhibit/extensions-2.0/time/time-extension.js', array( 'exhibit-api' ) );
+
+wp_register_script( 'dp-jquery', "$baseuri/wp-includes/js/jquery/jquery.js?ver=1.2.6", array() );
+wp_register_script( 'dp-jquery-ui', "$baseuri/wp-includes/js/jquery/ui.core.js?ver=1.5.2", array('dp-jquery') );
+wp_register_script( 'dp-jquery-tabs', "$baseuri/wp-includes/js/jquery/ui.tabs.js?ver=1.5.2", array('dp-jquery-ui') );
+wp_register_script( 'dp-tinymce', "$baseuri/wp-includes/js/tinymce/tiny_mce.js?ver=20081129", array() );
+wp_register_script( 'dp-tinymce-langs', "$baseuri/wp-includes/js/tinymce/langs/wp-langs-en.js?ver=20081129", array('dp-tinymce') );
+
+wp_register_script( 'configurator', "$baseuri/wp-content/plugins/datapress/configurator/configurator.js");
+wp_register_script( 'configurator-loaded', "$baseuri/wp-content/plugins/datapress/configurator/configurator.js", array( 'configurator' ) );
+
+
+/* ---------------------------------------------------------------------------
+ * Stylesheet Registration
+ * --------------------------------------------------------------------------- */
+
+wp_register_style( 'dp-configurator', "$baseuri/wp-content/plugins/datapress/css/wpexhibit.css");
 
 ?>

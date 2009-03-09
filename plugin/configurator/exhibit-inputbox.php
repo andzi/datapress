@@ -56,22 +56,12 @@ if ($exhibitID != NULL) {
 <html>
 	<head>
 
-	<? do_action('admin_print_scripts'); ?>
-	
-	
-	
-	
-	
-	
-	
 	<script type='text/javascript' src='<?php echo $baseuri ?>/wp-includes/js/jquery/jquery.js?ver=1.2.6'></script>
 	<script type='text/javascript' src='<?php echo $baseuri ?>/wp-includes/js/jquery/ui.core.js?ver=1.5.2'></script>
 	<script type='text/javascript' src='<?php echo $baseuri ?>/wp-includes/js/jquery/ui.tabs.js?ver=1.5.2'></script>
 	<script type="text/javascript" src="<?php echo $baseuri ?>/wp-includes/js/tinymce/tiny_mce.js?ver=20081129"></script>
 	<script type="text/javascript" src="<?php echo $baseuri ?>/wp-includes/js/tinymce/langs/wp-langs-en.js?ver=20081129"></script>
-	<script type="text/javascript" src="http://static.simile.mit.edu/exhibit/api-2.0/exhibit-api.js"></script>
-	<script type="text/javascript" src="http://static.simile.mit.edu/exhibit/extensions-2.0/chart/chart-extension.js"></script>
-	<script type="text/javascript" src="http://static.simile.mit.edu/exhibit/extensions-2.0/time/time-extension.js"></script>
+
 	
 	<link rel='stylesheet' href='<?php echo $baseuri ?>/wp-admin/wp-admin.css?ver=20081210' type='text/css' media='all' />
 	<link rel='stylesheet' href='<?php echo $baseuri ?>/wp-admin/css/colors-fresh.css?ver=20081210' type='text/css' media='all' />
