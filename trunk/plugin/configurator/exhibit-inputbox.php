@@ -19,7 +19,7 @@
  * -------------------------------------------------
  */
 	ob_start();
-      $root = dirname(dirname(dirname(dirname(dirname(__FILE__)))));
+    $root = dirname(dirname(dirname(dirname(dirname(__FILE__)))));
       if (file_exists($root.'/wp-load.php')) {
           // WP 2.6
           require_once($root.'/wp-load.php');
@@ -51,10 +51,18 @@ if ($exhibitID != NULL) {
 		$exhibitConfig = NULL;
 	}
 }
+
 ?>
 <html>
 	<head>
-	<style type="text/css" media="screen" src="exhibit.css"></style>
+
+	<? do_action('admin_print_scripts'); ?>
+	
+	
+	
+	
+	
+	
 	
 	<script type='text/javascript' src='<?php echo $baseuri ?>/wp-includes/js/jquery/jquery.js?ver=1.2.6'></script>
 	<script type='text/javascript' src='<?php echo $baseuri ?>/wp-includes/js/jquery/ui.core.js?ver=1.5.2'></script>
@@ -67,7 +75,6 @@ if ($exhibitID != NULL) {
 	
 	<link rel='stylesheet' href='<?php echo $baseuri ?>/wp-admin/wp-admin.css?ver=20081210' type='text/css' media='all' />
 	<link rel='stylesheet' href='<?php echo $baseuri ?>/wp-admin/css/colors-fresh.css?ver=20081210' type='text/css' media='all' />
-	
 	<link rel="stylesheet" type="text/css" href="<?php echo $exhibituri ?>/css/wpexhibit.css"></link>
 
 	<script type="text/javascript" src="<?php echo $exhibituri ?>/configurator/configurator.js"></script>
@@ -120,10 +127,10 @@ if ($exhibitID != NULL) {
 	  </div>
 
 	  <p align="right">
-		<a href="#" class="addlink" onClick="appendToPost('{{Exhibit}}'); return false;">Insert Exhibit into Post</a>&nbsp;&nbsp;&nbsp;
-		<a href="#" class="addlink"  onClick="appendToPost('{{Footnotes}}'); return false;">Insert Data Footnotes into Post</a>
+		<input type="submit" class="button savebutton" name="save" value="<?php echo attribute_escape( __( 'Save' ) ); ?>" />
+		<input type="submit" class="button savebutton" name="save_insert" value="<?php echo attribute_escape( __( 'Save &amp; Insert' ) ); ?>" />
+		<input type="submit" class="button savebutton" name="save_insert_footnotes" value="<?php echo attribute_escape( __( 'Save &amp; Insert with Footnotes' ) ); ?>" />
 	  </p>
-
 	</div>
 </div>
 <input type="submit" value="Save Exhibit" />
@@ -131,6 +138,7 @@ if ($exhibitID != NULL) {
 
 <script type="text/javascript">
 	var saved_exhibit_id = "TEST ID";
+	send_to_editor(saved_exhibit_id);
 </script>
 
 </html>

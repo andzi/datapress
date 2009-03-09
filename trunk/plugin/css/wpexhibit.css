@@ -1,3 +1,6 @@
+body {
+	background-color: white;
+}
 
 div.outer-tabs-panel {
 	margin: 0;
@@ -5,6 +8,7 @@ div.outer-tabs-panel {
 	height: 40em;
 	overflow: auto;
 	border-top: 4px solid #cee1ef;
+	background-color: white;
 }
 
 div.outer-tabs-panel-header {

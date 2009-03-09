@@ -16,6 +16,7 @@ include_once('wp-exhibit-insert-exhibit.php');
 include_once('model/wp-exhibit-model.php');
 include_once('facet_widget.php');
 include_once('proxy/insert-parrotable-url.php');	
+include_once('configurator/exhibit-configurator.php');
 
 class WpExhibit {
  	var $wp_version;
@@ -76,9 +77,10 @@ class WpExhibit {
 	}
 
   function make_exhibit_button() {
-	echo "Datapress <a href='" . wp_guess_url() . "/wp-content/plugins/datapress/configurator/exhibit-inputbox.php?TB_iframe=true' id='add_exhibit' class='thickbox' title='Add an Exhibit'><img src='" . wp_guess_url() . "/wp-content/plugins/datapress/images/exhibit-small-RoyalBlue.png' alt='Add an Image' /></a> &nbsp; &nbsp;";
+	echo "Datapress <a href='" . wp_guess_url() . "/wp-admin/admin-ajax.php?action=show_datapress_configurator&TB_iframe=true' id='add_exhibit' class='thickbox' title='Add an Exhibit'><img src='" . wp_guess_url() . "/wp-content/plugins/datapress/images/exhibit-small-RoyalBlue.png' alt='Add an Image' /></a> &nbsp; &nbsp;";
     // echo "Datapress<a href='" . wp_guess_url() . "/wp-content/plugins/datapress/configurator/exhibit-inputbox.php?iframe=true' class='exhibit_link'><img src=''></a>";
-  }
+ 
+ }
 
 	function insert_exhibit($content) {
 		global $wp_query;
@@ -109,6 +111,7 @@ add_action('admin_menu', array($exhibit, 'add_options_page'));
 
 add_action('wp', array($exhibit, 'load_exhibit'));
 add_action('wp_ajax_insert_parrotable_url', array($exhibit, 'insert_parrotable_url') );
+add_action('wp_ajax_datapress_configurator', 'show_datapress_configurator' );
 
 add_action('media_buttons', array($exhibit, 'make_exhibit_button'));
 
