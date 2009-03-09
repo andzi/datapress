@@ -8,11 +8,26 @@
  *  - Write the code to save it
  */
 
-global $wpdb;		
+/* -------------------------------------------------
+ * Load up Wordpress
+ * -------------------------------------------------
+ */
+	ob_start();
+      $root = dirname(dirname(dirname(dirname(__FILE__))));
+      if (file_exists($root.'/wp-load.php')) {
+          // WP 2.6
+          require_once($root.'/wp-load.php');
+      } else {
+          // Before 2.6
+          require_once($root.'/wp-config.php');
+      }
+	ob_end_clean(); //Ensure we don't have output from other plugins.
+	header('Content-Type: text/html; charset='.get_option('blog_charset'));
+
+global $wpdb;
 $ex_id = $_POST['exhibitid'];
-$callback = $_POST['callback'];
 $ex_exhibit = new WpPostExhibit();
-if ($exhibitID != NULL) {
+if ($ex_id != NULL) {
     $ex_success = DbMethods::loadFromDatabase($ex_exhibit, $ex_id);
 }
 
@@ -71,5 +86,5 @@ if ($custom_html) {
 }
 
 $ex_exhibit->save();
-echo $callback . "(" $ex_exhibit->get('id') . ");"
+echo $ex_exhibit->get('id');
 ?>

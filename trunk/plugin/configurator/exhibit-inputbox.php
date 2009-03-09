@@ -78,11 +78,34 @@ if ($exhibitID != NULL) {
 		// This is the database for adding items
 		db = Exhibit.Database.create();
 	</script>
+	
+	<script type="text/javascript">
+	    function postExhibit() {
+	        jQuery.post("<?php echo $exhibituri ?>/save-exhibit.php", jQuery("#exhibit-config-form").serialize(),
+                        function(data) {
+                            alert("Data Loaded: " + data);
+                        });
+        }
+	</script>
 
+	<script type="text/javascript">
+	function ex_add_head_link(uri, kind, remove_id) {
+	    var link = "";
+    	if (kind == "google-spreadsheet") {
+		var link = SimileAjax.jQuery('<link id = "' + remove_id + '" rel="exhibit/data" type="application/jsonp" href="' + uri + '" ex:converter="googleSpreadsheets" />');
+	}
+	else if (kind == "application/json") {
+		var link = SimileAjax.jQuery('<link id = "' + remove_id + '" rel="exhibit/data" type="application/json" href="<?php echo $exhibituri ?>/proxy/parrot.php?url=' + uri + '" />');
+	}
+
+	    SimileAjax.jQuery('head').append(link);
+    }
+    </script>
 </head>
 <body>
 
-<form action="<?php echo $exhibituri ?>/save-exhibit.php">
+
+<form id="exhibit-config-form">
 <div id="exhibit-input">
 	<div class="inside">
 	  <div id="exhibit-input-container">
@@ -123,7 +146,8 @@ if ($exhibitID != NULL) {
 	  </p>
 	</div>
 </div>
-<input type="submit" value="Save Exhibit" />
+<input type="hidden" value="<?php echo $exhibitID ?>" name="exhibitid" />
+<input type="button" value="Save Exhibit" onclick="javascript: postExhibit(); return false;" />
 </form>
 
 <script type="text/javascript">
