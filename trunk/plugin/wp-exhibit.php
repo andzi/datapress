@@ -76,7 +76,7 @@ class WpExhibit {
 	}
 
   function make_exhibit_button() {
-	echo "<a href='" . wp_guess_url() . "/wp-content/plugins/datapress/configurator/exhibit-inputbox.php?TB_iframe=true' id='add_exhibit' class='thickbox' title='Add an Exhibit'><img src='" . wp_guess_url() . "/wp-content/plugins/datapress/images/exhibit-small-RoyalBlue.png' alt='Add an Image' /></a>";
+	echo "Datapress <a href='" . wp_guess_url() . "/wp-content/plugins/datapress/configurator/exhibit-inputbox.php?TB_iframe=true' id='add_exhibit' class='thickbox' title='Add an Exhibit'><img src='" . wp_guess_url() . "/wp-content/plugins/datapress/images/exhibit-small-RoyalBlue.png' alt='Add an Image' /></a> &nbsp; &nbsp;";
     // echo "Datapress<a href='" . wp_guess_url() . "/wp-content/plugins/datapress/configurator/exhibit-inputbox.php?iframe=true' class='exhibit_link'><img src=''></a>";
   }
 

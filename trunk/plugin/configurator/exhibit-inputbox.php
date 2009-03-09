@@ -84,6 +84,7 @@ if ($exhibitID != NULL) {
 </head>
 <body>
 
+<form action="<?php echo $exhibituri ?>/save-exhibit.php">
 <div id="exhibit-input" class="postbox closed">
 	<h3>DataPress</h3>
 	<div class="inside">
@@ -121,6 +122,8 @@ if ($exhibitID != NULL) {
 
 	</div>
 </div>
+<input type="submit" value="Save Exhibit" />
+</form>
 
 <script type="text/javascript">
 	var saved_exhibit_id = "TEST ID";
