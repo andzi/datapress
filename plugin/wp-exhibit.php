@@ -40,7 +40,6 @@ class WpExhibit {
 	}
 	
 	function exhibit_admin_include() {
-		include('wp-exhibit-admincss.php');
 		include('exhibit_admin_include.php');		
 	}
 
