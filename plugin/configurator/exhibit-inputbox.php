@@ -67,6 +67,7 @@ if ($exhibitID != NULL) {
 	
 	<link rel='stylesheet' href='<?php echo $baseuri ?>/wp-admin/wp-admin.css?ver=20081210' type='text/css' media='all' />
 	<link rel='stylesheet' href='<?php echo $baseuri ?>/wp-admin/css/colors-fresh.css?ver=20081210' type='text/css' media='all' />
+	
 	<link rel="stylesheet" type="text/css" href="<?php echo $exhibituri ?>/css/wpexhibit.css"></link>
 
 	<script type="text/javascript" src="<?php echo $exhibituri ?>/configurator/configurator.js"></script>
@@ -85,19 +86,22 @@ if ($exhibitID != NULL) {
 <body>
 
 <form action="<?php echo $exhibituri ?>/save-exhibit.php">
-<div id="exhibit-input" class="postbox closed">
-	<h3>DataPress</h3>
+<div id="exhibit-input">
 	<div class="inside">
-
 	  <div id="exhibit-input-container">
-		<p>Use the tabs below to configure your data exhibit.</p>
+		
 		<ul id="ex-tabs" class="outer-tabs">
-			<li class="ui-tabs-selected"><a href="#exhibit-data">Data</a></li>
-			<li class="wp-no-js-hidden"><a href="#exhibit-views">Views</a></li>
-			<li class="wp-no-js-hidden"><a href="#exhibit-lenses">Lenses</a></li>
-			<li class="wp-no-js-hidden"><a href="#exhibit-facets" >Facets</a></li>
-    		<li class="wp-no-js-hidden"><a href="#exhibit-display" >Display</a></li>
+			<li class="ui-tabs-selected"><a href="#exhibit-data">Add Data</a></li>
+			<li>&gt;</li>
+			<li class="wp-no-js-hidden"><a href="#exhibit-views">Add Visualizations</a></li>
+			<li>&gt;</li>
+			<li class="wp-no-js-hidden"><a href="#exhibit-facets" >Add Facets</a></li>
+			<li>&gt;</li>
+    		<li class="wp-no-js-hidden"><a href="#exhibit-display" >Configure Display</a></li>
+			<li>&gt;</li>
+			<li class="wp-no-js-hidden" ><a href="#exhibit-lenses">Lenses (Advanced)</a></li>
 		</ul>
+		
 		<div id="exhibit-data" class="outer-tabs-panel">
 			<?php include("exhibit-inputbox-data.php") ?>
 		</div>
