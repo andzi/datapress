@@ -1,5 +1,23 @@
 <?php
 function show_datapress_html() { 
+	if (!$guessurl = site_url())
+		$guessurl = wp_guess_url();
+	$baseuri = $guessurl;
+	$exhibituri = $baseuri . '/wp-content/plugins/datapress';
+	
+	/* -------------------------------------------------
+	 * Load up the exhibit if it exists
+	 * ------------------------------------------------- */
+	$exhibitID = $_GET['exhibitid'];
+	$exhibitConfig = NULL;
+	if ($exhibitID != NULL) {
+		// See if we know about any data sources associated with this item.
+		$exhibitConfig = new WpPostExhibit();
+		$ex_success = DbMethods::loadFromDatabase($exhibitConfig, $exhibitID);
+		if (! $ex_success) {
+			$exhibitConfig = NULL;
+		}
+	}
 ?>
 	<form action="<?php echo $exhibituri ?>/save-exhibit.php">
 	<div id="exhibit-input">
@@ -36,14 +54,41 @@ function show_datapress_html() {
 		  </div>
 
 		  <p align="right">
-			<input type="submit" class="button savebutton" name="save" value="<?php echo attribute_escape( __( 'Save' ) ); ?>" />
-			<input type="submit" class="button savebutton" name="save_insert" value="<?php echo attribute_escape( __( 'Save &amp; Insert' ) ); ?>" />
-			<input type="submit" class="button savebutton" name="save_insert_footnotes" value="<?php echo attribute_escape( __( 'Save &amp; Insert with Footnotes' ) ); ?>" />
+			<input type="hidden" value="<?php echo $exhibitID ?>" name="exhibitid" />
+			<input id="save_btn" type="button" class="button savebutton" name="save" value="<?php echo attribute_escape( __( 'Save' ) ); ?>" />
+			<input id="save_insert_btn" type="button" class="button savebutton" name="save_insert" value="<?php echo attribute_escape( __( 'Save &amp; Insert' ) ); ?>" />
+			<input id="save_insert_footnotes_btn" type="button" class="button savebutton" name="save_insert_footnotes" value="<?php echo attribute_escape( __( 'Save &amp; Insert with Footnotes' ) ); ?>" />
 		  </p>
 		</div>
 	</div>
-	<input type="submit" value="Save Exhibit" />
 	</form>
+	
+	<script>
+		$(document).ready(function(){
+			function postExhibit() {
+				alert("hey");
+				jQuery.post("<?php echo $exhibituri ?>/save-exhibit.php", jQuery("#exhibit-config-form").serialize(),
+					function(data) {
+						alert("Data Loaded: " + data);
+					});
+			}
+			function ex_add_head_link(uri, kind, remove_id) {
+				var link = "";
+				if (kind == "google-spreadsheet") {
+					var link = SimileAjax.jQuery('<link id = "' + remove_id + '" rel="exhibit/data" type="application/jsonp" href="' + uri + '" ex:converter="googleSpreadsheets" />');
+				}
+				else if (kind == "application/json") {
+					var link = SimileAjax.jQuery('<link id = "' + remove_id + '" rel="exhibit/data" type="application/json" href="<?php echo $exhibituri ?>/proxy/parrot.php?url=' + uri + '" />');
+				}
+				SimileAjax.jQuery('head').append(link);
+			}
+			
+			$('#save_btn').bind("click", postExhibit);
+			$('#save_insert_btn').bind("click", postExhibit);
+			$('#save_insert_footnotes_btn').bind("click", postExhibit);
+			
+		});
+	</script>
 
 <?php 
 }
