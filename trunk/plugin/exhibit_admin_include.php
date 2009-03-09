@@ -10,7 +10,11 @@ $exhibituri = $baseuri . '/wp-content/plugins/datapress';
 <link rel="stylesheet" href="<?php echo $exhibituri ?>/css/jquery.fancybox.css" type="text/css" media="screen"/>
     
 <script type="text/javascript">
+function fancyboxClosed() {
+	alert("Closed");
+}
+
 $(document).ready(function() { 
-	$('a.exhibit_link').fancybox({ 'frameWidth': $('body').width(), 'frameHeight': $('body').height() });
+	$('a.exhibit_link').fancybox({ 'frameWidth': $('body').width() * 0.9, 'frameHeight': $('body').height() * 0.9, hideOnContentClick: false, callbackOnClose: fancyboxClosed });
 });
 </script>
