@@ -78,6 +78,9 @@ if ($exhibitID != NULL) {
 		// This is the database for adding items
 		db = Exhibit.Database.create();
 	</script>
+
+
+
 	
 	<script type="text/javascript">
 	    function postExhibit() {
@@ -87,6 +90,9 @@ if ($exhibitID != NULL) {
                         });
         }
 	</script>
+
+
+
 
 	<script type="text/javascript">
 	function ex_add_head_link(uri, kind, remove_id) {
@@ -101,6 +107,8 @@ if ($exhibitID != NULL) {
 	    SimileAjax.jQuery('head').append(link);
     }
     </script>
+
+
 </head>
 <body>
 
