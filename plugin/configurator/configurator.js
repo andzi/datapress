@@ -78,18 +78,6 @@ function ex_data_types_changed(e, arr) {
 	SimileAjax.jQuery('.allpropbox').html(prop_choice);
 }
 
-function ex_add_head_link(uri, kind, remove_id) {
-	var link = "";
-	if (kind == "google-spreadsheet") {
-		var link = SimileAjax.jQuery('<link id = "' + remove_id + '" rel="exhibit/data" type="application/jsonp" href="' + uri + '" ex:converter="googleSpreadsheets" />');
-	}
-	else if (kind == "application/json") {
-		var link = SimileAjax.jQuery('<link id = "' + remove_id + '" rel="exhibit/data" type="application/json" href="<?php echo $exhibituri ?>/proxy/parrot.php?url=' + uri + '" />');
-	}
-
-	SimileAjax.jQuery('head').append(link);
-}
-
 function ex_load_links() {
     db = Exhibit.Database.create();
 	db.loadDataLinks(ex_data_types_changed);		
