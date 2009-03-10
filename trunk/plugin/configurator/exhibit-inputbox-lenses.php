@@ -15,13 +15,25 @@
 </div>
 </div>
 
-<div style="float: left;"><p style="font-size: 1.1em; margin-top: 0px; margin-bottom: 0; padding-top: 0;"><b>Create a New Lens for</b> <select id="lensfor" class="alltypebox"></select>
-	&nbsp;&nbsp;&nbsp;&nbsp;Available Properties: 
-	<select id="lense-prop-possibilities" class="allpropbox"></select><a href="#" onClick="appendToLens('{{' + jQuery('#lense-prop-possibilities').val() + '}}'); return false;">Insert Property</a></div><div style="float: right;"><a href="#" class="addlink" onclick="submit_lens(); return false">Add Lens</a></div>
-<div class="inner-tabs-panel" style="clear: both;">
-<div style="height: 16em;" id='lenscontainer'><textarea id="lens-text" class='' style="height: 25px; width: 150px;" name='lens-text'></textarea></div>
+<div class="inner-tabs-panel">
+	<table>
+		<tr>
+			<td>Create a New Lens for</td>
+			<td><select id="lensfor" class="alltypebox"></select></td>
+		</tr>
+	</table>
+<div style="height: 150px;" id='lenscontainer'>
+	<textarea id="lens-text" class='' style="height: 150px; width: 80%;" name='lens-text'></textarea>
 </div>
 
+<table width="100%">
+	<tr>
+		<td><p align="left">Available Properties: <select id="lense-prop-possibilities" class="allpropbox"></select><a href="#" onClick="appendToLens('{{' + jQuery('#lense-prop-possibilities').val() + '}}'); return false;">Insert Property</a></p></td>
+		<td><p align="right"><a href="#" class="addlink" onclick="submit_lens(); return false">Add Lens</a></p></td>
+	</tr>
+</table>
+
+</div>
 
 <script type="text/javascript">
 // <![CDATA[
