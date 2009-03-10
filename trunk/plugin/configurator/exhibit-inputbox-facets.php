@@ -1,6 +1,4 @@
 <div class="outer-tabs-panel-header">
-<p style="font-size: 1.2em;"><b>A <i>facet</i> lets users sort through your data.</b></p>
-<p><b>Current Facets</b></p>
 <div class="current">
 <ul id="facet-list">
 </ul>

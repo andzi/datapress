@@ -1,6 +1,4 @@
 <div class="outer-tabs-panel-header">
-<p style="font-size: 1.2em;"><b>A <i>lens</i> describes how a particular object should look.</b></p>
-<p><b>Current Lenses</b></p>
 <div class="current">
 <ul id="lens-list">
 </ul>

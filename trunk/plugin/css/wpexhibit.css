@@ -1,34 +1,19 @@
 body {
 	background-color: white;
+	margin: 0;
+	padding: 0;
 }
+
+/* ------------------------------------------------------------------------------------
+ * OUTER TABS
+ * ------------------------------------------------------------------------------------   */
 
 div.outer-tabs-panel {
 	margin: 0;
 	padding: 0;
-	height: 40em;
 	overflow: auto;
 	border-top: 4px solid #cee1ef;
 	background-color: white;
-}
-
-div.outer-tabs-panel-header {
-}
-
-div.inner-tabs-panel {
-	margin: 0 5px 0 0px;
-	padding: .5em .9em;
-	overflow: auto;
-	height: 20em;
-	border-width: 2px;
-	border-style: solid;
-	border-color: #99CC66;
-}
-
-div.outer-tabs-panel-header div.current {
-	height: 4em;
-	overflow: auto;
-	border-top: 2px solid #ccc;
-	border-bottom: 2px solid #ccc;	
 }
 
 ul.outer-tabs {
@@ -47,6 +32,49 @@ ul.outer-tabs {
     content: " ";
 }
 
+
+ul.outer-tabs li {
+	display: inline;
+	float: left;
+    margin: 0 0 0 2px;
+	padding: 0.4em;
+}
+
+ul.outer-tabs li.ui-tabs-selected {
+	-moz-border-radius-topleft: 3px;
+	-khtml-border-top-left-radius: 3px;
+	-webkit-border-top-left-radius: 3px;
+	border-top-left-radius: 3px;
+	
+	-moz-border-radius-topright: 3px;
+	-khtml-border-top-right-radius: 3px;
+	-webkit-border-top-right-radius: 3px;
+	border-top-right-radius: 3px;
+}
+
+ul.outer-tabs li.ui-tabs-selected {
+	background-color: #cee1ef !important;
+}
+
+ul.outer-tabs li.ui-tabs-selected a {
+	color: #333;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+/* ------------------------------------------------------------------------------------
+ * INNER TABS
+ * ------------------------------------------------------------------------------------   */
+
+div.inner-tabs-panel {
+	margin: 0 5px 0 0px;
+	padding: .5em .9em;
+	overflow: auto;
+	border-width: 2px;
+	border-style: solid;
+	border-color: #99CC66;
+}
+
 ul.inner-tabs {
 	list-style: none;
 	margin: 0;
@@ -59,14 +87,6 @@ ul.inner-tabs {
     display: block;
     clear: both;
     content: " ";
-}
-
-ul.outer-tabs li {
-	display: inline;
-	float: left;
-    margin: 0 0 0 2px;
-	padding: 0.4em;
-	font-size: 1.2em;
 }
 
 ul.inner-tabs li {
@@ -84,18 +104,6 @@ ul.inner-tabs li a {
 	
 }
 
-ul.outer-tabs li.ui-tabs-selected {
-	-moz-border-radius-topleft: 3px;
-	-khtml-border-top-left-radius: 3px;
-	-webkit-border-top-left-radius: 3px;
-	border-top-left-radius: 3px;
-	
-	-moz-border-radius-topright: 3px;
-	-khtml-border-top-right-radius: 3px;
-	-webkit-border-top-right-radius: 3px;
-	border-top-right-radius: 3px;
-}
-
 ul.inner-tabs li {
 	-moz-border-radius-topleft: 3px;
 	-khtml-border-top-left-radius: 3px;
@@ -105,12 +113,6 @@ ul.inner-tabs li {
 	-khtml-border-top-right-radius: 3px;
 	-webkit-border-top-right-radius: 3px;
 	border-top-right-radius: 3px;
-}
-
-ul.outer-tabs li.ui-tabs-selected a {
-	color: #333;
-	font-weight: bold;
-	text-decoration: none;
 }
 
 ul.inner-tabs li.ui-tabs-selected  {
@@ -127,10 +129,6 @@ ul.inner-tabs li.ui-tabs-selected a {
 	color: #333;
 }
 
-ul.outer-tabs li.ui-tabs-selected {
-	background-color: #cee1ef !important;
-}
-
 /* Additional IE specific bug fixes... */
 * html .inner-tabs-nav { /* auto clear @ IE 6 & IE 7 Quirks Mode */
     display: inline-block;
@@ -138,6 +136,47 @@ ul.outer-tabs li.ui-tabs-selected {
 *:first-child+html .inner-tabs-nav  { /* auto clear @ IE 7 Standards Mode - do not group selectors, otherwise IE 6 will ignore complete rule (because of the unknown + combinator)... */
     display: inline-block;
 }
+
+/* ------------------------------------------------------------------------------------
+ * CURRENT ITEMS
+ * ------------------------------------------------------------------------------------   */
+
+div.current {
+	min-height: 100px;
+	margin: 0;
+	background-color: #efefef;
+	border-bottom: 2px solid #ccc;	
+	display: block;
+	clear: both;
+	margin-bottom: 10px;
+}
+
+div.current {
+	margin-top: 0;
+	padding-top: 0;
+}
+
+div.current ul {
+	min-height: 10px;
+	min-width: 10px;
+}
+
+div.current table {
+	width: 100%;
+	border-spacing: 0;
+}
+
+div.current table col {
+	width: 50%;
+}
+
+div.current table tr tr {
+	vertical-align: top;;
+}
+
+/* ------------------------------------------------------------------------------------
+ * BUTTONS
+ * ------------------------------------------------------------------------------------   */
 
 a.addlink {
 	line-height:1.5em;
@@ -158,6 +197,10 @@ a.addlink {
 a.addlink:hover {
 	color:#D54E21;
 }
+
+/* ------------------------------------------------------------------------------------
+ * FORM ELEMENTS
+ * ------------------------------------------------------------------------------------   */
 
 #exhibit-input-container select {
 	vertical-align: middle;

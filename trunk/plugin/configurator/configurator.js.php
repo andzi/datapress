@@ -1,3 +1,35 @@
+<?php
+ob_start();
+$root = dirname(dirname(dirname(dirname(dirname(__FILE__)))));
+  if (file_exists($root.'/wp-load.php')) {
+      // WP 2.6
+      require_once($root.'/wp-load.php');
+  } else {
+      // Before 2.6
+      require_once($root.'/wp-config.php');
+  }
+ob_end_clean(); //Ensure we don't have output from other plugins.
+
+header("Content-type: text/javascript");
+
+if (!$guessurl = site_url())
+	$guessurl = wp_guess_url();
+$baseuri = $guessurl;
+$exhibituri = $baseuri . '/wp-content/plugins/datapress';
+
+print <<<EOF
+
+function ex_add_head_link(uri, kind, remove_id) {
+	var link = "";
+	if (kind == "google-spreadsheet") {
+		var link = SimileAjax.jQuery('<link id = "' + remove_id + '" rel="exhibit/data" type="application/jsonp" href="' + uri + '" ex:converter="googleSpreadsheets" />');
+	}
+	else if (kind == "application/json") {
+		var link = SimileAjax.jQuery('<link id = "' + remove_id + '" rel="exhibit/data" type="application/json" href="$exhibituri/proxy/parrot.php?url=' + uri + '" />');
+	}
+	SimileAjax.jQuery('head').append(link);
+}
+
 function addExhibitElementLink(listId, caption, prefix, fields, field_display) {
 	var next_id = SimileAjax.jQuery('#' + listId + ' > li').size();
 	var liid = listId + "_" + next_id;
@@ -82,3 +114,5 @@ function ex_load_links() {
     db = Exhibit.Database.create();
 	db.loadDataLinks(ex_data_types_changed);		
 }
+EOF
+?>

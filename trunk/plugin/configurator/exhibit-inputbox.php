@@ -72,42 +72,11 @@ if ($exhibitID != NULL) {
 		jQuery(document).ready(function(){
 			var category_tabs = jQuery("#exhibit-input-container > ul").tabs();
 			ex_load_links();
+			remove_callbacks = new Array();
+			// This is the database for adding items
+			db = Exhibit.Database.create();
 		});
-
-		remove_callbacks = new Array();
-		// This is the database for adding items
-		db = Exhibit.Database.create();
 	</script>
-
-
-
-	
-	<script type="text/javascript">
-	    function postExhibit() {
-	        jQuery.post("<?php echo $exhibituri ?>/save-exhibit.php", jQuery("#exhibit-config-form").serialize(),
-                        function(data) {
-                            alert("Data Loaded: " + data);
-                        });
-        }
-	</script>
-
-
-
-
-	<script type="text/javascript">
-	function ex_add_head_link(uri, kind, remove_id) {
-	    var link = "";
-    	if (kind == "google-spreadsheet") {
-		var link = SimileAjax.jQuery('<link id = "' + remove_id + '" rel="exhibit/data" type="application/jsonp" href="' + uri + '" ex:converter="googleSpreadsheets" />');
-	}
-	else if (kind == "application/json") {
-		var link = SimileAjax.jQuery('<link id = "' + remove_id + '" rel="exhibit/data" type="application/json" href="<?php echo $exhibituri ?>/proxy/parrot.php?url=' + uri + '" />');
-	}
-
-	    SimileAjax.jQuery('head').append(link);
-    }
-    </script>
-
 
 </head>
 <body>

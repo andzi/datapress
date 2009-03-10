@@ -1,8 +1,14 @@
-
 <div class="outer-tabs-panel-header">
-<p style="font-size: 1.2em;"><b>Add <i>data sources</i> to fill your Exhibit with content.</b></p>
-<p><b>Current Data Sources</b> [ <a href="#" onClick="ex_load_links(); return false;">Refresh Data</a> ]</p>
 <div class="current">
+	<table width="100%">
+		<col /><col />
+		<tr>
+			<td width="50%" valign="top">
+				<p>Datapress currently supports JSON, JSONP, and Google Spreadsheets.</p>
+				<p>[ <a href="#" onClick="ex_load_links(); return false;">Refresh Data</a> ]</p>
+			</td>
+			<td width="50%" valign="top">
+				<h4>Current Data Sources</h4>
 <ul id="data-source-list">
 	<?php
 		if ($exhibitConfig != NULL) {
@@ -16,18 +22,12 @@
 		}
 	?>		
 </ul>
+	</td></tr></table>
 </div>
 </div>
 
-<div id="exhibit-datasource-tabs">
-	<ul id="ex-datasource-tabs-list" class="inner-tabs">
-<!--		<li class="ui-tabs-selected"><a href="#exhibit-datasource-upload" >Import Data</a></li> -->
-		<li class="ui-tabs-selected"><a href="#exhibit-datasource-link" >Link to Data</a></li>
-<!--		<li class="ui-tabs-selected"><a href="#exhibit-datasource-enter" >Create/Edit Data</a></li> -->
-	</ul>
-<!--	<div id="exhibit-datasource-upload" class="inner-tabs-panel" style="display: none;"><?php include("exhibit-inputbox-data-upload.php") ?></div> -->
-<!--	<div id="exhibit-datasource-enter" class="inner-tabs-panel" style="display: none;"><?php include("exhibit-inputbox-data-enter.php") ?></div> -->
-	<div id="exhibit-datasource-link" class="inner-tabs-panel" style="display: none;"><?php include("exhibit-inputbox-data-link.php") ?></div>
+<div id="exhibit-datasource-link" class="inner-tabs-panel">
+	<?php include("exhibit-inputbox-data-link.php") ?>
 </div>
 
 <script type="text/javascript">
