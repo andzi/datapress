@@ -19,7 +19,7 @@ function show_datapress_html() {
 		}
 	}
 ?>
-	<form action="<?php echo $exhibituri ?>/save-exhibit.php">
+	<form id="exhibit-config-form">
 	<div id="exhibit-input">
 		<div class="inside">
 		  <div id="exhibit-input-container">
@@ -55,6 +55,7 @@ function show_datapress_html() {
 
 		  <p align="right">
 			<input type="hidden" value="<?php echo $exhibitID ?>" name="exhibitid" />
+			<input type="hidden" value="save_exhibit_configuration" name="action" />
 			<input id="save_btn" type="button" class="button savebutton" name="save" value="<?php echo attribute_escape( __( 'Save' ) ); ?>" />
 			<input id="save_insert_btn" type="button" class="button savebutton" name="save_insert" value="<?php echo attribute_escape( __( 'Save &amp; Insert' ) ); ?>" />
 			<input id="save_insert_footnotes_btn" type="button" class="button savebutton" name="save_insert_footnotes" value="<?php echo attribute_escape( __( 'Save &amp; Insert with Footnotes' ) ); ?>" />
@@ -65,11 +66,12 @@ function show_datapress_html() {
 	<script>
 		$(document).ready(function(){
 			function postExhibit() {
-				jQuery.post("<?php echo $exhibituri ?>/save-exhibit.php", jQuery("#exhibit-config-form").serialize(),
-					function(data) {
-						send_to_editor("Data Loaded: " + data);
-					});
-			}
+				jQuery.post("<?php bloginfo('wpurl'); ?>/wp-admin/admin-ajax.php",
+				            jQuery("#exhibit-config-form").serialize(),
+					        function(data) {
+						        alert("Data Loaded: " + data);
+					        });
+  			}
 			
 			$('#save_btn').bind("click", postExhibit);
 			$('#save_insert_btn').bind("click", postExhibit);
