@@ -9,9 +9,21 @@ $exhibituri = $baseuri . '/wp-content/plugins/datapress';
 <p>You can upload your own data to link to using the build-in WordPress media uploader.</p>
 
 <form id="google-doc-form">
-	<p>URL: <input id="data-link-link" type="text" size="30" /><select id="data-link-type"><option  value="exhibit">Exhibit</option><option value="google-spreadsheet">Google Spreadsheet</option><option value="application/json">JSON</option></select></p>
-    <p>Name: <input id="data-link-sourcename" type="text" size="30" /></p>
-	<p><a href="#" class="addlink" onclick="submit_google_doc(); return false">Link</a></p>
+<table>
+	<tr>
+		<td>Data URL</td>
+		<td><input id="data-link-link" type="text" size="30" /></td>
+	</tr>
+	<tr>
+		<td>Data Type</td>
+		<td><select id="data-link-type"><option  value="exhibit">Exhibit</option><option value="google-spreadsheet">Google Spreadsheet</option><option value="application/json">JSON</option></select></td>
+	</tr>
+	<tr>
+    	<td>Datasource Name</td>
+		<td><input id="data-link-sourcename" type="text" size="30" /></td>
+	</tr>
+</table>
+<p align="right"><a href="#" class="addlink" onclick="submit_google_doc(); return false">Add Data Link</a></p>
 </form>
 
 <script type="text/JavaScript">

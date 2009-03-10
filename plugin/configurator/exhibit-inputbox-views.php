@@ -1,6 +1,4 @@
 <div class="outer-tabs-panel-header">
-<p style="font-size: 1.2em;"><b>A <i>view</i> displays your data.</b></p>
-<p><b>Current Views</b></p>
 <div class="current">
 <ul id="views-list">
 </ul>

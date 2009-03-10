@@ -72,20 +72,15 @@ function show_datapress_html() {
 						alert("Data Loaded: " + data);
 					});
 			}
-			function ex_add_head_link(uri, kind, remove_id) {
-				var link = "";
-				if (kind == "google-spreadsheet") {
-					var link = SimileAjax.jQuery('<link id = "' + remove_id + '" rel="exhibit/data" type="application/jsonp" href="' + uri + '" ex:converter="googleSpreadsheets" />');
-				}
-				else if (kind == "application/json") {
-					var link = SimileAjax.jQuery('<link id = "' + remove_id + '" rel="exhibit/data" type="application/json" href="<?php echo $exhibituri ?>/proxy/parrot.php?url=' + uri + '" />');
-				}
-				SimileAjax.jQuery('head').append(link);
-			}
 			
 			$('#save_btn').bind("click", postExhibit);
 			$('#save_insert_btn').bind("click", postExhibit);
 			$('#save_insert_footnotes_btn').bind("click", postExhibit);
+			
+			remove_callbacks = new Array();
+			db = Exhibit.Database.create();
+			var category_tabs = jQuery("#exhibit-input-container > ul").tabs();
+			ex_load_links();
 			
 		});
 	</script>
