@@ -13,6 +13,7 @@ include_once('wp-exhibit-config.php');
 include_once('wp-exhibit-admin-options.php');
 include_once('wp-exhibit-activation-tools.php');
 include_once('wp-exhibit-insert-exhibit.php');
+include_once('wp-exhibit-save-post.php');
 include_once('save-exhibit.php');
 include_once('model/wp-exhibit-model.php');
 include_once('facet_widget.php');
@@ -54,7 +55,7 @@ class WpExhibit {
 	}
 	
 	function save_post() {
-		include('wp-exhibit-save-post.php');
+		SaveExhibitPost::save();
 	}
 		
 	function activate_plugin() {
