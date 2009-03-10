@@ -62,7 +62,6 @@ function show_datapress_html() {
 		</div>
 	</div>
 	</form>
-	
 	<script>
 		$(document).ready(function(){
 			function postExhibit() {
@@ -84,14 +83,10 @@ function show_datapress_html() {
 			
 		});
 	</script>
-
 <?php 
 }
 
 function show_datapress_configurator() {
-	$errors = array();
-	$id = 0;
-	
 	wp_enqueue_script('exhibit-api');
 	wp_enqueue_script('exhibit-chart');
 	wp_enqueue_script('exhibit-time');
@@ -109,6 +104,6 @@ function show_datapress_configurator() {
 	wp_enqueue_style( 'media' );
 	wp_enqueue_style('dp-configurator');
 	
-	echo wp_iframe( 'show_datapress_html', 'exhibit', $errors, $id );
+	echo wp_iframe('show_datapress_html');
 }
 ?>
