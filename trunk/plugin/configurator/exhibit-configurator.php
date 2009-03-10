@@ -96,7 +96,6 @@ function show_datapress_configurator() {
 	wp_enqueue_script('dp-tinymce');
 	wp_enqueue_script('dp-tinymce-langs');	
 	wp_enqueue_script('configurator');	
-	wp_enqueue_script('configurator-loaded');	
 	
 	wp_enqueue_style( 'global' );
 	wp_enqueue_style( 'wp-admin' );
@@ -105,5 +104,6 @@ function show_datapress_configurator() {
 	wp_enqueue_style('dp-configurator');
 	
 	echo wp_iframe('show_datapress_html');
+	die();
 }
 ?>

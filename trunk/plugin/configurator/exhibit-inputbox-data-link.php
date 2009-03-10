@@ -5,9 +5,6 @@ $baseuri = $guessurl;
 $exhibituri = $baseuri . '/wp-content/plugins/datapress';
 ?>
 
-<p><b>Link to data on the web.</b><br/>Any remote changes in that data will be reflected in your Exhibit.</p>
-<p>You can upload your own data to link to using the build-in WordPress media uploader.</p>
-
 <form id="google-doc-form">
 <table>
 	<tr>
@@ -16,7 +13,7 @@ $exhibituri = $baseuri . '/wp-content/plugins/datapress';
 	</tr>
 	<tr>
 		<td>Data Type</td>
-		<td><select id="data-link-type"><option  value="exhibit">Exhibit</option><option value="google-spreadsheet">Google Spreadsheet</option><option value="application/json">JSON</option></select></td>
+		<td><select id="data-link-type"><option  value="exhibit">Exhibit (web page)</option><option value="google-spreadsheet">Google Spreadsheet (JSONP)</option><option value="application/json">JSON</option></select></td>
 	</tr>
 	<tr>
     	<td>Datasource Name</td>

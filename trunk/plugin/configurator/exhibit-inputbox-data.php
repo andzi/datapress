@@ -4,11 +4,11 @@
 		<col /><col />
 		<tr>
 			<td width="50%" valign="top">
-				<p>Datapress currently supports JSON, JSONP, and Google Spreadsheets.</p>
+				<p>Datapress currently supports JSON, JSONP, and Google Spreadsheet data sources. You can also import data sources from an existing Exhibit using its URL.</p>
 				<p>[ <a href="#" onClick="ex_load_links(); return false;">Refresh Data</a> ]</p>
 			</td>
 			<td width="50%" valign="top">
-				<h4>Current Data Sources</h4>
+				<p><b>Current Data Sources</b></p>
 <ul id="data-source-list">
 	<?php
 		if ($exhibitConfig != NULL) {
