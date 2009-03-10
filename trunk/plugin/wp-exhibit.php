@@ -13,6 +13,7 @@ include_once('wp-exhibit-config.php');
 include_once('wp-exhibit-admin-options.php');
 include_once('wp-exhibit-activation-tools.php');
 include_once('wp-exhibit-insert-exhibit.php');
+include_once('save-exhibit.php');
 include_once('model/wp-exhibit-model.php');
 include_once('facet_widget.php');
 include_once('proxy/insert-parrotable-url.php');	
@@ -75,6 +76,11 @@ class WpExhibit {
         InsertParrotableUrl::insert_url();
 	    die;
 	}
+	
+	function save_exhibit_configuration() {
+        SaveExhibitConfiguration::save();
+	    die;
+	}
 
   function make_exhibit_button() {
 	echo "Datapress <a href='" . wp_guess_url() . "/wp-admin/admin-ajax.php?action=datapress_configurator&TB_iframe=true' id='add_exhibit' class='thickbox' title='Add an Exhibit'><img src='" . wp_guess_url() . "/wp-content/plugins/datapress/images/exhibit-small-RoyalBlue.png' alt='Add an Image' /></a> &nbsp; &nbsp;";
@@ -110,6 +116,7 @@ add_action('admin_menu', array($exhibit, 'add_options_page'));
 
 add_action('wp', array($exhibit, 'load_exhibit'));
 add_action('wp_ajax_insert_parrotable_url', array($exhibit, 'insert_parrotable_url') );
+add_action('wp_ajax_save_exhibit_configuration', array($exhibit, 'save_exhibit_configuration') );
 add_action('wp_ajax_datapress_configurator', 'show_datapress_configurator' );
 
 add_action('media_buttons', array($exhibit, 'make_exhibit_button'));
