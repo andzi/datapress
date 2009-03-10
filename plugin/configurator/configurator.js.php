@@ -57,31 +57,6 @@ function removeExhibitElementLink(liid, liid_remove) {
     ex_load_links();
 }
 
-function send_to_editor(h) {
-	if ( typeof tinyMCE != 'undefined' && ( ed = tinyMCE.activeEditor ) && !ed.isHidden() ) {
-		ed.focus();
-		if (tinymce.isIE)
-			ed.selection.moveToBookmark(tinymce.EditorManager.activeEditor.windowManager.bookmark);
-
-		if ( h.indexOf('[caption') === 0 ) {
-			if ( ed.plugins.wpeditimage )
-				h = ed.plugins.wpeditimage._do_shcode(h);
-		} else if ( h.indexOf('[gallery') === 0 ) {
-			if ( ed.plugins.wpgallery )
-				h = ed.plugins.wpgallery._do_gallery(h);
-		}
-
-		ed.execCommand('mceInsertContent', false, h);
-
-	} else if ( typeof edInsertContent == 'function' ) {
-		edInsertContent(edCanvas, h);
-	} else {
-		jQuery( edCanvas ).val( jQuery( edCanvas ).val() + h );
-	}
-
-	tb_remove();
-}
-
 function appendToPost(myValue) {
 	window.tinyMCE.execInstanceCommand("content", "mceInsertContent",true,myValue);
 }
