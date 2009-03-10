@@ -139,8 +139,7 @@ wp_register_script( 'dp-jquery-tabs', "$baseuri/wp-includes/js/jquery/ui.tabs.js
 wp_register_script( 'dp-tinymce', "$baseuri/wp-includes/js/tinymce/tiny_mce.js?ver=20081129", array() );
 wp_register_script( 'dp-tinymce-langs', "$baseuri/wp-includes/js/tinymce/langs/wp-langs-en.js?ver=20081129", array('dp-tinymce') );
 
-wp_register_script( 'configurator', "$baseuri/wp-content/plugins/datapress/configurator/configurator.js");
-wp_register_script( 'configurator-loaded', "$baseuri/wp-content/plugins/datapress/configurator/configurator.js", array( 'configurator' ) );
+wp_register_script( 'configurator', "$baseuri/wp-content/plugins/datapress/configurator/configurator.js.php");
 
 
 /* ---------------------------------------------------------------------------
