@@ -65,10 +65,9 @@ function show_datapress_html() {
 	<script>
 		$(document).ready(function(){
 			function postExhibit() {
-				alert("hey");
 				jQuery.post("<?php echo $exhibituri ?>/save-exhibit.php", jQuery("#exhibit-config-form").serialize(),
 					function(data) {
-						alert("Data Loaded: " + data);
+						send_to_editor("Data Loaded: " + data);
 					});
 			}
 			
