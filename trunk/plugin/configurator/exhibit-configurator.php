@@ -65,13 +65,36 @@ function show_datapress_html() {
 	</form>
 	<script>
 		$(document).ready(function(){
-			function postExhibit() {
+			function postExhibit(e) {
+				var paste_exhibit = false;
+				var paste_footnotes = false;
+				
+				if (e.target.name == "save_insert") {
+					paste_exhibit = true;
+				}
+				if (e.target.name == "save_insert_footnotes") {
+					paste_exhibit = true;
+					paste_footnotes = true;
+				}
+				
 				jQuery.post("<?php bloginfo('wpurl'); ?>/wp-admin/admin-ajax.php",
 				            jQuery("#exhibit-config-form").serialize(),
 					        function(data) {
-						        alert("Data Loaded: " + data);
-					        });
-  			}
+								var win = window.dialogArguments || opener || parent || top;
+								win.set_post_exhibit(data);
+								
+								if (paste_exhibit && paste_footnotes) {
+									win.send_to_editor("{{Exhibit}}<br />{{Footnotes}}");
+								}
+								else if (paste_exhibit) {
+									win.send_to_editor("{{Exhibit}}");	
+								}
+								else {
+									win.send_to_editor("");	
+								}
+							});
+							
+			}
 			
 			$('#save_btn').bind("click", postExhibit);
 			$('#save_insert_btn').bind("click", postExhibit);
@@ -81,13 +104,14 @@ function show_datapress_html() {
 			db = Exhibit.Database.create();
 			var category_tabs = jQuery("#exhibit-input-container > ul").tabs();
 			ex_load_links();
-			
 		});
 	</script>
 <?php 
 }
 
 function show_datapress_configurator() {
+	wp_enqueue_script('common');
+
 	wp_enqueue_script('exhibit-api');
 	wp_enqueue_script('exhibit-chart');
 	wp_enqueue_script('exhibit-time');
