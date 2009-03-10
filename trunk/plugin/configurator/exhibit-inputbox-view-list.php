@@ -4,20 +4,23 @@
 
 <table>
 	<tr>
-		<td><i>What do you want to call this list?</i></td>
+		<td><i>Visualization Title</i></td>
 		<td><br /><input id="view-list-label" type="text" size="30" /></td>
+		<td></td>
 	</tr>
 	<tr>
-		<td><i>Default sort by field</i><br /><b>(Optional)</b></td>
+		<td><i>Default sort by field</i></td>
 		<td><select id="view-list-sortby" class="allpropbox"></select></td>
+		<td>(Optional)</td>
 	</tr>
 	<tr>
-		<td><i>Extra Attributes</i><br /><b>(Optional, Advanced)</b></td>
-		<td><input id="view-list-extra-attributes" type="text" size="30" /></td>
+		<td><i>Extra Attributes</i><br /></td>
+		<td><input id="view-list-extra-attributes" type="text" /></td>
+		<td>(Optional)</td>
 	</tr>
 </table>
 <br />
-<p><a href="#" class="addlink" onclick="submit_view_list_facet(); return false">Add List</a></p>
+<p align="right"><a href="#" class="addlink" onclick="submit_view_list_facet(); return false">Add List</a></p>
 </form>			
 
 <script type="text/JavaScript">

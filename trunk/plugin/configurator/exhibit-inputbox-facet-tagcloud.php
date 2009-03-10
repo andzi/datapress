@@ -7,9 +7,13 @@ $exhibituri = $baseuri . '/wp-content/plugins/datapress';
 <p><b>A <i>Tag Cloud Facet</i> lets you browse through buckets of items in you
 Exhibit data, displaying those buckets as a cloud of words.</b></p>
 <form id="facet-search-form">
-<p><i>What do you want to call this facet view?</i><br /><input id="tagcloud-facet-label" type="text" size="30" /></p>
-<p><i>What field do you want to narrow down items from?</i><br /><select id="tagcloud-facet-field" class="allpropbox"></select></p>
-<a href="#" class="addlink" onclick="submit_tagcloud_facet(); return false">Add Tag Cloud Facet</a>
+<table>
+<tr><td><i>Facet Title</i></td><td><input id="tagcloud-facet-label" type="text" size="30" /></td></tr>
+<tr><td><i>Use field</i></td><td><select id="tagcloud-facet-field" class="allpropbox"></select></td></tr>
+</table>
+
+<p align="right"><a href="#" class="addlink" onclick="submit_tagcloud_facet(); return false">Add Tag Cloud Facet</a></p>
+
 </form>			
 
 <script type="text/JavaScript">
