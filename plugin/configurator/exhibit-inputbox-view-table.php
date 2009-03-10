@@ -2,14 +2,14 @@
 
 <form id="add-view-table-form">
 	<table>
-		<tr><td><i>What do you want to call the table?</i></td><td><input id="view-table-label" type="text" size="30" /></td></tr>
-		<tr><td><i>What is it a table of?</i></td><td><select id="view-table-class" class="alltypebox"></select></td></tr>
-		<tr><td><i>Include Fields</i></td><td><select id="view-table-fields" style="height: 100px; width: 200px;" class="allpropbox" multiple></select></td></tr>
-		<tr><td><i>Field Captions</i> (Comma-separated)<br /><b>( Optional )</b></td><td><input id="view-table-captions" type="text" size="30" /></td></tr>
-		<tr><td><i>Extra Attributes</i><br /><b>(Optional, Advanced)</b><a href="http://simile.mit.edu/wiki/Exhibit/2.0/Tabular_View">Reference</a></td><td><input id="view-table-extra-attributes" type="text" size="40" /></td></tr>
+		<tr><td><i>Visualization Title</i></td><td><input id="view-table-label" type="text" size="30" /></td><td></td></tr>
+		<tr><td><i>What is it a table of?</i></td><td><select id="view-table-class" class="alltypebox"></select></td><td></td></tr>
+		<tr><td><i>Include Fields</i></td><td><select id="view-table-fields" style="height: 100px; width: 200px;" class="allpropbox" multiple></select></td><td></td></tr>
+		<tr><td><i>Field Captions</i><br />(Comma-separated)</td><td><input id="view-table-captions" type="text" size="30" /></td><td>(Optional)</td></tr>
+		<tr><td><i>Extra Attributes</i></td><td><input id="view-table-extra-attributes" type="text" /></td><td>(Optional) <a href="http://simile.mit.edu/wiki/Exhibit/2.0/Tabular_View">Reference</a></td></tr>
 	</table>
 	<br />
-	<p><a href="#" class="addlink" onclick="submit_view_table_facet(); return false">Add Table</a></p>
+	<p align="right"><a href="#" class="addlink" onclick="submit_view_table_facet(); return false">Add Table</a></p>
 </form>	
 
 

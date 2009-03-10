@@ -1,18 +1,18 @@
 <p><b>A <b>Bar Chart</b> displays numeric data as set of bars.</b></p>
 
 <form id="add-view-bar-form">
-	<p><i>What do you want to call the bar chart?</i><br /><input id="view-bar-label" type="text" size="30" /></p>
+	<p><i>Visualization Title</i><br /><input id="view-bar-label" type="text" size="30" /></p>
 
 	<table>
-		<tr><td><i>X Axis Value</i></td><td>X Axis Label</td></tr>
-		<tr><td><select id="view-bar-x" class="allpropbox"></select></td><td><input id="view-bar-xLabel" /></td></tr>
-		<tr><td><i>Y Axis Value</i></td><td>Y Axis Label</td></tr>
-		<tr><td><select id="view-bar-y" class="allpropbox"></select></td></tr>
-		<tr><td><i>Scale</i></td><td><select id="view-bar-xScale"><option value="linear">Linear</option><option value="log">Log</option></select></td></tr>
-		<tr><td><i>Extra Attributes</i><br /><b>(Optional, Advanced)</b></td><td><input id="view-bar-extra-attributes" type="text" size="30" /></td></tr>
+		<tr><td><i>X Axis Value</i></td><td>X Axis Label</td><td></td></tr>
+		<tr><td><select id="view-bar-x" class="allpropbox"></select></td><td><input id="view-bar-xLabel" /></td><td></td></tr>
+		<tr><td><i>Y Axis Value</i></td><td>Y Axis Label</td><td></td></tr>
+		<tr><td><select id="view-bar-y" class="allpropbox"></select></td><td></td></tr>
+		<tr><td><i>Scale</i></td><td><select id="view-bar-xScale"><option value="linear">Linear</option><option value="log">Log</option></select></td><td></td></tr>
+		<tr><td><i>Extra Attributes</i>/td><td><input id="view-bar-extra-attributes" type="text" /></td><td>(optional)</td></tr>
 	</table>
 	<br />
-	<p><a href="#" class="addlink" onclick="submit_view_bar_facet(); return false">Add Bar Chart</a></p>
+	<p align="right"><a href="#" class="addlink" onclick="submit_view_bar_facet(); return false">Add Bar Chart</a></p>
 </form>			
 
 <script type="text/JavaScript">

@@ -2,32 +2,38 @@
 <form id="add-view-map-form">
 	<table>
 		<tr>
-			<td><i>What do you want to call this map?</i></td>
+			<td><i>Visualization Title</i></td>
 			<td><input id="view-map-label" type="text" size="30" /></td>
+			<td></td>
 		</tr>
 		<tr>
-			<td><i>What field contains the location?</i></td>
+			<td><i>Location field</i></td>
 			<td><select id="view-map-field" class="allpropbox"></select> contains a 
 				<select id="view-map-field-type">
-					<option selected value="latlng">Latitude,Longitude</select>
+					<option selected value="latlng">Lat,Lng</select>
 				</select>
 			</td>
+			<td></td>
 		</tr>	
 		<tr>
-			<td><i>Popup Size</i><br /><b>(Optional)</b></td>
+			<td><i>Popup Size</i></td>
 			<td>Width: <input id="view-map-bw" value="200" style="width: 40px;" />px, Height: <input style="width: 40px;" id="view-map-bh" value="200" />px</td>
+			<td></td>
 		</tr>
 		<tr>
-			<td><i>Marker Size</i><br /><b>(Optional)</b></td>
+			<td><i>Marker Size</i></td>
 			<td>Width: <input id="view-map-mw" value="60" style="width: 40px;" />px, Height: <input style="width: 40px;" id="view-map-mh" value="60" />px</td>
+			<td></td>
 		</tr>
 		<tr>
-			<td><i>Icon</i><br /><b>(Optional)</b></td>
+			<td><i>Icon</i></td>
 			<td><select id="view-map-icon" class="allpropbox"></select></td>
+			<td>(Optional)</td>
 		</tr>
 		<tr>
-			<td><i>Extra Attributes</i><br /><b>(Optional, Advanced)</b></td>
-			<td> <input id="view-map-extra-attributes" type="text" size="30" /></td>
+			<td><i>Extra Attributes</i></td>
+			<td> <input id="view-map-extra-attributes" type="text"  /></td>
+			<td>(Optional)</td>
 		</tr>	
 	</table>
 <!--	
@@ -35,7 +41,7 @@
 NOTE: Currently disabled. You have to put the coder definition OUTSIDE the view panel for it to work. Then we can add this back in.
 -->
 	<br />
-	<p><a href="#" class="addlink" onclick="submit_view_map_facet(); return false">Add Map</a></p>
+	<p align="right"><a href="#" class="addlink" onclick="submit_view_map_facet(); return false">Add Map</a></p>
 </form>
 
 <script type="text/JavaScript">

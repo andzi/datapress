@@ -1,21 +1,45 @@
 <p><b>A <b>Scatter Plot</b> displays data as an graph of data points.</b></p>
 
 <form id="add-view-scatter-form">
-	<p><i>What do you want to call the scatter plot?</i><br /><input id="view-scatter-label" type="text" size="30" /></p>
 
 	<table>
-		<tr><td><i>X Axis Value</i></td><td>X Axis Label</td></tr>
-		<tr><td><select id="view-scatter-x" class="allpropbox"></select></td><td><input id="view-scatter-xLabel" /></td></tr>
-		<tr><td><i>Y Axis Value</i></td><td>Y Axis Label</td></tr>
-		<tr><td><select id="view-scatter-y" class="allpropbox"></select></td><td><input id="view-scatter-yLabel" /></td></tr>
-		<tr><td><i>Scale</i></td><td><select id="view-scatter-xScale"><option value="linear">Linear</option><option value="log">Log</option></select></td></tr>
 		<tr>
-			<td><i>Extra Attributes</i><br /><b>(Optional, Advanced)</b></td>
-			<td><input id="view-scatter-extra-attributes" type="text" size="40" /></td>
+			<td><i>Visualization Title</i></td>
+			<td><input id="view-scatter-label" type="text" size="30" /></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td><i>X Axis</i></td>
+			<td><select id="view-scatter-x" class="allpropbox"></select></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td><i>X Axis Label</i></td>
+			<td><input id="view-scatter-xLabel" /></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td><i>Y Axis</i></td>
+			<td><select id="view-scatter-y" class="allpropbox"></select></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td><i>Y Axis Label</i></td>
+			<td><input id="view-scatter-yLabel" /></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td><i>Scale</i></td>
+			<td><select id="view-scatter-xScale"><option value="linear">Linear</option><option value="log">Log</option></select></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td><i>Extra Attributes</i></td>
+			<td><input id="view-scatter-extra-attributes" type="text" /></td><td>(Optional)</td>
 		</tr>	
 	</table>
 	<br />
-	<p><a href="#" class="addlink" onclick="submit_view_scatter_facet(); return false">Add Scatter Plot</a></p>
+	<p align="right"><a href="#" class="addlink" onclick="submit_view_scatter_facet(); return false">Add Scatter Plot</a></p>
 </form>			
 
 <script type="text/JavaScript">

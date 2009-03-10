@@ -3,32 +3,38 @@
 <form id="add-view-timeline-form">
 	<table>
 		<tr>
-			<td><i>What do you want to call the Timeline?</i></td>
+			<td><i>Visualization Title</i></td>
 			<td><input id="view-timeline-label" type="text" size="30" /></td>
+			<td></td>
 		</tr>
 		<tr>
-			<td><i>What field contains the start of events?</i></td>
+			<td><i>Event Start</i></td>
 			<td><select id="view-timeline-start" class="allpropbox"></select></td>
+			<td></td>
 		</tr>
 		<tr>
-			<td><i>What field contains the end of events?</i><br /><b>(Optional)</b></td>
+			<td><i>Event End</i></td>
 			<td><select id="view-timeline-end" class="allpropbox"></select></td>
+			<td>(Optional)</td>
 		</tr>
 		<tr>
-			<td><i>Color objects according to value stored in:</i><br /><b>(Optional)</b></td>
+			<td><i>Color objects by</i></td>
 			<td><select id="view-timeline-color" class="allpropbox"></select></td>
+			<td>(Optional)</td>
 		</tr>
 		<tr>
-			<td><i>Proxy:</i><br /><b>(Optional, Advaiced)</b></td>
+			<td><i>Proxy (advanced)</i></td>
 			<td><select id="view-timeline-proxy" class="allpropbox"></select></td>
+			<td>(Optional)</td>
 		</tr>
 		<tr>
-			<td><i>Extra Attributes</i><br />(Optional, Advanced)</td>
-			<td><input id="view-timeline-extra-attributes" type="text" size=40" /></td>
+			<td><i>Extra Attributes</i></td>
+			<td><input id="view-timeline-extra-attributes" type="text" /></td>
+			<td>(Optional)</td>
 		</tr>
 	</table>
 <br />
-<p><a href="#" class="addlink" onclick="submit_view_timeline_facet(); return false">Add Timeline</a></p>
+<p align="right"><a href="#" class="addlink" onclick="submit_view_timeline_facet(); return false">Add Timeline</a></p>
 </form>			
 
 <script type="text/JavaScript">
