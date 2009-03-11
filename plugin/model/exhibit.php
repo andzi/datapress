@@ -114,7 +114,7 @@ class WpPostExhibit {
 	            $structure[$kind] = $constructed[$kind];
 	        } else {  // it's a list of cloneable objects
 	            $arrays = array();
-				if (defined($constructed[$kind]) && ($constructed[$kind] != NULL)) {
+				if (array_key_exists($kind, $constructed) && ($constructed[$kind] != NULL)) {
 		            foreach ($constructed[$kind] as $object) {
 		                array_push($arrays, $object->getFields());
 		            }					
