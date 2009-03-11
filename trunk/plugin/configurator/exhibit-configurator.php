@@ -60,9 +60,6 @@ function show_datapress_html() {
 			<input id="save_insert_btn" type="button" class="button savebutton" name="save_insert" value="<?php echo attribute_escape( __( 'Save &amp; Insert' ) ); ?>" />
 			<input id="save_insert_footnotes_btn" type="button" class="button savebutton" name="save_insert_footnotes" value="<?php echo attribute_escape( __( 'Save &amp; Insert with Footnotes' ) ); ?>" />
 		  </p>
-		EX ID: <?php echo $exhibitID ?>
-	EX ID: <?php echo $_SERVER['REQUEST_URI'] ?>
-
 		</div>
 	</div>
 	</form>

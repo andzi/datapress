@@ -166,16 +166,13 @@ add_action('wp', array($exhibit, 'load_exhibit'));
 add_action('wp_ajax_insert_parrotable_url', array($exhibit, 'insert_parrotable_url') );
 add_action('wp_ajax_save_exhibit_configuration', array($exhibit, 'save_exhibit_configuration') );
 add_action('wp_ajax_datapress_configurator', 'show_datapress_configurator' );
-
 add_action('media_buttons', array($exhibit, 'make_exhibit_button'));
-
-add_filter('save_post', array($exhibit, 'save_post'));
 add_filter('the_content', array($exhibit, 'insert_exhibit'));
-
 add_action('edit_page_form', array($exhibit, 'edit_page_inclusions'));
 add_action('edit_form_advanced', array($exhibit, 'edit_page_inclusions'));
-
 add_action('admin_notices', array($exhibit, 'privacy_notice'));
+
+add_filter('save_post', array($exhibit, 'save_post'));
 
 register_activation_hook(__FILE__, array($exhibit, 'activate_plugin'));
 register_deactivation_hook(__FILE__, array($exhibit, 'deactivate_plugin'));
