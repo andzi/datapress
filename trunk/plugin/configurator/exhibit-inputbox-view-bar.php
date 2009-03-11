@@ -1,6 +1,5 @@
 <p><b>A <b>Bar Chart</b> displays numeric data as set of bars.</b></p>
 
-<form id="add-view-bar-form">
 
 	<table>
 		<tr><td><i>Visualization Title</i></td><td><input id="view-bar-label" type="text" size="30" /></td><td></td></tr>
@@ -13,7 +12,6 @@
 	</table>
 	<br />
 	<p align="right"><a href="#" class="addlink" onclick="submit_view_bar_facet(); return false">Add Bar Chart</a></p>
-</form>			
 
 <script type="text/JavaScript">
 

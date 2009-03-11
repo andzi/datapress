@@ -1,5 +1,4 @@
 <p><b>A <b>Map</b> displays location-based data on a Google Map.</b></p>
-<form id="add-view-map-form">
 	<table>
 		<tr>
 			<td><i>Visualization Title</i></td>
@@ -42,7 +41,6 @@ NOTE: Currently disabled. You have to put the coder definition OUTSIDE the view 
 -->
 	<br />
 	<p align="right"><a href="#" class="addlink" onclick="submit_view_map_facet(); return false">Add Map</a></p>
-</form>
 
 <script type="text/JavaScript">
 

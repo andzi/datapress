@@ -114,13 +114,16 @@ class WpPostExhibit {
 	            $structure[$kind] = $constructed[$kind];
 	        } else {  // it's a list of cloneable objects
 	            $arrays = array();
-	            foreach ($constructed[$kind] as $object) {
-	                array_push($arrays, $object->getFields());
-	            }
+				if (defined($constructed[$kind]) && ($constructed[$kind] != NULL)) {
+		            foreach ($constructed[$kind] as $object) {
+		                array_push($arrays, $object->getFields());
+		            }					
+				}
 	            $structure[$kind] = $arrays;
 	        }
 	    }
-	    return json_encode($structure);
+	   	$json_encoded = json_encode($structure);
+		return $json_encoded;
 	}
 	
 	static function build_from_json($json, $fieldlist) {

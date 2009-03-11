@@ -1,6 +1,5 @@
 <p><b>A <b>Scatter Plot</b> displays data as an graph of data points.</b></p>
 
-<form id="add-view-scatter-form">
 
 	<table>
 		<tr>
@@ -40,7 +39,6 @@
 	</table>
 	<br />
 	<p align="right"><a href="#" class="addlink" onclick="submit_view_scatter_facet(); return false">Add Scatter Plot</a></p>
-</form>			
 
 <script type="text/JavaScript">
 
