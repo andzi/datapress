@@ -21,8 +21,8 @@ print <<<EOF
 function set_post_exhibit(exhibit_id) {
 	var datapress_link = jQuery('#load_datapress_config_link');
 	datapress_link[0].href = '$baseuri/wp-admin/admin-ajax.php?action=datapress_configurator&exhibitid=' + exhibit_id + '&TB_iframe=true';	
-	var exhibit_id = jQuery('#exhibitid');
-	exhibit_id[0].value = exhibit_id;
+	var exhibit_id_element = jQuery('#exhibitid');
+	exhibit_id_element[0].value = exhibit_id;
 }
 
 EOF
