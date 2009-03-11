@@ -23,6 +23,7 @@ function set_post_exhibit(exhibit_id) {
 	datapress_link[0].href = '$baseuri/wp-admin/admin-ajax.php?action=datapress_configurator&exhibitid=' + exhibit_id + '&TB_iframe=true';	
 	var exhibit_id_element = jQuery('#exhibitid');
 	exhibit_id_element[0].value = exhibit_id;
+	alert("Set post exhibit to " + exhibit_id);
 }
 
 EOF
