@@ -1,6 +1,5 @@
 <p><b>A <b>List</b> displays an intelligent list of data items.</b></p>
 
-<form id="add-view-list-form">
 
 <table>
 	<tr>
@@ -21,7 +20,6 @@
 </table>
 <br />
 <p align="right"><a href="#" class="addlink" onclick="submit_view_list_facet(); return false">Add List</a></p>
-</form>			
 
 <script type="text/JavaScript">
 

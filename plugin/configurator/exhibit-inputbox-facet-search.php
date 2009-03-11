@@ -5,13 +5,11 @@ $baseuri = $guessurl;
 $exhibituri = $baseuri . '/wp-content/plugins/datapress';
 ?>
 <p><b>A <i>Search Facet</i> lets you search across the text content of your Exhibit data.</b></p>
-<form id="facet-search-form">
 
 <table>
 	<tr><td><i>Facet Title</i></td><td><input id="facet-label" type="text" size="30" /></td></tr>
 </table>	
 	<p align="right"><a href="#" class="addlink" onclick="submit_search_facet(); return false">Add Search Facet</a></p>
-</form>			
 
 <script type="text/JavaScript">
 

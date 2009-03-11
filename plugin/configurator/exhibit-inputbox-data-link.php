@@ -5,7 +5,6 @@ $baseuri = $guessurl;
 $exhibituri = $baseuri . '/wp-content/plugins/datapress';
 ?>
 
-<form id="google-doc-form">
 <table>
 	<tr>
 		<td>Data URL</td>
@@ -21,7 +20,6 @@ $exhibituri = $baseuri . '/wp-content/plugins/datapress';
 	</tr>
 </table>
 <p align="right"><a href="#" class="addlink" onclick="submit_google_doc(); return false">Add Data Link</a></p>
-</form>
 
 <script type="text/JavaScript">
   function kind_for(kind) {

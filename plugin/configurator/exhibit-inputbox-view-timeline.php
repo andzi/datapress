@@ -1,6 +1,5 @@
 <p><b>A <b>Timeline</b> plots time-based information on an interactive timeline.</b></p>
 
-<form id="add-view-timeline-form">
 	<table>
 		<tr>
 			<td><i>Visualization Title</i></td>
@@ -35,7 +34,6 @@
 	</table>
 <br />
 <p align="right"><a href="#" class="addlink" onclick="submit_view_timeline_facet(); return false">Add Timeline</a></p>
-</form>			
 
 <script type="text/JavaScript">
 

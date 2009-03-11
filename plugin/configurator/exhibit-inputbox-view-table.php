@@ -1,6 +1,5 @@
 <p><b>A <b>Table</b> displays data in tabular format.</b></p>
 
-<form id="add-view-table-form">
 	<table>
 		<tr><td><i>Visualization Title</i></td><td><input id="view-table-label" type="text" size="30" /></td><td></td></tr>
 		<tr><td><i>What is it a table of?</i></td><td><select id="view-table-class" class="alltypebox"></select></td><td></td></tr>
@@ -10,7 +9,6 @@
 	</table>
 	<br />
 	<p align="right"><a href="#" class="addlink" onclick="submit_view_table_facet(); return false">Add Table</a></p>
-</form>	
 
 
 <script type="text/JavaScript">
