@@ -8,7 +8,6 @@ Author: The Haystack Group @ MIT
 Author URI: http://haystack.csail.mit.edu/
 */
 
-include_once('wp-exhibit-debug.php');
 include_once('wp-exhibit-config.php');
 include_once('wp-exhibit-admin-options.php');
 include_once('wp-exhibit-activation-tools.php');
