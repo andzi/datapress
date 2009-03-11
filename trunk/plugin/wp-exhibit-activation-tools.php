@@ -60,6 +60,7 @@ class WpExhibitActivationTools {
            echo "done building table $table_name";
         }
     }
+
 }
 
 ?>
