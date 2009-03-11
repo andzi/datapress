@@ -21,7 +21,7 @@ include_once('configurator/exhibit-configurator.php');
 
 class WpExhibit {
  	var $wp_version;
-   
+	
 	function WpExhibit() {
 		global $wp_version;
 		$this->wp_version = $wp_version;
@@ -46,7 +46,7 @@ class WpExhibit {
 	}
 
 	function add_options_page() {
-		add_options_page('Datapress', 'Datapress', 8, 'exhibitoptions', 'exhibit_options_page');		
+		add_options_page('Datapress', 'Datapress', 8, 'datapressoptions', 'exhibit_options_page');		
 	}
 	
 	function edit_page_inclusions() {
@@ -56,12 +56,20 @@ class WpExhibit {
 	function save_post() {
 		SaveExhibitPost::save();
 	}
+	
+	function privacy_notice() {
+		if (! get_option('datapress_privacy_notice_shown')) {
+ 			echo "<div id='datapress-privacy-notice' class='updated fade' style='font-size: bigger; border: 3px solid #FF9999;'><p style='font-size: 1.2em'><strong>Thank you for installing DataPress!</strong></p><p style='font-size: 1.2em'>DataPress collects some basic statistics about its use to aid in a research project analyzing data publishing on the web. To <em>turn off</em> this data collection, simply visit the <a href='options-general.php?page=datapressoptions'>DataPress Settings Page</a>.</p></div>";			
+			add_option('datapress_privacy_notice_shown', '1');
+		}
+	}	
 		
 	function activate_plugin() {
         WpExhibitActivationTools::activate_plugin();
 	}
 	
 	function deactivate_plugin() {
+		delete_option('datapress_privacy_notice_shown');
         WpExhibitActivationTools::deactivate_plugin();
 	}
 	
@@ -124,12 +132,14 @@ add_action('media_buttons', array($exhibit, 'make_exhibit_button'));
 add_filter('save_post', array($exhibit, 'save_post'));
 add_filter('the_content', array($exhibit, 'insert_exhibit'));
 
--add_action('edit_page_form', array($exhibit, 'edit_page_inclusions'));
--add_action('edit_form_advanced', array($exhibit, 'edit_page_inclusions'));
+add_action('edit_page_form', array($exhibit, 'edit_page_inclusions'));
+add_action('edit_form_advanced', array($exhibit, 'edit_page_inclusions'));
 
+add_action('admin_notices', array($exhibit, 'privacy_notice'));
 
 register_activation_hook(__FILE__, array($exhibit, 'activate_plugin'));
 register_deactivation_hook(__FILE__, array($exhibit, 'deactivate_plugin'));
+
 
 
 /* ---------------------------------------------------------------------------
