@@ -79,11 +79,11 @@ function show_datapress_html() {
 					paste_exhibit = true;
 					paste_footnotes = true;
 				}
-				
 				jQuery.post("<?php bloginfo('wpurl'); ?>/wp-admin/admin-ajax.php",
 				            jQuery("#exhibit-config-form").serialize(),
 					        function(data) {
 								var win = window.dialogArguments || opener || parent || top;
+
 								win.set_post_exhibit(data);
 								
 								if (paste_exhibit && paste_footnotes) {
