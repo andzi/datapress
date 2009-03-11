@@ -3,4 +3,4 @@
     	$guessurl = wp_guess_url();
     $exhibituri = $guessurl . '/wp-content/plugins/datapress';
 ?>
-<script type="text/javascript" src="<?php echo $exhibituri ?>/admin_javascript.js"></script>
+<script type="text/javascript" src="<?php echo $exhibituri ?>/admin_javascript.js.php"></script>
