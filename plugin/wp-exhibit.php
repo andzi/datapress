@@ -50,7 +50,7 @@ class WpExhibit {
 	}
 	
 	function edit_page_inclusions() {
-		include('exhibit-inputbox.php');
+		echo "<input type='hidden' id='exhibitid' name='exhibitid' value='' />";
 	}
 	
 	function save_post() {
@@ -83,7 +83,7 @@ class WpExhibit {
 	}
 
   function make_exhibit_button() {
-	echo "Datapress <a href='" . wp_guess_url() . "/wp-admin/admin-ajax.php?action=datapress_configurator&TB_iframe=true' id='add_exhibit' class='thickbox' title='Add an Exhibit'><img src='" . wp_guess_url() . "/wp-content/plugins/datapress/images/exhibit-small-RoyalBlue.png' alt='Add an Image' /></a> &nbsp; &nbsp;";
+	echo "Datapress <a id='load_datapress_config_link' href='" . wp_guess_url() . "/wp-admin/admin-ajax.php?action=datapress_configurator&TB_iframe=true' id='add_exhibit' class='thickbox' title='Add an Exhibit'><img src='" . wp_guess_url() . "/wp-content/plugins/datapress/images/exhibit-small-RoyalBlue.png' alt='Add an Image' /></a> &nbsp; &nbsp;";
     // echo "Datapress<a href='" . wp_guess_url() . "/wp-content/plugins/datapress/configurator/exhibit-inputbox.php?iframe=true' class='exhibit_link'><img src=''></a>";
  }
 
@@ -123,6 +123,10 @@ add_action('media_buttons', array($exhibit, 'make_exhibit_button'));
 
 add_filter('save_post', array($exhibit, 'save_post'));
 add_filter('the_content', array($exhibit, 'insert_exhibit'));
+
+-add_action('edit_page_form', array($exhibit, 'edit_page_inclusions'));
+-add_action('edit_form_advanced', array($exhibit, 'edit_page_inclusions'));
+
 
 register_activation_hook(__FILE__, array($exhibit, 'activate_plugin'));
 register_deactivation_hook(__FILE__, array($exhibit, 'deactivate_plugin'));
