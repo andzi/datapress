@@ -21,6 +21,7 @@ include_once('configurator/exhibit-configurator.php');
 
 class WpExhibit {
  	var $wp_version;
+	var $exhibit_from_admin_page;
 	
 	function WpExhibit() {
 		global $wp_version;
@@ -44,13 +45,46 @@ class WpExhibit {
 	function exhibit_admin_include() {
 		include('exhibit_admin_include.php');		
 	}
+	
+	function get_current_exhibit_from_admin_page() {
+		// Returned cached version of the exhibit, or cached NULL:
+		// NULL -> we have yet to check for exhibit
+		// 0    -> we checked for exhibit, it wasn't there (this is a cached NULL)
+		// else -> we found the exhibit
+		if ( defined($this->exhibit_from_admin_page) && ($this->exhibit_from_admin_page != NULL) && ($this->exhibit_from_admin_page != 0) ) {
+			return $this->exhibit_from_admin_page;
+		}
+		else if (defined($this->exhibit_from_admin_page) && ($this->exhibit_from_admin_page == 0)) {
+			return NULL; // cached null
+		}
+		
+		$postID = $_GET['post'];
+		if ($postID != NULL) {
+			// See if we know about any data sources associated with this item.
+		    $ex_exhibit = new WpPostExhibit();
+		    $ex_success = DbMethods::loadFromDatabase($ex_exhibit, $postID, 'postid');
+			if ($ex_success) {
+				$this->exhibit_from_admin_page = $ex_exhibit;
+				return $ex_exhibit;
+			}
+		}
+		$this->exhibit_from_admin_page = 0;
+		return NULL;		
+	}
 
 	function add_options_page() {
 		add_options_page('Datapress', 'Datapress', 8, 'datapressoptions', 'exhibit_options_page');		
 	}
 	
 	function edit_page_inclusions() {
-		echo "<input type='hidden' id='exhibitid' name='exhibitid' value='' />";
+		$ex = $this->get_current_exhibit_from_admin_page();
+		if ($ex == NULL) {
+			echo "<input type='hidden' id='exhibitid' name='exhibitid' value='' />";
+		}
+		else {
+			$ex_id = $ex->get('id');
+			echo "<input type='hidden' id='exhibitid' name='exhibitid' value='$ex_id' />";
+		}
 	}
 	
 	function save_post() {
@@ -91,8 +125,14 @@ class WpExhibit {
 	}
 
   function make_exhibit_button() {
-	echo "Datapress <a id='load_datapress_config_link' href='" . wp_guess_url() . "/wp-admin/admin-ajax.php?action=datapress_configurator&TB_iframe=true' id='add_exhibit' class='thickbox' title='Add an Exhibit'><img src='" . wp_guess_url() . "/wp-content/plugins/datapress/images/exhibit-small-RoyalBlue.png' alt='Add an Image' /></a> &nbsp; &nbsp;";
-    // echo "Datapress<a href='" . wp_guess_url() . "/wp-content/plugins/datapress/configurator/exhibit-inputbox.php?iframe=true' class='exhibit_link'><img src=''></a>";
+	$ex = $this->get_current_exhibit_from_admin_page();
+	if ($ex == NULL) {
+		echo "Datapress <a id='load_datapress_config_link' href='" . wp_guess_url() . "/wp-admin/admin-ajax.php?action=datapress_configurator&TB_iframe=true' id='add_exhibit' class='thickbox' title='Add an Exhibit'><img src='" . wp_guess_url() . "/wp-content/plugins/datapress/images/exhibit-small-RoyalBlue.png' alt='Add an Image' /></a> &nbsp; &nbsp;";		
+	}
+	else {
+		$ex_id = $ex->get('id');
+		echo "Datapress <a id='load_datapress_config_link' href='" . wp_guess_url() . "/wp-admin/admin-ajax.php?action=datapress_configurator&exhibitid=$ex_id&TB_iframe=true' id='add_exhibit' class='thickbox' title='Add an Exhibit'><img src='" . wp_guess_url() . "/wp-content/plugins/datapress/images/exhibit-small-RoyalBlue.png' alt='Add an Image' /></a> &nbsp; &nbsp;";				
+	}
  }
 
 	function insert_exhibit($content) {
