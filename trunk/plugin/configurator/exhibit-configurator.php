@@ -84,6 +84,7 @@ function show_datapress_html() {
 								win.set_post_exhibit(data);
 								
 								if (paste_exhibit && paste_footnotes) {
+									
 									win.send_to_editor("{{Exhibit}}<br />{{Footnotes}}");
 								}
 								else if (paste_exhibit) {

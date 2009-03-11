@@ -34,7 +34,7 @@ class WpExhibit {
 	 */
 	function exhibit_include() {
 		global $wp_query;
-		if ((sizeof($wp_query->posts) == 1) && ($wp_query->posts[0]->datapress_exhibit != nil)) {
+		if ((sizeof($wp_query->posts) == 1) && ($wp_query->posts[0]->datapress_exhibit != null)) {
 			include('exhibit_include.php');
 		}		
 		else {
@@ -51,10 +51,11 @@ class WpExhibit {
 		// NULL -> we have yet to check for exhibit
 		// 0    -> we checked for exhibit, it wasn't there (this is a cached NULL)
 		// else -> we found the exhibit
-		if ( defined($this->exhibit_from_admin_page) && ($this->exhibit_from_admin_page != NULL) && ($this->exhibit_from_admin_page != 0) ) {
+		
+		if (isset($this->exhibit_from_admin_page) && ($this->exhibit_from_admin_page != null) && (! is_int($this->exhibit_from_admin_page)) ) {
 			return $this->exhibit_from_admin_page;
 		}
-		else if (defined($this->exhibit_from_admin_page) && ($this->exhibit_from_admin_page == 0)) {
+		else if (isset($this->exhibit_from_admin_page) && (is_int($this->exhibit_from_admin_page)) ) {
 			return NULL; // cached null
 		}
 		
