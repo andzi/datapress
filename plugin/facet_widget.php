@@ -1,4 +1,4 @@
-<?
+<?php
 function widget_datapressFacet($args) {
   extract($args);
  
