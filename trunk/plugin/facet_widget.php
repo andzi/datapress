@@ -1,11 +1,19 @@
 <?
 function widget_datapressFacet($args) {
   extract($args);
-  global $datapress_exhibit;
+ 
+	global $wp_query;
+	$datapress_exhibit = null;
+	foreach ($wp_query->posts as $apost) {
+		if (isset($apost->datapress_exhibit)) {
+			$datapress_exhibit = $apost->datapress_exhibit;			
+		}
+	}		
+
   if (isset($datapress_exhibit) && ($datapress_exhibit != nil)) {
 	if (! $datapress_exhibit->get('lightbox')) {
-	  foreach ($datapress_exhibit->getFacets() as $facet) {
-	      if ($facet->get('location') == 'widget') {
+		foreach ($datapress_exhibit->get('facets') as $facet) {
+		if ($facet->get('location') == 'widget') {
 			echo $before_widget;
 			echo $before_title . $facet->get('label') . $after_title;
 			echo $facet->htmlContent(false);
@@ -13,7 +21,8 @@ function widget_datapressFacet($args) {
 	      }
 	  }
 	}
-  }  
+  }
+  
 }
 
 function datapressFacet_init()

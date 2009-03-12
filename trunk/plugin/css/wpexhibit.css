@@ -40,7 +40,7 @@ ul.outer-tabs li {
 	padding: 0.4em;
 }
 
-ul.outer-tabs li.ui-tabs-selected {
+ul.outer-tabs li {
 	-moz-border-radius-topleft: 3px;
 	-khtml-border-top-left-radius: 3px;
 	-webkit-border-top-left-radius: 3px;
@@ -52,12 +52,26 @@ ul.outer-tabs li.ui-tabs-selected {
 	border-top-right-radius: 3px;
 }
 
+ul.outer-tabs li {
+	background-color: #eee !important;
+}
+
+ul.outer-tabs li.spacer {
+	background-color: #fff !important;
+}
+
 ul.outer-tabs li.ui-tabs-selected {
 	background-color: #cee1ef !important;
 }
 
+ul.outer-tabs li a {
+	color: #555;
+	font-weight: bold;
+	text-decoration: none;
+}
+
 ul.outer-tabs li.ui-tabs-selected a {
-	color: #333;
+	color: #000;
 	font-weight: bold;
 	text-decoration: none;
 }
@@ -119,6 +133,7 @@ ul.inner-tabs li.ui-tabs-selected  {
 	background-color: #99CC66 !important;
 }
 
+
 ul.inner-tabs li.ui-tabs-selected a {
     position: relative;
     top: 1px;
@@ -144,7 +159,7 @@ ul.inner-tabs li.ui-tabs-selected a {
 div.current {
 	min-height: 100px;
 	margin: 0;
-	background-color: #efefef;
+	background-color: #fff;
 	border-bottom: 2px solid #ccc;	
 	display: block;
 	clear: both;
