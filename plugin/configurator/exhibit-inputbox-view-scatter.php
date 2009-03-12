@@ -25,10 +25,6 @@
 			<td><input id="view-scatter-yLabel" /></td>
 			<td></td>
 		</tr>
-		<tr>
-			<td><i>Extra Attributes</i></td>
-			<td><input id="view-scatter-extra-attributes" type="text" /></td><td>(Optional)</td>
-		</tr>	
 	</table>
 	<br />
 	<p align="right"><a href="#" class="addlink" onclick="submit_view_scatter_facet(); return false">Add Scatter Plot</a></p>
@@ -42,7 +38,7 @@ function submit_view_scatter_facet() {
 	var yField = jQuery('#view-scatter-y').val();
 	var xLabel = jQuery('#view-scatter-xLabel').val();
 	var yLabel = jQuery('#view-scatter-yLabel').val();
-	var extra_attributes = jQuery('#view-scatter-extra-attributes').val();
+	// var extra_attributes = jQuery('#view-scatter-extra-attributes').val();
 	
 	var params = {
 		kind: kind,
@@ -53,9 +49,9 @@ function submit_view_scatter_facet() {
 		label: label
 	};
 	
-	if (extra_attributes != null) {
-		params['extra_attributes'] = extra_attributes;
-	}	
+	// if (extra_attributes != null) {
+	// 	params['extra_attributes'] = extra_attributes;
+	// }	
 	
 	addExhibitElementLink("views-list", "Scatter Plot: " + label, 'view', params);
 }

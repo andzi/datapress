@@ -12,11 +12,6 @@
 		<td><select id="view-list-sortby" class="allpropbox"></select></td>
 		<td>(Optional)</td>
 	</tr>
-	<tr>
-		<td><i>Extra Attributes</i><br /></td>
-		<td><input id="view-list-extra-attributes" type="text" /></td>
-		<td>(Optional)</td>
-	</tr>
 </table>
 <br />
 <p align="right"><a href="#" class="addlink" onclick="submit_view_list_facet(); return false">Add List</a></p>
@@ -27,7 +22,7 @@ function submit_view_list_facet() {
 	var label = jQuery('#view-list-label').val();
 	var kind = 'view-tile';
 	var sortby = jQuery('#view-list-sortby').val();
-	var extra_attributes = jQuery('#view-list-extra-attributes').val();
+	// var extra_attributes = jQuery('#view-list-extra-attributes').val();
 	
 	var params = 	{
 			kind: kind,
@@ -37,9 +32,9 @@ function submit_view_list_facet() {
 	if (sortby != null) {
 		params['sortby'] = sortby;
 	}
-	if (extra_attributes != null) {
-		params['extra_attributes'] = extra_attributes;
-	}
+	// if (extra_attributes != null) {
+	// 	params['extra_attributes'] = extra_attributes;
+	// }
 	
 	addExhibitElementLink("views-list", "List: " + label, 'view', params);
 }

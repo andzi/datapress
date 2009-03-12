@@ -29,11 +29,6 @@
 			<td><select id="view-map-icon" class="allpropbox"></select></td>
 			<td>(Optional)</td>
 		</tr>
-		<tr>
-			<td><i>Extra Attributes</i></td>
-			<td> <input id="view-map-extra-attributes" type="text"  /></td>
-			<td>(Optional)</td>
-		</tr>	
 	</table>
 <!--	
 <p><i>What field (if any) varies the size of the marker?</i><br /><select id="view-map-coderfield" class="allpropbox"></select></p> 
@@ -50,7 +45,7 @@ function submit_view_map_facet() {
 	var field = jQuery('#view-map-field').val();
 	var coderfield = jQuery('#view-map-coderfield').val();
 	var locationtype = jQuery('#view-map-field-type').val();
-	var extra_attributes = jQuery('#view-map-extra-attributes').val();
+	// var extra_attributes = jQuery('#view-map-extra-attributes').val();
 	var icon = jQuery('#view-map-icon').val();
 	var bw = jQuery('#view-map-bw').val();
 	var bh = jQuery('#view-map-bh').val();
@@ -69,9 +64,9 @@ function submit_view_map_facet() {
 		locationtype: locationtype
 	};
 	
-	if (extra_attributes != null) {
-		params['extra_attributes'] = extra_attributes;
-	}
+	// if (extra_attributes != null) {
+	// 	params['extra_attributes'] = extra_attributes;
+	// }
 	if (icon != null) {
 		params['icon'] = icon;
 	}
