@@ -33,7 +33,7 @@ class WpExhibitDatasource extends WpExhibitModel {
 	}	
 
 	function getLinkCaption() {
-		return $this->getShortKind() . ": " . $this->get('sourcename') . " (<a href=\\'" . $this->get('uri') . "\\'>view data</a>)";
+		return $this->getShortKind() . ": " . $this->get('sourcename') . " (<a onclick=\\'popup(this.href); return false;\\' href=\\'" . $this->get('uri') . "\\'>view data</a>)";
 	}
 	
 	function htmlContent() {
