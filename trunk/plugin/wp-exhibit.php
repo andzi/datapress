@@ -140,11 +140,11 @@ class WpExhibit {
 		if ($wp_query->post->datapress_exhibit != nil) {
 			if (sizeof($wp_query->posts) > 1) {
 				// Just display a callout about the exhibit.
-				return WpExhibitHtmlBuilder::insert_exhibit_lightbox($wp_query->post->datapress_exhibit, $content);			
+				return "d" . WpExhibitHtmlBuilder::insert_exhibit_lightbox($wp_query->post->datapress_exhibit, $content);			
 			}
 			else {
 				// Display the exhibit
-				return WpExhibitHtmlBuilder::insert_exhibit($wp_query->post->datapress_exhibit, $content);			
+				return "d" . WpExhibitHtmlBuilder::insert_exhibit($wp_query->post->datapress_exhibit, $content);			
 			}
 		}
 	}
