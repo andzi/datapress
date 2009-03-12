@@ -51,6 +51,10 @@ function addExhibitElementLink(listId, caption, prefix, fields, field_display) {
 	return liid_remove;
 }
 
+function popup(url) {
+	window.open(url);
+}
+
 function removeExhibitElementLink(liid, liid_remove) {
     SimileAjax.jQuery("#" + liid).remove();
     SimileAjax.jQuery("#" + liid_remove).remove();
