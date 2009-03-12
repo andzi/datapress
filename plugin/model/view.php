@@ -138,9 +138,7 @@ class WpExhibitView extends WpExhibitModel {
 			$field_y = $this->get("yField");
 			$field_xLabel = $this->get("xLabel");
 			$field_yLabel = $this->get("yLabel");
-			$field_xAxisType = $this->get("xScale");
-			$field_yAxisType = $this->get("yScale");			
-			$ret =  "<div ex:role=\"view\" ex:viewClass=\"Exhibit.ScatterPlotView\" ex:label=\"$label\" ex:x=\".$field_x\" ex:y=\".$field_y\" ex:xLabel=\"$field_xLabel\" ex:yLabel=\"$field_yLabel\" ex:xAxisType=\"$field_xAxisType\" ex:yAxisType=\"$field_yAxisType\"";
+			$ret =  "<div ex:role=\"view\" ex:viewClass=\"Exhibit.ScatterPlotView\" ex:label=\"$label\" ex:x=\".$field_x\" ex:y=\".$field_y\" ex:xLabel=\"$field_xLabel\" ex:yLabel=\"$field_yLabel\"";
 			$ret = $ret . "></div>";        
 			return $ret;
 		}		      
@@ -150,9 +148,7 @@ class WpExhibitView extends WpExhibitModel {
 			$field_y = $this->get("yField");
 			$field_xLabel = $this->get("xLabel");
 			$field_yLabel = $this->get("yLabel");
-			$field_xAxisType = $this->get("xScale");
-			$field_yAxisType = $this->get("yScale");			
-			$ret =  "<div ex:role=\"view\" ex:viewClass=\"Exhibit.BarChartView\" ex:label=\"$label\" ex:x=\".$field_x\" ex:y=\".$field_y\" ex:xLabel=\"$field_xLabel\" ex:yLabel=\"$field_yLabel\" ex:xAxisType=\"$field_xAxisType\" ex:yAxisType=\"$field_yAxisType\"";
+			$ret =  "<div ex:role=\"view\" ex:viewClass=\"Exhibit.BarChartView\" ex:label=\"$label\" ex:x=\".$field_x\" ex:y=\".$field_y\" ex:xLabel=\"$field_xLabel\" ex:yLabel=\"$field_yLabel\"";
 			$ret = $ret . "></div>";        
 			return $ret;
 		}		      

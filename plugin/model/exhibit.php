@@ -138,7 +138,7 @@ class WpPostExhibit {
                 }
             } else { // it's a list of cloneable objects
     	        $objects = array();
-    	        if ($json != NULL) {
+    	        if (($json != NULL) && ($decoded != NULL)) {
                     foreach ($decoded[$kind] as $pairs) {
                         $cloned = clone $factory;
                         foreach ((array) $pairs as $key => $value ) {

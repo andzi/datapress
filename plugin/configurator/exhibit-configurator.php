@@ -26,13 +26,13 @@ function show_datapress_html() {
 
 			<ul id="ex-tabs" class="outer-tabs">
 				<li class="ui-tabs-selected"><a href="#exhibit-data">Add Data</a></li>
-				<li>&gt;</li>
+				<li class="spacer">&gt;</li>
 				<li class="wp-no-js-hidden"><a href="#exhibit-views">Add Visualizations</a></li>
-				<li>&gt;</li>
+				<li class="spacer">&gt;</li>
 				<li class="wp-no-js-hidden"><a href="#exhibit-facets" >Add Facets</a></li>
-				<li>&gt;</li>
+				<li class="spacer">&gt;</li>
 	    		<li class="wp-no-js-hidden"><a href="#exhibit-display" >Configure Display</a></li>
-				<li>&gt;</li>
+				<li class="spacer">&gt;</li>
 				<li class="wp-no-js-hidden" ><a href="#exhibit-lenses">Lenses (Advanced)</a></li>
 			</ul>
 

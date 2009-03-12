@@ -1,6 +1,4 @@
 <p><b>A <b>Scatter Plot</b> displays data as an graph of data points.</b></p>
-
-
 	<table>
 		<tr>
 			<td><i>Visualization Title</i></td>
@@ -28,11 +26,6 @@
 			<td></td>
 		</tr>
 		<tr>
-			<td><i>Scale</i></td>
-			<td><select id="view-scatter-xScale"><option value="linear">Linear</option><option value="log">Log</option></select></td>
-			<td></td>
-		</tr>
-		<tr>
 			<td><i>Extra Attributes</i></td>
 			<td><input id="view-scatter-extra-attributes" type="text" /></td><td>(Optional)</td>
 		</tr>	
@@ -49,7 +42,6 @@ function submit_view_scatter_facet() {
 	var yField = jQuery('#view-scatter-y').val();
 	var xLabel = jQuery('#view-scatter-xLabel').val();
 	var yLabel = jQuery('#view-scatter-yLabel').val();
-	var xScale = jQuery('#view-scatter-xScale').val();
 	var extra_attributes = jQuery('#view-scatter-extra-attributes').val();
 	
 	var params = {
@@ -58,7 +50,6 @@ function submit_view_scatter_facet() {
 		yField: yField,
 		xLabel: xLabel,
 		yLabel: yLabel,
-		xScale: xScale,
 		label: label
 	};
 	

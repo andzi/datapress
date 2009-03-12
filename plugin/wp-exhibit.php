@@ -15,7 +15,6 @@ include_once('wp-exhibit-insert-exhibit.php');
 include_once('wp-exhibit-save-post.php');
 include_once('save-exhibit.php');
 include_once('model/wp-exhibit-model.php');
-include_once('facet_widget.php');
 include_once('proxy/insert-parrotable-url.php');	
 include_once('configurator/exhibit-configurator.php');
 
@@ -206,5 +205,8 @@ wp_register_script( 'configurator', "$baseuri/wp-content/plugins/datapress/confi
  * --------------------------------------------------------------------------- */
 
 wp_register_style( 'dp-configurator', "$baseuri/wp-content/plugins/datapress/css/wpexhibit.css");
+
+
+include_once('facet_widget.php');
 
 ?>
