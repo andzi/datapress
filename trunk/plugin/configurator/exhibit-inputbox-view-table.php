@@ -5,7 +5,6 @@
 		<tr><td><i>What is it a table of?</i></td><td><select id="view-table-class" class="alltypebox"></select></td><td></td></tr>
 		<tr><td><i>Include Fields</i></td><td><select id="view-table-fields" style="height: 100px; width: 200px;" class="allpropbox" multiple></select></td><td></td></tr>
 		<tr><td><i>Field Captions</i><br />(Comma-separated)</td><td><input id="view-table-captions" type="text" size="30" /></td><td>(Optional)</td></tr>
-		<tr><td><i>Extra Attributes</i></td><td><input id="view-table-extra-attributes" type="text" /></td><td>(Optional) <a href="http://simile.mit.edu/wiki/Exhibit/2.0/Tabular_View">Reference</a></td></tr>
 	</table>
 	<br />
 	<p align="right"><a href="#" class="addlink" onclick="submit_view_table_facet(); return false">Add Table</a></p>
@@ -19,7 +18,7 @@ function submit_view_table_facet() {
 	var klass = jQuery('#view-table-class').val();
 	var fields = jQuery('#view-table-fields')[0];
 	var caption = jQuery('#view-table-captions').val();
-	var extra_attributes = jQuery('#view-table-extra-attributes').val();
+	// var extra_attributes = jQuery('#view-table-extra-attributes').val();
 
 	var field = "";
 		
@@ -41,9 +40,9 @@ function submit_view_table_facet() {
 			label: label
 	};
 	
-	if (extra_attributes != null) {
-		params['extra_attributes'] = extra_attributes;
-	}
+	// if (extra_attributes != null) {
+	// 	params['extra_attributes'] = extra_attributes;
+	// }
 	
 	addExhibitElementLink(
 		"views-list", 

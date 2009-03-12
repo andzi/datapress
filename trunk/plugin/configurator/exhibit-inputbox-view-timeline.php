@@ -26,11 +26,6 @@
 			<td><select id="view-timeline-proxy" class="allpropbox"></select></td>
 			<td>(Optional)</td>
 		</tr>
-		<tr>
-			<td><i>Extra Attributes</i></td>
-			<td><input id="view-timeline-extra-attributes" type="text" /></td>
-			<td>(Optional)</td>
-		</tr>
 	</table>
 <br />
 <p align="right"><a href="#" class="addlink" onclick="submit_view_timeline_facet(); return false">Add Timeline</a></p>
@@ -46,7 +41,7 @@ function submit_view_timeline_facet() {
 	var color = jQuery('#view-timeline-color').val();
 	var proxy = jQuery('#view-timeline-proxy').val();
 	
-	var extra_attributes = jQuery('#view-timeline-extra-attributes').val();
+	// var extra_attributes = jQuery('#view-timeline-extra-attributes').val();
 	
 	var params = {
 		kind: kind,
@@ -60,9 +55,9 @@ function submit_view_timeline_facet() {
 	if (color != null) {
 		params['color'] = color;
 	}
-	if (extra_attributes != null) {
-		params['extra_attributes'] = extra_attributes;
-	}	
+	// if (extra_attributes != null) {
+	// 	params['extra_attributes'] = extra_attributes;
+	// }	
 	if (proxy != null) {
 		params['proxy'] = proxy;		
 	}
