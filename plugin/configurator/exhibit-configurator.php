@@ -57,8 +57,6 @@ function show_datapress_html() {
 			<input type="hidden" value="<?php echo $exhibitID ?>" name="exhibitid" />
 			<input type="hidden" value="save_exhibit_configuration" name="action" />
 			<input id="save_btn" type="button" class="button savebutton" name="save" value="<?php echo attribute_escape( __( 'Save' ) ); ?>" />
-			<input id="save_insert_btn" type="button" class="button savebutton" name="save_insert" value="<?php echo attribute_escape( __( 'Save &amp; Insert' ) ); ?>" />
-			<input id="save_insert_footnotes_btn" type="button" class="button savebutton" name="save_insert_footnotes" value="<?php echo attribute_escape( __( 'Save &amp; Insert with Footnotes' ) ); ?>" />
 		  </p>
 		</div>
 	</div>
@@ -80,19 +78,8 @@ function show_datapress_html() {
 				            jQuery("#exhibit-config-form").serialize(),
 					        function(data) {
 								var win = window.dialogArguments || opener || parent || top;
-
 								win.set_post_exhibit(data);
-								
-								if (paste_exhibit && paste_footnotes) {
-									
-									win.send_to_editor("{{Exhibit}}<br />{{Footnotes}}");
-								}
-								else if (paste_exhibit) {
-									win.send_to_editor("{{Exhibit}}");	
-								}
-								else {
-									win.send_to_editor("");	
-								}
+								win.add_exhibit_token_and_exit();
 							});
 							
 			}

@@ -25,5 +25,32 @@ function set_post_exhibit(exhibit_id) {
 	exhibit_id_element[0].value = exhibit_id;
 }
 
+// send html to the post editor
+function add_exhibit_token_and_exit() {
+	var h = "{{Exhibit}}  {{Footnotes}}";
+	var searchfor = "{{Exhibit}}";
+	
+	if ( typeof tinyMCE != 'undefined' && ( ed = tinyMCE.activeEditor ) && !ed.isHidden() ) {
+		ed.focus();
+		if (ed.getContent().indexOf(searchfor) == -1) {
+			if (tinymce.isIE)
+				ed.selection.moveToBookmark(tinymce.EditorManager.activeEditor.windowManager.bookmark);
+			ed.execCommand('mceInsertContent', false, h);			
+		}
+	} else if ( typeof edInsertContent == 'function' ) {
+		if ((typeof edCanvas.value != 'undefined') && (edCanvas.value.indexOf(searchfor) == -1)) {
+			edInsertContent(edCanvas, h);
+		}
+	} else {
+		alert("ho");
+		if (jQuery(edCanvas).val().indexOf(searchfor) == -1) {
+			jQuery( edCanvas ).val( jQuery( edCanvas ).val() + h );			
+		}
+	}
+
+	tb_remove();
+}
+
+
 EOF
 ?>
