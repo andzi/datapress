@@ -35,16 +35,20 @@
 
 </div>
 
-<script type="text/javascript">
-// <![CDATA[
-lens_editor = tinyMCE.execCommand('mceAddControl', false, 'lens-text');
-// ]]>
-</script>        
+<script>
+	$(document).ready(function(){
+		// <![CDATA[
+		// var win = window.dialogArguments || opener || parent || top;
+		// var lens_editor = window.tinyMCE.execCommand('mceAddControl', false, 'lens-text');
+		// ]]>
+	});
+</script>
 
 <script type="text/javascript">
 function submit_lens() {
+		// var win = window.dialogArguments || opener || parent || top;
         var klass = jQuery('#lensfor').val();
-        var html = tinyMCE.getInstanceById('lens-text').getContent(); // jQuery('#lens-text').val();
+        var html = jQuery('#lens-text').val(); // win.tinyMCE.getInstanceById('lens-text').getContent(); // 
         var kind = 'lens';
         
         addExhibitElementLink(

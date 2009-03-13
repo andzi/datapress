@@ -66,7 +66,9 @@ function appendToPost(myValue) {
 }
 
 function appendToLens(myValue) {
-	window.tinyMCE.execInstanceCommand("lens-text", "mceInsertContent",true,myValue);
+	// var win = window.dialogArguments || opener || parent || top;
+	jQuery('#lens-text').append(myValue);
+	// win.tinyMCE.execInstanceCommand("lens-text", "mceInsertContent",true,myValue);
 }
 
 function ex_data_types_changed(e, arr) {
