@@ -75,13 +75,12 @@ class WpPostExhibit {
 		}
 	}
 	
-	function getStatisticReport($viewState) {
-		$datasources = "";
-		$dsources = $this->get('datasources');
-		foreach($dsources as $dsource) {
-			$datasources .= $dsource->get('data_location') . "|";
-		}
-		$report = "exhibitid=" . $this->dbfields['id'] . "&datasources=$datasources&state=$viewState";
+	function getStatisticReport() {
+    	$postid = $this->get('postid');
+		$permalink = urlencode(get_permalink($this->get('postid')));
+		$viewState = $this->get('lightbox') ? "lightbox" : "inline";
+		$postType = get_post($postid)->post_type;
+		$report = "viewstate=$viewState&posttype=$postType&permalink=$permalink";
 		return $report;
 	}
 	
