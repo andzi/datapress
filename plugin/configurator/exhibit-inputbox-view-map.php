@@ -25,6 +25,11 @@
 			<td></td>
 		</tr>
 		<tr>
+			<td><i>Only show items of type</i></td>
+			<td><select id="view-map-klass" class="alltypebox"></select></td>
+			<td>(Optional)</td>
+		</tr>
+		<tr>
 			<td><i>Icon</i></td>
 			<td><select id="view-map-icon" class="allpropbox"></select></td>
 			<td>(Optional)</td>
@@ -51,6 +56,7 @@ function submit_view_map_facet() {
 	var bh = jQuery('#view-map-bh').val();
 	var mw = jQuery('#view-map-mw').val();
 	var mh = jQuery('#view-map-mh').val();
+	var klass = jQuery('#view-map-klass').val();
 	
 	var params = {
 		kind: kind,
@@ -69,6 +75,9 @@ function submit_view_map_facet() {
 	// }
 	if (icon != null) {
 		params['icon'] = icon;
+	}
+	if (klass != null) {
+		params['klass'] = klass;
 	}
 	
 	addExhibitElementLink("views-list", "Map: " + label, 'view', params);

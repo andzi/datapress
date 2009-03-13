@@ -5,6 +5,7 @@ class WpExhibitView extends WpExhibitModel {
 		'kind' => NULL,
 		'klass' => NULL,
 		'field'  => NULL,
+		'itemtype' => NULL,
 		'label' => NULL,
 		'caption' => NULL,
 		'end' => NULL,
@@ -69,9 +70,16 @@ class WpExhibitView extends WpExhibitModel {
 		
 		if ($kind == "view-tile") {
 			// Todo: add the actual date and time stuff
-			return "<div ex:role=\"exhibit-view\" ex:viewClass=\"Exhibit.TileView\" ex:label=\"$label\"></div>";
+			
+			$klass = $this->get('klass');
+			$inner = '';
+			
+			if ($klass != NULL) {
+				$inner = "ex:collectionID='$klass'";
+			}
+			
+			return "<div ex:role=\"exhibit-view\" ex:viewClass=\"Exhibit.TileView\" $inner ex:label=\"$label\"></div>";
 		}		
-		
 		
 		if ($kind == "view-timeline") {
 			// Todo: add the actual date and time stuff

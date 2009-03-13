@@ -8,6 +8,11 @@
 		<td></td>
 	</tr>
 	<tr>
+		<td><i>Only show items of type</i></td>
+		<td><select id="view-list-klass" class="alltypebox"></select></td>
+		<td>(Optional)</td>
+	</tr>
+	<tr>
 		<td><i>Default sort by field</i></td>
 		<td><select id="view-list-sortby" class="allpropbox"></select></td>
 		<td>(Optional)</td>
@@ -22,6 +27,7 @@ function submit_view_list_facet() {
 	var label = jQuery('#view-list-label').val();
 	var kind = 'view-tile';
 	var sortby = jQuery('#view-list-sortby').val();
+	var klass = jQuery('#view-list-klass').val();
 	// var extra_attributes = jQuery('#view-list-extra-attributes').val();
 	
 	var params = 	{
@@ -32,6 +38,10 @@ function submit_view_list_facet() {
 	if (sortby != null) {
 		params['sortby'] = sortby;
 	}
+	if (klass != null) {
+		params['klass'] = klass;
+	}
+
 	// if (extra_attributes != null) {
 	// 	params['extra_attributes'] = extra_attributes;
 	// }
