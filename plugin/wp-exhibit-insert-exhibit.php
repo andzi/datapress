@@ -60,7 +60,7 @@ class WpExhibitHtmlBuilder {
         	$exhibit_html = "<a href='$exhibituri/wp-exhibit-only.php?iframe&id=" . $exhibit->get('id') . "' class='exhibit_link'>";	
 			// Check for usage study
 			if (get_option('datapress_et_phone_home') == "Y") {
-	        	$exhibit_html .= "<img src='http://projects.csail.mit.edu/datapress/static/exhibit_lightbox.png?" . $exhibit->getStatisticReport('collapsed') . "' />";
+	        	$exhibit_html .= "<img src='http://projects.csail.mit.edu/datapress/static/exhibit_lightbox.png?" . $exhibit->getStatisticReport() . "' />";
 			}
 			else {
 	        	$exhibit_html .= "<img src='$exhibituri/images/exhibit_lightbox.png' />";				
@@ -110,7 +110,7 @@ class WpExhibitHtmlBuilder {
 		$tracker = "";
 		// Check for usage study
 		if (get_option('datapress_et_phone_home') == "Y") {
-        	$tracker = "<img src='http://projects.csail.mit.edu/datapress/static/tiny.png?" . $exhibit->getStatisticReport('full') . "' />";
+        	$tracker = "<img src='http://projects.csail.mit.edu/datapress/static/tiny.png?" . $exhibit->getStatisticReport() . "' />";
 		}
 		
         $exhibit_html = "

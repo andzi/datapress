@@ -30,14 +30,14 @@
 			<script src="http://static.simile.mit.edu/exhibit/extensions-2.0/time/time-extension.js" type="text/javascript"></script>
 			<script src="<?php echo $exhibituri ?>/js/jquery-1.3.2.min.js" type="text/javascript"></script>
 
-			<? if ($google_map_api_key != null) { ?>
+			<?php if ($google_map_api_key != null) { ?>
 			<script src="http://static.simile.mit.edu/exhibit/extensions-2.0/map/map-extension.js?gmapkey=<?php echo $google_map_api_key ?>"></script>
-			<? } ?>
+			<?php } ?>
 			
 			<script type='text/javascript' src='<?php echo $baseuri ?>/wp-includes/js/jquery/ui.tabs.js?ver=1.5.1'></script>
 			
 			
-			<?
+			<?php
 			$css = $ex_post_exhibit->get('css');
 			if ($css != NULL) {
 				?><link rel="stylesheet" href="<?php echo $css ?>" type="text/css" /><?php

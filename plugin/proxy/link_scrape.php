@@ -1,4 +1,4 @@
-<?
+<?php
 require_once('web-tools.php');
 
 	$url = $_GET['url'];
