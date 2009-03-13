@@ -26,6 +26,11 @@
 			<td><select id="view-timeline-proxy" class="allpropbox"></select></td>
 			<td>(Optional)</td>
 		</tr>
+		<tr>
+			<td><i>Only show items of type</i></td>
+			<td><select id="view-timeline-klass" class="alltypebox"></select></td>
+			<td>(Optional)</td>
+		</tr>
 	</table>
 <br />
 <p align="right"><a href="#" class="addlink" onclick="submit_view_timeline_facet(); return false">Add Timeline</a></p>
@@ -40,6 +45,7 @@ function submit_view_timeline_facet() {
 	var end = jQuery('#view-timeline-end').val();
 	var color = jQuery('#view-timeline-color').val();
 	var proxy = jQuery('#view-timeline-proxy').val();
+	var klass = jQuery('#view-timeline-klass').val();
 	
 	// var extra_attributes = jQuery('#view-timeline-extra-attributes').val();
 	
@@ -51,6 +57,9 @@ function submit_view_timeline_facet() {
 	
 	if (end != null) {
 		params['end'] = end;
+	}
+	if (klass != null) {
+		params['klass'] = klass;
 	}
 	if (color != null) {
 		params['color'] = color;

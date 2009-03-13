@@ -7,6 +7,11 @@
 		<tr><td><i>X Axis Label</i></td><td><input id="view-bar-xLabel" /></td><td></td></tr>
 		<tr><td><i>Y Axis</i></td><td><select id="view-bar-y" class="allpropbox"></select></td><td></td></tr>
 		<tr><td><i>Y Axis Label</i></td><td><input id="view-bar-yLabel" /></td><td></td></tr>
+		<tr>
+			<td><i>Only show items of type</i></td>
+			<td><select id="view-bar-klass" class="alltypebox"></select></td>
+			<td>(Optional)</td>
+		</tr>
 	</table>
 	<br />
 	<p align="right"><a href="#" class="addlink" onclick="submit_view_bar_facet(); return false">Add Bar Chart</a></p>
@@ -20,6 +25,7 @@ function submit_view_bar_facet() {
 		var yField = jQuery('#view-bar-y').val();
 		var xLabel = jQuery('#view-bar-xLabel').val();
 		var yLabel = jQuery('#view-bar-yLabel').val();
+		var klass = jQuery('#view-bar-klass').val();
 		// var extra_attributes = jQuery('#view-bar-extra-attributes').val();
 
 		var params = 	{
@@ -34,6 +40,9 @@ function submit_view_bar_facet() {
 		// if (extra_attributes != null) {
 		// 	params['extra_attributes'] = extra_attributes;
 		// }
+		if (klass != null) {
+			params['klass'] = klass;
+		}
 				
 		addExhibitElementLink("views-list", "Bar Chart: " + label, 'view',params);
 	}

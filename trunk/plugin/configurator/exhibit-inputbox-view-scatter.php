@@ -25,6 +25,11 @@
 			<td><input id="view-scatter-yLabel" /></td>
 			<td></td>
 		</tr>
+		<tr>
+			<td><i>Only show items of type</i></td>
+			<td><select id="view-scatter-klass" class="alltypebox"></select></td>
+			<td>(Optional)</td>
+		</tr>
 	</table>
 	<br />
 	<p align="right"><a href="#" class="addlink" onclick="submit_view_scatter_facet(); return false">Add Scatter Plot</a></p>
@@ -38,6 +43,7 @@ function submit_view_scatter_facet() {
 	var yField = jQuery('#view-scatter-y').val();
 	var xLabel = jQuery('#view-scatter-xLabel').val();
 	var yLabel = jQuery('#view-scatter-yLabel').val();
+	var klass = jQuery('#view-scatter-klass').val();
 	// var extra_attributes = jQuery('#view-scatter-extra-attributes').val();
 	
 	var params = {
@@ -52,6 +58,9 @@ function submit_view_scatter_facet() {
 	// if (extra_attributes != null) {
 	// 	params['extra_attributes'] = extra_attributes;
 	// }	
+	if (klass != null) {
+		params['klass'] = klass;
+	}	
 	
 	addExhibitElementLink("views-list", "Scatter Plot: " + label, 'view', params);
 }

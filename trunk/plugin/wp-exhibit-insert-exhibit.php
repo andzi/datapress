@@ -72,11 +72,26 @@ class WpExhibitHtmlBuilder {
 
     static function get_exhibit_html($exhibit) {	
         $view_html = "";
+		$collection_html = "";
+		$view_count = 0;
+		$createdCollections = array();
+		
         foreach ($exhibit->get('views') as $view) {
             $view_html = $view_html . $view->htmlContent();
             $view_html = $view_html . "\n";
-        }
 
+			// Check for restricted class type
+			if ($view->get('klass')) {
+				$view_klass = $view->get('klass');
+				if (! $createdCollections[$view_klass]) {
+					$collection_html .= "<div ex:role='collection' ex:itemTypes='$view_klass' id='$view_klass'></div>";
+					$createdCollections[$view_klass] = 1;
+				}
+			}
+			
+			$view_count = $view_count + 1;
+		}
+		
         $lens_html = "";
         foreach ($exhibit->get('lenses') as $lens) {
             $lens_html = $lens_html . $lens->htmlContent();
@@ -106,7 +121,6 @@ class WpExhibitHtmlBuilder {
             $right_facet_html = "<td width=\"15%\"> $right_facet_html </td>";
         }
 
-
 		$tracker = "";
 		// Check for usage study
 		if (get_option('datapress_et_phone_home') == "Y") {
@@ -114,6 +128,8 @@ class WpExhibitHtmlBuilder {
 		}
 		
         $exhibit_html = "
+			$lens_html
+			$collection_html
             <table width=\"100%\">
                 <tr>
                     <td colspan=3>
@@ -123,7 +139,6 @@ class WpExhibitHtmlBuilder {
                 <tr valign=\"top\">
                     $left_facet_html
                     <td ex:role=\"viewPanel\">
-						$lens_html
                         $view_html
                     </td>
                     $right_facet_html

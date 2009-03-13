@@ -67,7 +67,7 @@ function appendToPost(myValue) {
 
 function appendToLens(myValue) {
 	// var win = window.dialogArguments || opener || parent || top;
-	jQuery('#lens-text').append(myValue);
+	jQuery('#lens-text').append('.' + myValue);
 	// win.tinyMCE.execInstanceCommand("lens-text", "mceInsertContent",true,myValue);
 }
 
@@ -75,13 +75,15 @@ function ex_data_types_changed(e, arr) {
 	// Get all types
 	var types = db._types;
 	var props = db._properties;
-	var type_choice = "";
+	var type_choice = "<option selected value=''> - </option>";
 	var prop_choice = "<option selected value=''> - </option>";
 
 	for (var key in types) {
-		var id = types[key].getID();
-		var label = types[key].getLabel();		
-		type_choice = type_choice + "<option value='" + id + "'>" + label + "</option>";
+		if (key != "Item") {
+			var id = types[key].getID();
+			var label = types[key].getLabel();		
+			type_choice = type_choice + "<option value='" + id + "'>" + label + "</option>";			
+		}
 	}	
 	for (var key in props) {
 		prop_choice = prop_choice + "<option value='" + key + "'>" + key + "</option>";

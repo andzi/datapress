@@ -2,9 +2,9 @@
 
 	<table>
 		<tr><td><i>Visualization Title</i></td><td><input id="view-table-label" type="text" size="30" /></td><td></td></tr>
-		<tr><td><i>What is it a table of?</i></td><td><select id="view-table-class" class="alltypebox"></select></td><td></td></tr>
 		<tr><td><i>Include Fields</i></td><td><select id="view-table-fields" style="height: 100px; width: 200px;" class="allpropbox" multiple></select></td><td></td></tr>
 		<tr><td><i>Field Captions</i><br />(Comma-separated)</td><td><input id="view-table-captions" type="text" size="30" /></td><td>(Optional)</td></tr>
+		<tr><td><i>Only show items of type</i></td><td><select id="view-table-class" class="alltypebox"></select></td><td>(Optional)</td></tr>
 	</table>
 	<br />
 	<p align="right"><a href="#" class="addlink" onclick="submit_view_table_facet(); return false">Add Table</a></p>
