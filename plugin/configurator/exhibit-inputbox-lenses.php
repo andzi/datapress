@@ -28,7 +28,7 @@
 
 <table width="100%">
 	<tr>
-		<td><p align="left">Available Properties: <select id="lense-prop-possibilities" class="allpropbox"></select><a href="#" onClick="appendToLens('{{' + jQuery('#lense-prop-possibilities').val() + '}}'); return false;">Insert Property</a></p></td>
+		<td><p align="left">Available Properties: <select id="lense-prop-possibilities" class="allpropbox"></select><a href="#" onClick="appendToLens('{{.' + jQuery('#lense-prop-possibilities').val() + '}}'); return false;">Insert Property</a></p></td>
 		<td><p align="right"><a href="#" class="addlink" onclick="submit_lens(); return false">Add Lens</a></p></td>
 	</tr>
 </table>
