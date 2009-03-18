@@ -2,13 +2,13 @@
 	<table>
 		<tr>
 			<td><i>Visualization Title</i></td>
-			<td><input id="view-map-label" type="text" size="30" /></td>
+			<td><input id="exhibit-views-maps-label" type="text" size="30" /></td>
 			<td></td>
 		</tr>
 		<tr>
 			<td><i>Location field</i></td>
-			<td><select id="view-map-field" class="allpropbox"></select> contains a 
-				<select id="view-map-field-type">
+			<td><select id="exhibit-views-maps-field" class="allpropbox"></select> contains a 
+				<select id="exhibit-views-maps-fieldtype">
 					<option selected value="latlng">Lat,Lng</select>
 				</select>
 			</td>
@@ -16,12 +16,12 @@
 		</tr>	
 		<tr>
 			<td><i>Popup Size</i></td>
-			<td>Width: <input id="view-map-bw" value="200" style="width: 40px;" />px, Height: <input style="width: 40px;" id="view-map-bh" value="200" />px</td>
+			<td>Width: <input id="exhibit-views-maps-bubblewidth" value="200" style="width: 40px;" />px, Height: <input style="width: 40px;" id="exhibit-views-maps-bubbleheight" value="200" />px</td>
 			<td></td>
 		</tr>
 		<tr>
 			<td><i>Marker Size</i></td>
-			<td>Width: <input id="view-map-mw" value="60" style="width: 40px;" />px, Height: <input style="width: 40px;" id="view-map-mh" value="60" />px</td>
+			<td>Width: <input id="exhibit-views-maps-markerwidth" value="60" style="width: 40px;" />px, Height: <input style="width: 40px;" id="exhibit-views-maps-markerheight" value="60" />px</td>
 			<td></td>
 		</tr>
 		<tr>
@@ -31,7 +31,7 @@
 		</tr>
 		<tr>
 			<td><i>Icon</i></td>
-			<td><select id="view-map-icon" class="allpropbox"></select></td>
+			<td><select id="exhibit-views-maps-icon" class="allpropbox"></select></td>
 			<td>(Optional)</td>
 		</tr>
 	</table>
@@ -45,17 +45,17 @@ NOTE: Currently disabled. You have to put the coder definition OUTSIDE the view 
 <script type="text/JavaScript">
 
 function submit_view_map_facet() {
-	var label = jQuery('#view-map-label').val();
+	var label = jQuery('#exhibit-views-maps-label').val();
 	var kind = 'view-map';
-	var field = jQuery('#view-map-field').val();
-	var coderfield = jQuery('#view-map-coderfield').val();
-	var locationtype = jQuery('#view-map-field-type').val();
+	var field = jQuery('#exhibit-views-maps-field').val();
+	var coderfield = jQuery('#exhibit-views-maps-coderfield').val();
+	var locationtype = jQuery('#exhibit-views-maps-fieldtype').val();
 	// var extra_attributes = jQuery('#view-map-extra-attributes').val();
-	var icon = jQuery('#view-map-icon').val();
-	var bw = jQuery('#view-map-bw').val();
-	var bh = jQuery('#view-map-bh').val();
-	var mw = jQuery('#view-map-mw').val();
-	var mh = jQuery('#view-map-mh').val();
+	var icon = jQuery('#exhibit-views-maps-icon').val();
+	var bw = jQuery('#exhibit-views-maps-bubblewidth').val();
+	var bh = jQuery('#exhibit-views-maps-bubbleheight').val();
+	var mw = jQuery('#exhibit-views-maps-markerwidth').val();
+	var mh = jQuery('#exhibit-views-maps-markerheight').val();
 	var klass = jQuery('#view-map-klass').val();
 	
 	var params = {
@@ -76,11 +76,18 @@ function submit_view_map_facet() {
 	if (icon != null) {
 		params['icon'] = icon;
 	}
+
 	if (klass != null) {
 		params['klass'] = klass;
 	}
-	
-	addExhibitElementLink("views-list", "Map: " + label, 'view', params);
+
+	editinfo = {
+            editable: true,
+            tabid: "exhibit-views-maps"
+    };
+
+	addExhibitElementLink("views-list", "Map: " + label, 'view', params, null, editinfo);
+
 }
 </script>
 

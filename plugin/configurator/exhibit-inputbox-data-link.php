@@ -8,15 +8,15 @@ $exhibituri = $baseuri . '/wp-content/plugins/datapress';
 <table>
 	<tr>
 		<td>Data URL</td>
-		<td><input id="data-link-link" type="text" size="30" /></td>
+		<td><input id="exhibit-datasource-link-uri" type="text" size="30" /></td>
 	</tr>
 	<tr>
 		<td>Data Type</td>
-		<td><select id="data-link-type"><option  value="exhibit">Exhibit (web page)</option><option value="google-spreadsheet">Google Spreadsheet (JSONP)</option><option value="application/json">JSON</option></select></td>
+		<td><select id="exhibit-datasource-link-kind"><option  value="exhibit">Exhibit (web page)</option><option value="google-spreadsheet">Google Spreadsheet (JSONP)</option><option value="application/json">JSON</option></select></td>
 	</tr>
 	<tr>
     	<td>Datasource Name</td>
-		<td><input id="data-link-sourcename" type="text" size="30" /></td>
+		<td><input id="exhibit-datasource-link-sourcename" type="text" size="30" /></td>
 	</tr>
 </table>
 <p align="right"><a href="#" class="addlink" onclick="submit_google_doc(); return false">Add Data Link</a></p>
@@ -42,7 +42,12 @@ $exhibituri = $baseuri . '/wp-content/plugins/datapress';
 				uri: uri,
 				sourcename: sourcename,
 				data_location: where
-		});
+		    },
+		    null,
+            {
+                editable: true,
+                tabid: "exhibit-datasource-link"
+            });
 		ex_add_head_link(uri, kind, remove_id);
 		$.post("<?php bloginfo('wpurl'); ?>/wp-admin/admin-ajax.php",
 		       { action: "insert_parrotable_url",
@@ -53,9 +58,9 @@ $exhibituri = $baseuri . '/wp-content/plugins/datapress';
   }
 
   function submit_google_doc() {
-	var uri = jQuery('#data-link-link').val();
-	var kind = jQuery('#data-link-type').val();
-    var sourcename = jQuery('#data-link-sourcename').val();
+	var uri = jQuery('#exhibit-datasource-link-uri').val();
+	var kind = jQuery('#exhibit-datasource-link-kind').val();
+    var sourcename = jQuery('#exhibit-datasource-link-sourcename').val();
 
 	if (kind == 'exhibit') {
 		// Use batch link

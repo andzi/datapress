@@ -4,7 +4,7 @@
 <table>
 	<tr>
 		<td><i>Visualization Title</i></td>
-		<td><br /><input id="view-list-label" type="text" size="30" /></td>
+		<td><br /><input id="exhibit-views-list-label" type="text" size="30" /></td>
 		<td></td>
 	</tr>
 	<tr>
@@ -14,7 +14,7 @@
 	</tr>
 	<tr>
 		<td><i>Default sort by field</i></td>
-		<td><select id="view-list-sortby" class="allpropbox"></select></td>
+		<td><select id="exhibit-views-list-sortby" class="allpropbox"></select></td>
 		<td>(Optional)</td>
 	</tr>
 </table>
@@ -24,9 +24,9 @@
 <script type="text/JavaScript">
 
 function submit_view_list_facet() {
-	var label = jQuery('#view-list-label').val();
+	var label = jQuery('#exhibit-views-list-label').val();
 	var kind = 'view-tile';
-	var sortby = jQuery('#view-list-sortby').val();
+	var sortby = jQuery('#exhibit-views-list-sortby').val();
 	var klass = jQuery('#view-list-klass').val();
 	// var extra_attributes = jQuery('#view-list-extra-attributes').val();
 	
@@ -46,7 +46,12 @@ function submit_view_list_facet() {
 	// 	params['extra_attributes'] = extra_attributes;
 	// }
 	
-	addExhibitElementLink("views-list", "List: " + label, 'view', params);
+	editinfo = {
+            editable: true,
+            tabid: "exhibit-views-list"
+    };
+	
+	addExhibitElementLink("views-list", "List: " + label, 'view', params, null, editinfo);
 }
 </script>
 

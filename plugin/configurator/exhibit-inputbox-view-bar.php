@@ -2,11 +2,11 @@
 
 
 	<table>
-		<tr><td><i>Visualization Title</i></td><td><input id="view-bar-label" type="text" size="30" /></td><td></td></tr>
-		<tr><td><i>X Axis</i></td><td><select id="view-bar-x" class="allpropbox"></select></td><td></td></tr>
-		<tr><td><i>X Axis Label</i></td><td><input id="view-bar-xLabel" /></td><td></td></tr>
-		<tr><td><i>Y Axis</i></td><td><select id="view-bar-y" class="allpropbox"></select></td><td></td></tr>
-		<tr><td><i>Y Axis Label</i></td><td><input id="view-bar-yLabel" /></td><td></td></tr>
+		<tr><td><i>Visualization Title</i></td><td><input id="exhibit-views-bar-label" type="text" size="30" /></td><td></td></tr>
+		<tr><td><i>X Axis</i></td><td><select id="exhibit-views-bar-xField" class="allpropbox"></select></td><td></td></tr>
+		<tr><td><i>X Axis Label</i></td><td><input id="exhibit-views-bar-xLabel" /></td><td></td></tr>
+		<tr><td><i>Y Axis</i></td><td><select id="exhibit-views-bar-yField" class="allpropbox"></select></td><td></td></tr>
+		<tr><td><i>Y Axis Label</i></td><td><input id="exhibit-views-bar-yLabel" /></td><td></td></tr>
 		<tr>
 			<td><i>Only show items of type</i></td>
 			<td><select id="view-bar-klass" class="alltypebox"></select></td>
@@ -20,11 +20,11 @@
 
 function submit_view_bar_facet() {
 		var kind = 'view-bar';
-		var label = jQuery('#view-bar-label').val();
-		var xField = jQuery('#view-bar-x').val();
-		var yField = jQuery('#view-bar-y').val();
-		var xLabel = jQuery('#view-bar-xLabel').val();
-		var yLabel = jQuery('#view-bar-yLabel').val();
+		var label = jQuery('#exhibit-views-bar-label').val();
+		var xField = jQuery('#exhibit-views-bar-xField').val();
+		var yField = jQuery('#exhibit-views-bar-yField').val();
+		var xLabel = jQuery('#exhibit-views-bar-xLabel').val();
+		var yLabel = jQuery('#exhibit-views-bar-yLabel').val();
 		var klass = jQuery('#view-bar-klass').val();
 		// var extra_attributes = jQuery('#view-bar-extra-attributes').val();
 
@@ -40,11 +40,18 @@ function submit_view_bar_facet() {
 		// if (extra_attributes != null) {
 		// 	params['extra_attributes'] = extra_attributes;
 		// }
+
 		if (klass != null) {
 			params['klass'] = klass;
-		}
-				
-		addExhibitElementLink("views-list", "Bar Chart: " + label, 'view',params);
+		}		
+
+		editinfo = {
+            editable: true,
+            tabid: "exhibit-views-bar"
+        };
+	
+		addExhibitElementLink("views-list", "Bar Chart: " + label, 'view', params, null, editinfo);
+
 	}
 </script>
 

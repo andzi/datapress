@@ -30,10 +30,17 @@ function ex_add_head_link(uri, kind, remove_id) {
 	SimileAjax.jQuery('head').append(link);
 }
 
-function addExhibitElementLink(listId, caption, prefix, fields, field_display) {
-	var next_id = SimileAjax.jQuery('#' + listId + ' > li').size();
+function addExhibitElementLink(listId, caption, prefix, fields, field_display, editinfo) {
+	var next_id = -1;
+	SimileAjax.jQuery('#' + listId + ' > li').each(function(i, val) {
+	    id_str = SimileAjax.jQuery(val).attr('id');
+	    id = id_str.substring(id_str.lastIndexOf("_")+1, id_str.length);
+	    if (id > next_id) {
+	        next_id = id;
+	    }
+	});
+	next_id++;
 	var liid = listId + "_" + next_id;
-	var liid_remove = liid + "_remove";
 	var opStr = "";
 	opStr = opStr + "<li id='" + liid + "'>" + caption + " ";
 	SimileAjax.jQuery.each(fields, function(key, value) {
@@ -45,20 +52,63 @@ function addExhibitElementLink(listId, caption, prefix, fields, field_display) {
 	    	opStr = opStr + field;
 	    }
 	});
-	opStr = opStr + "[ <a href='#' onclick='removeExhibitElementLink(\"" + liid + "\",\"" + liid_remove + "\"); return false;'>remove</a> ]";
+	opStr = opStr + "[ <a href='#' onclick='removeExhibitElementLink(\"" + liid + "\"); return false;'>remove</a> ]";
+	if ((editinfo != undefined) && (editinfo.editable)) {
+		opStr = opStr + "[ <a href='#' onclick='editExhibitElementLink(\"" + editinfo.tabid + "\", \"" + liid + "\"); return false;'>edit</a> ]";
+    }
 	opStr = opStr + "</li>";
 	SimileAjax.jQuery('#' + listId).append(opStr);
-	return liid_remove;
+	return removeID(liid);
 }
 
 function popup(url) {
 	window.open(url);
 }
 
-function removeExhibitElementLink(liid, liid_remove) {
+function removeID(liid) {
+    return liid + "_remove";
+}
+
+function removeExhibitElementLink(liid) {
     SimileAjax.jQuery("#" + liid).remove();
-    SimileAjax.jQuery("#" + liid_remove).remove();
-    ex_load_links();
+    SimileAjax.jQuery("#" + removeID(liid)).remove();
+    if (liid.indexOf('data-source-list') != -1) {
+        ex_load_links();
+    }
+}
+
+function editExhibitElementLink(tabid, liid) {
+    var inputs = new Array();
+    jQuery("#" + liid + " input[type='hidden']").each(function(i, val) {
+        var inputname = jQuery(val).attr('name');
+        var oldkey = inputname.substring(inputname.lastIndexOf("_")+1, inputname.length);
+        inputs[oldkey] = jQuery(val).attr('value');
+    });
+
+    jQuery("#" + tabid + " :input")
+      .not("[multiple]").each(function(i, val) {
+          var keyid = jQuery(val).attr('id');
+          var key = keyid.substring(keyid.lastIndexOf("-")+1, keyid.length);
+          jQuery(val).val(inputs[key]);
+        })
+      .end()
+      .filter("[multiple]").each(function(i, val) {
+          var keyid = jQuery(val).attr('id');
+          var key = keyid.substring(keyid.lastIndexOf("-")+1, keyid.length);
+
+          var selected = inputs[key].replace(/\./g, '').split(',');
+          jQuery(val).find("option").each(function(j, option) {
+              if (jQuery.inArray(jQuery(option).attr("value"), selected) != -1) {
+                  jQuery(option).attr("selected", "selected");
+              } else {
+                  jQuery(option).removeAttr("selected");
+              }
+          });
+      })
+      .end();
+    tab_parent_id = tabid.substr(0, tabid.lastIndexOf("-")) + "-tabs";
+    jQuery("#" + tab_parent_id + "> ul").tabs('select', "#" + tabid);
+    removeExhibitElementLink(liid);
 }
 
 function appendToPost(myValue) {
