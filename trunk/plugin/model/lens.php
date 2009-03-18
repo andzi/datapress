@@ -49,8 +49,8 @@ class WpExhibitLens extends WpExhibitModel {
 	
 	function getEditInfo() {
 	    switch($this->get('kind')) {
-			//case 'lens':
-            //    return 'editable: true, tabid: "exhibit-views-bar"';
+			case 'lens':
+                return 'editable: true, tabid: "exhibit-lenses-edit"';
 	    	default:
         	    return 'editable: false';
 		}
