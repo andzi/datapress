@@ -1,7 +1,7 @@
 <?php
 require_once('web-tools.php');
 
-	$url = $_GET['url'];
+	$url = urldecode($_GET['url']);
 	$json = '{ "links" : [ ';
   $contents = WebTools::do_get_request($url);
   $pattern = "/<link[^>]*\/>/";

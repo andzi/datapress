@@ -10,7 +10,7 @@ function is_parrotable($url) {
     return $url == $testurl;
 }
 
-$url = $_GET['url'];   
+$url = urldecode($_GET['url']);
 if (is_parrotable($url)) {
 	$contents = WebTools::do_get_request($url);
 	//$contents = file_get_contents($url);
