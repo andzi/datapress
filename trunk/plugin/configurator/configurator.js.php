@@ -117,8 +117,8 @@ function appendToPost(myValue) {
 
 function appendToLens(myValue) {
 	// var win = window.dialogArguments || opener || parent || top;
-	jQuery('#lens-text').append(myValue);
-	// win.tinyMCE.execInstanceCommand("lens-text", "mceInsertContent",true,myValue);
+    jQuery('#exhibit-lenses-edit-html').val(jQuery('#exhibit-lenses-edit-html').val() + myValue);
+	// win.tinyMCE.execInstanceCommand("exhibit-lenses-edit-html", "mceInsertContent",true,myValue);
 }
 
 function ex_data_types_changed(e, arr) {
