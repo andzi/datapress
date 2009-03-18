@@ -2,27 +2,27 @@
 	<table>
 		<tr>
 			<td><i>Visualization Title</i></td>
-			<td><input id="view-scatter-label" type="text" size="30" /></td>
+			<td><input id="exhibit-views-scatter-label" type="text" size="30" /></td>
 			<td></td>
 		</tr>
 		<tr>
 			<td><i>X Axis</i></td>
-			<td><select id="view-scatter-x" class="allpropbox"></select></td>
+			<td><select id="exhibit-views-scatter-xField" class="allpropbox"></select></td>
 			<td></td>
 		</tr>
 		<tr>
 			<td><i>X Axis Label</i></td>
-			<td><input id="view-scatter-xLabel" /></td>
+			<td><input id="exhibit-views-scatter-xLabel" /></td>
 			<td></td>
 		</tr>
 		<tr>
 			<td><i>Y Axis</i></td>
-			<td><select id="view-scatter-y" class="allpropbox"></select></td>
+			<td><select id="exhibit-views-scatter-yField" class="allpropbox"></select></td>
 			<td></td>
 		</tr>
 		<tr>
 			<td><i>Y Axis Label</i></td>
-			<td><input id="view-scatter-yLabel" /></td>
+			<td><input id="exhibit-views-scatter-yLabel" /></td>
 			<td></td>
 		</tr>
 		<tr>
@@ -38,11 +38,11 @@
 
 function submit_view_scatter_facet() {
 	var kind = 'view-scatter';
-	var label = jQuery('#view-scatter-label').val();
-	var xField = jQuery('#view-scatter-x').val();
-	var yField = jQuery('#view-scatter-y').val();
-	var xLabel = jQuery('#view-scatter-xLabel').val();
-	var yLabel = jQuery('#view-scatter-yLabel').val();
+	var label = jQuery('#exhibit-views-scatter-label').val();
+	var xField = jQuery('#exhibit-views-scatter-xField').val();
+	var yField = jQuery('#exhibit-views-scatter-yField').val();
+	var xLabel = jQuery('#exhibit-views-scatter-xLabel').val();
+	var yLabel = jQuery('#exhibit-views-scatter-yLabel').val();
 	var klass = jQuery('#view-scatter-klass').val();
 	// var extra_attributes = jQuery('#view-scatter-extra-attributes').val();
 	
@@ -62,7 +62,12 @@ function submit_view_scatter_facet() {
 		params['klass'] = klass;
 	}	
 	
-	addExhibitElementLink("views-list", "Scatter Plot: " + label, 'view', params);
+	editinfo = {
+            editable: true,
+            tabid: "exhibit-views-scatter"
+    };
+	
+	addExhibitElementLink("views-list", "Scatter Plot: " + label, 'view', params, null, editinfo);
 }
 </script>
 

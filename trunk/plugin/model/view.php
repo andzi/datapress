@@ -162,5 +162,24 @@ class WpExhibitView extends WpExhibitModel {
 		}		      
 	}
 	
+	function getEditInfo() {
+	    switch($this->get('kind')) {
+			case 'view-table':
+        	    return 'editable: true, tabid: "exhibit-views-table"';
+			case 'view-timeline':
+        	    return 'editable: true, tabid: "exhibit-views-timeline"';
+			case 'view-map':
+        	    return 'editable: true, tabid: "exhibit-views-maps"';
+			case 'view-tile':
+        	    return 'editable: true, tabid: "exhibit-views-list"';
+			case 'view-scatter':
+        	    return 'editable: true, tabid: "exhibit-views-scatter"';
+			case 'view-bar':
+        	    return 'editable: true, tabid: "exhibit-views-bar"';
+			default:
+        	    return 'editable: false';
+		}
+	}
+	
 }
 ?>

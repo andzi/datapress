@@ -5,7 +5,8 @@ abstract class WpExhibitModel {
 	abstract function getTableName();
 	abstract function getFormPrefix();
 	abstract function getLinkCaption();
-
+    abstract function getEditInfo();
+    
  	function WpExhibitModel($opts = NULL) {
  		$this->id = NULL;
 		
@@ -114,11 +115,16 @@ abstract class WpExhibitModel {
 			$ret = substr($ret, 0, -1);
 		}
 		$ret .= "}";
+	    $ret .= ",";
 		$field_display = $this->getAddFieldDisplay();
 		if ($field_display != null) {
-		    $ret .= ",";
     		$ret .= $field_display;
+    	} else {
+    	    $ret .= " null";
     	}
+    	$ret .= ", {";
+    	$ret .= $this->getEditInfo();
+    	$ret .= "}";
 		$ret .= ");";
 		return $ret;
 	}

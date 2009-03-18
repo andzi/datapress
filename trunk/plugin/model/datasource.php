@@ -58,5 +58,9 @@ class WpExhibitDatasource extends WpExhibitModel {
 			}
 		}  
 	}
+	
+	function getEditInfo() {
+	    return 'editable: true, tabid: "exhibit-datasource-link"';
+	}
 }
 ?>

@@ -73,5 +73,18 @@ class WpExhibitFacet extends WpExhibitModel {
 	function getAddFieldDisplay() {
         return self::addFieldDisplay();
 	}
+	
+	function getEditInfo() {
+	    switch($this->get('kind')) {
+   			case 'search':
+           	    return 'editable: true, tabid: "exhibit-facet-search"';
+			case 'browse':
+           	    return 'editable: true, tabid: "exhibit-facet-list"';
+			case 'tagcloud':
+           	    return 'editable: true, tabid: "exhibit-facet-tagcloud"';
+	    	default:
+        	    return 'editable: false';
+		}
+	}
 }
 ?>

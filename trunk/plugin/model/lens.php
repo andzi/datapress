@@ -46,5 +46,14 @@ class WpExhibitLens extends WpExhibitModel {
 		$replacement = "<span ex:content=\"$1\"></span>";
 		return preg_replace($pattern, $replacement, $html);
 	}
+	
+	function getEditInfo() {
+	    switch($this->get('kind')) {
+			//case 'lens':
+            //    return 'editable: true, tabid: "exhibit-views-bar"';
+	    	default:
+        	    return 'editable: false';
+		}
+	}
 }
 ?>
