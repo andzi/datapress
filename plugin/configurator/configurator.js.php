@@ -25,7 +25,7 @@ function ex_add_head_link(uri, kind, remove_id) {
 		var link = SimileAjax.jQuery('<link id = "' + remove_id + '" rel="exhibit/data" type="application/jsonp" href="' + uri + '" ex:converter="googleSpreadsheets" />');
 	}
 	else if (kind == "application/json") {
-		var link = SimileAjax.jQuery('<link id = "' + remove_id + '" rel="exhibit/data" type="application/json" href="$exhibituri/proxy/parrot.php?url=' + uri + '" />');
+		var link = SimileAjax.jQuery('<link id = "' + remove_id + '" rel="exhibit/data" type="application/json" href="$exhibituri/proxy/parrot.php?url=' + encodeURIComponent(uri) + '" />');
 	}
 	SimileAjax.jQuery('head').append(link);
 }

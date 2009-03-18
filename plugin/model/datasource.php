@@ -54,7 +54,7 @@ class WpExhibitDatasource extends WpExhibitModel {
 				$baseuri = $guessurl;
 				$exhibituri = $baseuri . '/wp-content/plugins/datapress';
 				$parrotbase = $exhibituri . '/proxy/parrot.php';
-				return "<link href=\"$parrotbase" . '?url=' . "$uri\" type=\"application/json\" rel=\"exhibit/data\" alt=\"$sourcename\" />";											
+				return "<link href=\"$parrotbase" . '?url=' . urlencode($uri) . "\" type=\"application/json\" rel=\"exhibit/data\" alt=\"$sourcename\" />";											
 			}
 		}  
 	}

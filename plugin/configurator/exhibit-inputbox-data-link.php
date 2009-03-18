@@ -51,7 +51,7 @@ $exhibituri = $baseuri . '/wp-content/plugins/datapress';
 		ex_add_head_link(uri, kind, remove_id);
 		$.post("<?php bloginfo('wpurl'); ?>/wp-admin/admin-ajax.php",
 		       { action: "insert_parrotable_url",
-		         url: uri },
+		         url: encodeURIComponent(uri) },
                function(data){
                  setTimeout("ex_load_links()", 1000);
                });
@@ -65,7 +65,7 @@ $exhibituri = $baseuri . '/wp-content/plugins/datapress';
 	if (kind == 'exhibit') {
 		// Use batch link
 		jQuery(function() {
-			jQuery.getJSON("<?php echo $exhibituri ?>" + "/proxy/link_scrape.php?url=" + uri, function(json) {
+			jQuery.getJSON("<?php echo $exhibituri ?>" + "/proxy/link_scrape.php?url=" + encodeURIComponent(uri), function(json) {
 				for(var i=0; i<json.links.length; i++) {
 					var link_kind = json.links[i].kind;
 					var link_uri = json.links[i].href;
