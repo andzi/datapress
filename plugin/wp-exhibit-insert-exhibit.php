@@ -20,7 +20,7 @@ class WpExhibitHtmlBuilder {
 	*/		
 			return $post_exhibit;
 		}
-		return nil;
+		return NULL;
 	}
 
     static function insert_exhibit_lightbox($exhibit, $content) {
@@ -57,7 +57,7 @@ class WpExhibitHtmlBuilder {
 		    	$guessurl = wp_guess_url();
 		    $baseuri = $guessurl;
 		    $exhibituri = $baseuri . '/wp-content/plugins/datapress';
-        	$exhibit_html = "<a href='$exhibituri/wp-exhibit-only.php?iframe&id=" . $exhibit->get('id') . "' class='exhibit_link'>";	
+        	$exhibit_html = "<a href='$exhibituri/wp-exhibit-only.php?iframe&exhibitid=" . $exhibit->get('id') . "' class='exhibit_link'>";	
 			// Check for usage study
 			if (get_option('datapress_et_phone_home') == "Y") {
 	        	$exhibit_html .= "<img src='http://projects.csail.mit.edu/datapress/static/exhibit_lightbox.png?" . $exhibit->getStatisticReport() . "' />";
@@ -72,24 +72,9 @@ class WpExhibitHtmlBuilder {
 
     static function get_exhibit_html($exhibit) {	
         $view_html = "";
-		$collection_html = "";
-		$view_count = 0;
-		$createdCollections = array();
-		
         foreach ($exhibit->get('views') as $view) {
             $view_html = $view_html . $view->htmlContent();
             $view_html = $view_html . "\n";
-
-			// Check for restricted class type
-			if ($view->get('klass')) {
-				$view_klass = $view->get('klass');
-				if (! $createdCollections[$view_klass]) {
-					$collection_html .= "<div ex:role='collection' ex:itemTypes='$view_klass' id='$view_klass'></div>";
-					$createdCollections[$view_klass] = 1;
-				}
-			}
-			
-			$view_count = $view_count + 1;
 		}
 		
         $lens_html = "";
@@ -129,7 +114,6 @@ class WpExhibitHtmlBuilder {
 		
         $exhibit_html = "
 			$lens_html
-			$collection_html
             <table width=\"100%\">
                 <tr>
                     <td colspan=3>

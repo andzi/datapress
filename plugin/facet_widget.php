@@ -10,7 +10,7 @@ function widget_datapressFacet($args) {
 		}
 	}		
 
-  if (isset($datapress_exhibit) && ($datapress_exhibit != nil)) {
+  if (isset($datapress_exhibit) && ($datapress_exhibit != NULL)) {
 	if (! $datapress_exhibit->get('lightbox')) {
 		foreach ($datapress_exhibit->get('facets') as $facet) {
 		if ($facet->get('location') == 'widget') {
