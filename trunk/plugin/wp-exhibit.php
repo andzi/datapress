@@ -26,23 +26,17 @@ class WpExhibit {
 		global $wp_version;
 		$this->wp_version = $wp_version;
 	}
+
+	function exhibit_admin_include() {
+		include('exhibit_admin_include.php');		
+	}
 	
 	/*
 	 * Only include if the number of posts == 1 and it has an exhibit
 	 * on the page. Else just include the other stuff
 	 */
 	function exhibit_include() {
-		global $wp_query;
-		if ((sizeof($wp_query->posts) == 1) && ($wp_query->posts[0]->datapress_exhibit != null)) {
-			include('exhibit_include.php');
-		}		
-		else {
-			include('exhibit_include_placeholders.php');			
-		}
-	}
-	
-	function exhibit_admin_include() {
-		include('exhibit_admin_include.php');		
+        include('head.php');
 	}
 	
 	function get_current_exhibit_from_admin_page() {
@@ -137,7 +131,7 @@ class WpExhibit {
 
 	function insert_exhibit($content) {
 		global $wp_query;
-		if ($wp_query->post->datapress_exhibit != nil) {
+		if ($wp_query->post->datapress_exhibit != NULL) {
 			if (sizeof($wp_query->posts) > 1) {
 				// Just display a callout about the exhibit.
 				return WpExhibitHtmlBuilder::insert_exhibit_lightbox($wp_query->post->datapress_exhibit, $content);			

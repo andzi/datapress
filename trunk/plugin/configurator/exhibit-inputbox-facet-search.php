@@ -7,7 +7,16 @@ $exhibituri = $baseuri . '/wp-content/plugins/datapress';
 <p><b>A <i>Search Facet</i> lets you search across the text content of your Exhibit data.</b></p>
 
 <table>
-	<tr><td><i>Facet Title</i></td><td><input id="exhibit-facet-search-label" type="text" size="30" /></td></tr>
+	<tr>
+	    <td><i>Facet Title</i></td>
+	    <td><input id="exhibit-facet-search-label" type="text" size="30" /></td>
+	    <td></td>
+	</tr>
+	<tr>
+	    <td><i>Only filter items of type</i></td>
+	    <td><select id="exhibit-facet-search-klass" class="alltypebox"></select></td>
+	    <td>(Optional)</td>
+	</tr>
 </table>
 	<p align="right"><a href="#" class="addlink" onclick="submit_search_facet(); return false">Add Search Facet</a></p>
 
@@ -16,16 +25,22 @@ $exhibituri = $baseuri . '/wp-content/plugins/datapress';
 function submit_search_facet() {
 	var label = jQuery('#exhibit-facet-search-label').val();
 	var kind = 'search';
+	var klass = jQuery('#exhibit-facet-search-klass').val();
+	
+	var params = 	{
+			kind: kind,
+			label: label,
+			location: "left"
+	};
+	if (klass != null) {
+		params['klass'] = klass;
+	}
 	
 	addExhibitElementLink(
 		"facet-list", 
 		"Search Facet", 
 		'facet',
-		{
-			kind: kind,
-			label: label,
-			location: "left"
-	    },
+        params,
         <?php echo(WpExhibitFacet::addFieldDisplay()); ?>,
         {
             editable: true,

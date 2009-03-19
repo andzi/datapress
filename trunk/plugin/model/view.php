@@ -68,17 +68,19 @@ class WpExhibitView extends WpExhibitModel {
 		$kind = $this->get('kind');
 		$label = $this->get('label');
 		
+		$klass = $this->get('klass');
+		$collection_insert = '';
+		if ($klass != NULL) {
+			$collection_insert = "ex:collectionID='collection_$klass'";
+		}
+		else {
+			$collection_insert = "ex:collectionID='auto_union'";
+		}
+
 		if ($kind == "view-tile") {
 			// Todo: add the actual date and time stuff
 			
-			$klass = $this->get('klass');
-			$inner = '';
-			
-			if ($klass != NULL) {
-				$inner = "ex:collectionID='$klass'";
-			}
-			
-			return "<div ex:role=\"exhibit-view\" ex:viewClass=\"Exhibit.TileView\" $inner ex:label=\"$label\"></div>";
+			return "<div ex:role=\"exhibit-view\" ex:viewClass=\"Exhibit.TileView\" $collection_insert ex:label=\"$label\"></div>";
 		}		
 		
 		if ($kind == "view-timeline") {
@@ -91,7 +93,7 @@ class WpExhibitView extends WpExhibitModel {
 				$inner .= " ex:proxy='.$proxy' ";
 			}
 						
-			$ret =  "<div ex:role=\"view\" ex:viewClass=\"Timeline\" ex:bubbleWidth='320' ex:topBandPixelsPerUnit='400' $inner ex:timelineHeight='170' ex:label=\"$label\" ex:start=\".$start\"";
+			$ret =  "<div ex:role=\"view\" ex:viewClass=\"Timeline\" $collection_insert ex:bubbleWidth='320' ex:topBandPixelsPerUnit='400' $inner ex:timelineHeight='170' ex:label=\"$label\" ex:start=\".$start\"";
 			if ($this->get('end') != null) {
 				$end = $this->get('end');
 				$ret = $ret . " ex:end=\".$end\"";
@@ -122,7 +124,7 @@ class WpExhibitView extends WpExhibitModel {
 			}
 
 			// NOTE: There is currently no nocderfeld thing being put in here.
-			$ret = "<div ex:role='view' ex:viewClass='Map' ex:label='$label' ex:latlng='.$field' ex:bubbleWidth='$bw' ex:bubbleHeight='$bh' ex:shapeWidth='$mw' ex:shapeHeight='$mh' $inner ></div>";   
+			$ret = "<div ex:role='view' ex:viewClass='Map' ex:label='$label' $collection_insert ex:latlng='.$field' ex:bubbleWidth='$bw' ex:bubbleHeight='$bh' ex:shapeWidth='$mw' ex:shapeHeight='$mh' $inner ></div>";   
 			return $ret;
 		}
 		else if ($kind == "view-table") {
@@ -131,7 +133,7 @@ class WpExhibitView extends WpExhibitModel {
 			$klass = $this->get('klass');
 			
 			// Todo: add the actual location stuff
-			$ret = "<div ex:role=\"view\" ex:viewClass=\"Exhibit.TabularView\" ex:itemType=\"$klass\" ex:label=\"$label\" ex:columns=\"$columns\" ex:columnLabels=\"$columnlabels\">";
+			$ret = "<div ex:role=\"view\" ex:viewClass=\"Exhibit.TabularView\" $collection_insert ex:label=\"$label\" ex:columns=\"$columns\" ex:columnLabels=\"$columnlabels\">";
 			$ret .= "<table style=\"display: none;\"><tr>";			
 			$columns_arr = explode(",", $columns);
 			foreach($columns_arr as $column) {
@@ -146,7 +148,7 @@ class WpExhibitView extends WpExhibitModel {
 			$field_y = $this->get("yField");
 			$field_xLabel = $this->get("xLabel");
 			$field_yLabel = $this->get("yLabel");
-			$ret =  "<div ex:role=\"view\" ex:viewClass=\"Exhibit.ScatterPlotView\" ex:label=\"$label\" ex:x=\".$field_x\" ex:y=\".$field_y\" ex:xLabel=\"$field_xLabel\" ex:yLabel=\"$field_yLabel\"";
+			$ret =  "<div ex:role=\"view\" ex:viewClass=\"Exhibit.ScatterPlotView\" $collection_insert ex:label=\"$label\" ex:x=\".$field_x\" ex:y=\".$field_y\" ex:xLabel=\"$field_xLabel\" ex:yLabel=\"$field_yLabel\"";
 			$ret = $ret . "></div>";        
 			return $ret;
 		}		      
@@ -156,7 +158,7 @@ class WpExhibitView extends WpExhibitModel {
 			$field_y = $this->get("yField");
 			$field_xLabel = $this->get("xLabel");
 			$field_yLabel = $this->get("yLabel");
-			$ret =  "<div ex:role=\"view\" ex:viewClass=\"Exhibit.BarChartView\" ex:label=\"$label\" ex:x=\".$field_x\" ex:y=\".$field_y\" ex:xLabel=\"$field_xLabel\" ex:yLabel=\"$field_yLabel\"";
+			$ret =  "<div ex:role=\"view\" ex:viewClass=\"Exhibit.BarChartView\" $collection_insert ex:label=\"$label\" ex:x=\".$field_x\" ex:y=\".$field_y\" ex:xLabel=\"$field_xLabel\" ex:yLabel=\"$field_yLabel\"";
 			$ret = $ret . "></div>";        
 			return $ret;
 		}		      

@@ -44,11 +44,11 @@ class WpExhibitFacet extends WpExhibitModel {
 		$label = $this->get('label');
 		
 		if ($kind == "search") {
-			return "<div ex:role=\"facet\" ex:facetClass=\"TextSearch\" ex:facetLabel=\"$label\"></div>";
+			return "<div ex:role=\"facet\" ex:collectionID='auto_union' ex:facetClass=\"TextSearch\" ex:facetLabel=\"$label\"></div>";
 		} else if ($kind == "browse") {
-			return "<div ex:role=\"facet\" ex:expression=\".$field\" ex:facetLabel=\"$label\"></div>";
+			return "<div ex:role=\"facet\" ex:collectionID='auto_union' ex:expression=\".$field\" ex:facetLabel=\"$label\"></div>";
 		} else if ($kind == "tagcloud") {
-			return "<div ex:role=\"facet\" ex:facetClass=\"Cloud\" ex:expression=\".$field\" ex:facetLabel=\"$label\"></div>";		
+			return "<div ex:role=\"facet\" ex:collectionID='auto_union' ex:facetClass=\"Cloud\" ex:expression=\".$field\" ex:facetLabel=\"$label\"></div>";		
 		}
 	}
 	
