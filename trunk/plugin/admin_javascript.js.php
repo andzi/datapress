@@ -42,7 +42,6 @@ function add_exhibit_token_and_exit() {
 			edInsertContent(edCanvas, h);
 		}
 	} else {
-		alert("ho");
 		if (jQuery(edCanvas).val().indexOf(searchfor) == -1) {
 			jQuery( edCanvas ).val( jQuery( edCanvas ).val() + h );			
 		}
