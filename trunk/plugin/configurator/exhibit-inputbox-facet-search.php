@@ -12,6 +12,18 @@ $exhibituri = $baseuri . '/wp-content/plugins/datapress';
 	    <td><input id="exhibit-facet-search-label" type="text" size="30" /></td>
 	    <td></td>
 	</tr>
+    <tr>
+		<td>Facet Location Relative to View</td>	
+		<td>
+		  <select id="exhibit-facet-search-location">
+		    <option value="left">Left</option>
+		    <option value="right">Right</option>
+    		<option value="top">Top</option>
+    		<option value="bottom">Bottom</option>
+	  	    <option value="widget">Sidebar Widget</option>
+		  </select>
+		</td>
+	</tr>
 	<tr>
 	    <td><i>Only filter items of type</i></td>
 	    <td><select id="exhibit-facet-search-klass" class="alltypebox"></select></td>
@@ -24,13 +36,14 @@ $exhibituri = $baseuri . '/wp-content/plugins/datapress';
 
 function submit_search_facet() {
 	var label = jQuery('#exhibit-facet-search-label').val();
+    var location = jQuery('#exhibit-facet-search-location').val();
 	var kind = 'search';
 	var klass = jQuery('#exhibit-facet-search-klass').val();
 	
 	var params = 	{
 			kind: kind,
 			label: label,
-			location: "left"
+			location: location
 	};
 	if (klass != null) {
 		params['klass'] = klass;
@@ -41,7 +54,7 @@ function submit_search_facet() {
 		"Search Facet", 
 		'facet',
         params,
-        <?php echo(WpExhibitFacet::addFieldDisplay()); ?>,
+        null,
         {
             editable: true,
             tabid: "exhibit-facet-search"

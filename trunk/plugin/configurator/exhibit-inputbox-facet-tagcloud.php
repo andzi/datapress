@@ -19,6 +19,18 @@ Exhibit data, displaying those buckets as a cloud of words.</b></p>
     <td></td>
 </tr>
 <tr>
+	<td>Facet Location Relative to View</td>	
+	<td>
+	  <select id="exhibit-facet-tagcloud-location">
+	    <option value="left">Left</option>
+	    <option value="right">Right</option>
+		<option value="top">Top</option>
+		<option value="bottom">Bottom</option>
+  	    <option value="widget">Sidebar Widget</option>
+	  </select>
+	</td>
+</tr>
+<tr>
     <td><i>Only filter items of type</i></td>
     <td><select id="exhibit-facet-tagcloud-klass" class="alltypebox"></select></td>
     <td>(Optional)</td>
@@ -30,6 +42,7 @@ Exhibit data, displaying those buckets as a cloud of words.</b></p>
 <script type="text/JavaScript">
 function submit_tagcloud_facet() {
 	var label = jQuery('#exhibit-facet-tagcloud-label').val();
+    var location = jQuery('#exhibit-facet-tagcloud-location').val();
 	var kind = 'tagcloud';
 	var field = jQuery('#exhibit-facet-tagcloud-field').val();
 	var klass = jQuery('#exhibit-facet-tagcloud-klass').val();
@@ -38,7 +51,7 @@ function submit_tagcloud_facet() {
 			kind: kind,
 			label: label,
 			field: field,
-			location: "left"
+			location: location
 	};
 	
 	if (klass != null) {
@@ -50,7 +63,7 @@ function submit_tagcloud_facet() {
 		"Tag Cloud Facet (" + field + ")", 
 		'facet',
 		params,
-        <?php echo(WpExhibitFacet::addFieldDisplay()); ?>,
+        null,
         {
             editable: true,
             tabid: "exhibit-facet-tagcloud"
