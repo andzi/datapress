@@ -50,7 +50,7 @@ function submit_view_bar_facet() {
             tabid: "exhibit-views-bar"
         };
 	
-		addExhibitElementLink("views-list", "Bar Chart: " + label, 'view', params, null, editinfo);
+		addExhibitElementLink("views-list", "Bar Chart: " + label, 'view', params, editinfo);
 
 	}
 </script>

@@ -56,7 +56,6 @@ function submit_view_table_facet() {
 		"views-list", 
 		"Table: " + label, 
 		'view', params,
-		null,
 		editinfo
 	);
 }

@@ -115,22 +115,12 @@ abstract class WpExhibitModel {
 			$ret = substr($ret, 0, -1);
 		}
 		$ret .= "}";
-	    $ret .= ",";
-		$field_display = $this->getAddFieldDisplay();
-		if ($field_display != null) {
-    		$ret .= $field_display;
-    	} else {
-    	    $ret .= " null";
-    	}
-    	$ret .= ", {";
+    	$ret .= ",";
+    	$ret .= " {";
     	$ret .= $this->getEditInfo();
     	$ret .= "}";
 		$ret .= ");";
 		return $ret;
-	}
-	
-	function getAddFieldDisplay() {
-	    return null;
 	}
 }
 

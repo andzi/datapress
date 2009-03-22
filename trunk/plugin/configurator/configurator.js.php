@@ -30,7 +30,7 @@ function ex_add_head_link(uri, kind, remove_id) {
 	SimileAjax.jQuery('head').append(link);
 }
 
-function addExhibitElementLink(listId, caption, prefix, fields, field_display, editinfo) {
+function addExhibitElementLink(listId, caption, prefix, fields, editinfo) {
 	var next_id = -1;
 	SimileAjax.jQuery('#' + listId + ' > li').each(function(i, val) {
 	    id_str = SimileAjax.jQuery(val).attr('id');
@@ -45,12 +45,8 @@ function addExhibitElementLink(listId, caption, prefix, fields, field_display, e
 	opStr = opStr + "<li id='" + liid + "'>" + caption + " ";
 	SimileAjax.jQuery.each(fields, function(key, value) {
 	    field_name = prefix + "_" + next_id + "_" + key;
-	    if (field_display && (key in field_display)) {
-	        opStr = opStr + field_display[key](key, value, field_name);
-	    } else {
-    		var field = "<input type='hidden' name='" + field_name + "' value='" + value + "' />";
-	    	opStr = opStr + field;
-	    }
+   		var field = "<input type='hidden' name='" + field_name + "' value='" + value + "' />";
+    	opStr = opStr + field;
 	});
 	opStr = opStr + "[ <a href='#' onclick='removeExhibitElementLink(\"" + liid + "\"); return false;'>remove</a> ]";
 	if ((editinfo != undefined) && (editinfo.editable)) {

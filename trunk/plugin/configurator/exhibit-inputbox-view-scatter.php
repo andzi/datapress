@@ -67,7 +67,7 @@ function submit_view_scatter_facet() {
             tabid: "exhibit-views-scatter"
     };
 	
-	addExhibitElementLink("views-list", "Scatter Plot: " + label, 'view', params, null, editinfo);
+	addExhibitElementLink("views-list", "Scatter Plot: " + label, 'view', params, editinfo);
 }
 </script>
 

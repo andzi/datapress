@@ -47,7 +47,6 @@ function submit_lens() {
                         'class': klass,
                         html: html 
                 },
-                null,
                 editinfo);        
 }
 </script>

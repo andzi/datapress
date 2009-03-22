@@ -60,7 +60,6 @@ function submit_list_facet() {
 		"List Facet (" + field + ")", 
 		'facet',
 		params,
-        null,
         {
             editable: true,
             tabid: "exhibit-facet-list"
