@@ -62,28 +62,6 @@ class WpExhibitFacet extends WpExhibitModel {
 		}
 	}
 	
-	/*static function addFieldDisplay() {
-	    return "{
-	        location:function(key, value, field_name) {
-	            options = ['left', 'right', 'top', 'bottom', 'widget'];
-	            var str = \"<select name='\" + field_name + \"'>\";
-	            jQuery.each(options, function(option) {
-	                str += \"<option\";
-	                if (options[option] == value) {
-	                    str += \" selected\";
-	                }
-	                str += \">\" + options[option] + \"</option>\";
-	            });
-	            str += \"</select>\";
-	            return str;
-	        }
-	    }";
-	}
-	
-	function getAddFieldDisplay() {
-        return self::addFieldDisplay();
-	}*/
-	
 	function getEditInfo() {
 	    switch($this->get('kind')) {
    			case 'search':

@@ -76,7 +76,7 @@ function submit_view_timeline_facet() {
             tabid: "exhibit-views-timeline"
     };
 	
-	addExhibitElementLink("views-list", "Timeline: " + label, 'view', params, null, editinfo);
+	addExhibitElementLink("views-list", "Timeline: " + label, 'view', params, editinfo);
 }
 </script>
 

@@ -43,7 +43,6 @@ $exhibituri = $baseuri . '/wp-content/plugins/datapress';
 				sourcename: sourcename,
 				data_location: where
 		    },
-		    null,
             {
                 editable: true,
                 tabid: "exhibit-datasource-link"

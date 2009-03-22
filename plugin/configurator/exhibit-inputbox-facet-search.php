@@ -54,7 +54,6 @@ function submit_search_facet() {
 		"Search Facet", 
 		'facet',
         params,
-        null,
         {
             editable: true,
             tabid: "exhibit-facet-search"

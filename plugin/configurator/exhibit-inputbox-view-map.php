@@ -86,7 +86,7 @@ function submit_view_map_facet() {
             tabid: "exhibit-views-maps"
     };
 
-	addExhibitElementLink("views-list", "Map: " + label, 'view', params, null, editinfo);
+	addExhibitElementLink("views-list", "Map: " + label, 'view', params, editinfo);
 
 }
 </script>

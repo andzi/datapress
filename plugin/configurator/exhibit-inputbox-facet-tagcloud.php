@@ -63,7 +63,6 @@ function submit_tagcloud_facet() {
 		"Tag Cloud Facet (" + field + ")", 
 		'facet',
 		params,
-        null,
         {
             editable: true,
             tabid: "exhibit-facet-tagcloud"

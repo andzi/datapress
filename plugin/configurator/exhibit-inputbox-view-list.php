@@ -51,7 +51,7 @@ function submit_view_list_facet() {
             tabid: "exhibit-views-list"
     };
 	
-	addExhibitElementLink("views-list", "List: " + label, 'view', params, null, editinfo);
+	addExhibitElementLink("views-list", "List: " + label, 'view', params, editinfo);
 }
 </script>
 
