@@ -62,7 +62,7 @@ class WpExhibitFacet extends WpExhibitModel {
 		}
 	}
 	
-	static function addFieldDisplay() {
+	/*static function addFieldDisplay() {
 	    return "{
 	        location:function(key, value, field_name) {
 	            options = ['left', 'right', 'top', 'bottom', 'widget'];
@@ -82,7 +82,7 @@ class WpExhibitFacet extends WpExhibitModel {
 	
 	function getAddFieldDisplay() {
         return self::addFieldDisplay();
-	}
+	}*/
 	
 	function getEditInfo() {
 	    switch($this->get('kind')) {
