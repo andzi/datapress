@@ -31,6 +31,10 @@ function ex_add_head_link(uri, kind, remove_id) {
 }
 
 function addExhibitElementLink(listId, caption, prefix, fields, editinfo) {
+    addExhibitElementLink(listId, caption, prefix, fields, field_display, editinfo, true);
+}
+
+function addExhibitElementLink(listId, caption, prefix, fields, field_display, editinfo, performBase646Encoding) {
 	var next_id = -1;
 	SimileAjax.jQuery('#' + listId + ' > li').each(function(i, val) {
 	    id_str = SimileAjax.jQuery(val).attr('id');
@@ -44,9 +48,14 @@ function addExhibitElementLink(listId, caption, prefix, fields, editinfo) {
 	var opStr = "";
 	opStr = opStr + "<li id='" + liid + "'>" + caption + " ";
 	SimileAjax.jQuery.each(fields, function(key, value) {
-	    field_name = prefix + "_" + next_id + "_" + key;
-   		var field = "<input type='hidden' name='" + field_name + "' value='" + value + "' />";
-    	opStr = opStr + field;
+        if (performBase646Encoding) {
+        	var field = '<input type="hidden" name="' + field_name + '" value="' + jQuery.base64Encode(value) + '" />';
+    		opStr = opStr + field;	            
+	    }
+	    else {
+    		var field = '<input type="hidden" name="' + field_name + '" value="' + value + '" />';
+	    	opStr = opStr + field;	            	            
+        }
 	});
 	opStr = opStr + "[ <a href='#' onclick='removeExhibitElementLink(\"" + liid + "\"); return false;'>remove</a> ]";
 	if ((editinfo != undefined) && (editinfo.editable)) {
@@ -85,14 +94,14 @@ function editExhibitElementLink(tabid, liid) {
       .not("[multiple]").each(function(i, val) {
           var keyid = jQuery(val).attr('id');
           var key = keyid.substring(keyid.lastIndexOf("-")+1, keyid.length);
-          jQuery(val).val(inputs[key]);
+          jQuery(val).val(jQuery.base64Decode(inputs[key]));
         })
       .end()
       .filter("[multiple]").each(function(i, val) {
           var keyid = jQuery(val).attr('id');
           var key = keyid.substring(keyid.lastIndexOf("-")+1, keyid.length);
 
-          var selected = inputs[key].replace(/\./g, '').split(',');
+          var selected = jQuery.base64Decode(inputs[key]).replace(/\./g, '').split(',');
           jQuery(val).find("option").each(function(j, option) {
               if (jQuery.inArray(jQuery(option).attr("value"), selected) != -1) {
                   jQuery(option).attr("selected", "selected");
