@@ -106,23 +106,24 @@ abstract class WpExhibitModel {
 	function getAddLink($list) {
 		$caption = $this->getLinkCaption();
 		$prefix = $this->getFormPrefix();
-		$ret = "addExhibitElementLink('$list', '$caption', '$prefix', {";
-		$added = 0;
+        $fields = "{";
+        $added = 0;
 		foreach ($this->fields as $key => $val) {
 			if (($val != NULL) && ($val != '')) {
-				$ret .= "$key: '$val',";
+			    $base64val = base64_encode($val);
+				$fields .= "$key: '$base64val',";
 				$added++;
 			}
 		}
 		if ($added > 0) {
-			$ret = substr($ret, 0, -1);
+			$fields = substr($fields, 0, -1);
 		}
-		$ret .= "}";
-    	$ret .= ",";
-    	$ret .= " {";
-    	$ret .= $this->getEditInfo();
-    	$ret .= "}";    	
-		$ret .= ");";
+		$fields .= "}";    	
+		$editinfo= " {" . $this->getEditInfo() . "}";  
+		
+		// Calling
+		// function addExhibitElementLink(listId, caption, prefix, fields, editinfo, alreadyBase64Encoded);
+		$ret =    "addExhibitElementLink('$list', '$caption', '$prefix', $fields, $editinfo, 1);";
 		return $ret;
 	}
 }
