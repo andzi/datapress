@@ -204,7 +204,6 @@ wp_register_script( 'configurator', "$baseuri/wp-content/plugins/datapress/confi
 
 wp_register_style( 'dp-configurator', "$baseuri/wp-content/plugins/datapress/css/wpexhibit.css");
 
-
 include_once('facet_widget.php');
 
 ?>
