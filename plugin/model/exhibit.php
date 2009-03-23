@@ -44,7 +44,8 @@ class WpPostExhibit {
 	}
 	
 	function afterDbLoad() {
-	   $this->constructedexhibit = self::build_from_json($this->dbfields['exhibit_config'], $this->exhibitfields);
+	   $this->dbfields['exhibit_config'] = base64_decode($this->dbfields['exhibit_config']);
+	   $this->constructedexhibit = self::build_from_json($this->dbfields['exhibit_config'], $this->exhibitfields);	  
 	}
 	
 	function getFields() {
@@ -86,16 +87,18 @@ class WpPostExhibit {
 	
 	function save() {
   		global $wpdb;
+
 	    $this->dbfields['exhibit_config'] = self::get_json($this->exhibitfields, $this->constructedexhibit);
+
 	    $table = $this->getTableName();
 	    if ($this->dbfields['id'] == NULL) {
 			// Do an insert
 			$sql = "INSERT INTO $table (id, postid, exhibit_config, version) VALUES (%d, %d, %s, %d);";
-			$sql = $wpdb->prepare($sql, $this->dbfields['id'], $this->dbfields['postid'], $this->dbfields['exhibit_config'], $this->dbfields['version']);
+			$sql = $wpdb->prepare($sql, $this->dbfields['id'], $this->dbfields['postid'], base64_encode($this->dbfields['exhibit_config']), $this->dbfields['version']);
 		} else {
 			// Do an update
 			$sql = "UPDATE $table SET postid=%d, exhibit_config=%s, version=%d WHERE id=%d";
-			$sql = $wpdb->prepare($sql, $this->dbfields['postid'], $this->dbfields['exhibit_config'], $this->dbfields['version'], $this->dbfields['id']);
+			$sql = $wpdb->prepare($sql, $this->dbfields['postid'], base64_encode($this->dbfields['exhibit_config']), $this->dbfields['version'], $this->dbfields['id']);
 		}
 		
 		$result = $wpdb->query($sql);
