@@ -67,6 +67,9 @@
 	};
 	
 	var uTF8Decode = function(input) {
+	    if (input == undefined) {
+	        input = '';
+	    }
 		var string = "";
 		var i = 0;
 		var c = c1 = c2 = 0;
@@ -91,6 +94,9 @@
 	
 	$.extend({
 		base64Encode: function(input) {
+		    if (input == undefined) {
+    	        input = '';
+    	    }
 			var output = "";
 			var chr1, chr2, chr3, enc1, enc2, enc3, enc4;
 			var i = 0;
@@ -113,6 +119,9 @@
 			return output;
 		},
 		base64Decode: function(input) {
+		    if (input == undefined) {
+    	        input = '';
+    	    }
 			var output = "";
 			var chr1, chr2, chr3;
 			var enc1, enc2, enc3, enc4;
