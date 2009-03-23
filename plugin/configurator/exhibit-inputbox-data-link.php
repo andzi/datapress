@@ -19,7 +19,7 @@ $exhibituri = $baseuri . '/wp-content/plugins/datapress';
 		<td><input id="exhibit-datasource-link-sourcename" type="text" size="30" /></td>
 	</tr>
 </table>
-<p align="right"><a href="#" class="addlink" onclick="submit_google_doc(); return false">Add Data Link</a></p>
+<p align="right"><a href="#" class="addlink" onclick="submit_data_link(); return false">Add Data Link</a></p>
 
 <script type="text/JavaScript">
   function kind_for(kind) {
@@ -56,7 +56,7 @@ $exhibituri = $baseuri . '/wp-content/plugins/datapress';
                });
   }
 
-  function submit_google_doc() {
+  function submit_data_link() {
 	var uri = jQuery('#exhibit-datasource-link-uri').val();
 	var kind = jQuery('#exhibit-datasource-link-kind').val();
     var sourcename = jQuery('#exhibit-datasource-link-sourcename').val();
