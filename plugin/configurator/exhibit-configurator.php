@@ -19,7 +19,7 @@ function show_datapress_html() {
 		}
 	}
 ?>
-	<form id="exhibit-config-form">
+	<form id="exhibit-config-form" action="javascript:return false;">
 	<div id="exhibit-input">
 		<div class="inside">
 		  <div id="exhibit-input-container">
@@ -109,6 +109,7 @@ function show_datapress_configurator() {
 	wp_enqueue_script('dp-tinymce');
 	wp_enqueue_script('dp-tinymce-langs');	
 	wp_enqueue_script('configurator');	
+	wp_enqueue_script('base64');	
 	
 	wp_enqueue_style( 'global' );
 	wp_enqueue_style( 'wp-admin' );
