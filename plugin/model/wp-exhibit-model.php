@@ -93,7 +93,10 @@ abstract class WpExhibitModel {
 				return false;
 			}
 			foreach ($values as $field => $value) {
-				$object->set($field, $value, true);				
+			    /*
+			     * Note: we have to base64-Decode the values
+			     */
+				$object->set($field, base64_decode($value), true);
 			}
 			return true;
 		}
@@ -118,7 +121,7 @@ abstract class WpExhibitModel {
     	$ret .= ",";
     	$ret .= " {";
     	$ret .= $this->getEditInfo();
-    	$ret .= "}";
+    	$ret .= "}";    	
 		$ret .= ");";
 		return $ret;
 	}
