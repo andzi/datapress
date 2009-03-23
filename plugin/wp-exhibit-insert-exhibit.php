@@ -97,13 +97,13 @@ class WpExhibitHtmlBuilder {
 	        $right_facet_html .= self::facet_html($exhibit->get('facets'), 'widget');	
 		}
 		    
-        $colspan = 1;
+        $exhibit_colspan = 3;
         if (strlen($left_facet_html) > 0) {
-            $colspan++;
+            $exhibit_colspan--;
             $left_facet_html = "<td width=\"15%\"> $left_facet_html </td>";
         }
         if (strlen($right_facet_html) > 0) {
-            $colspan++;
+            $exhibit_colspan--;
             $right_facet_html = "<td width=\"15%\"> $right_facet_html </td>";
         }
 
@@ -117,19 +117,17 @@ class WpExhibitHtmlBuilder {
 			$lens_html
             <table width=\"100%\">
                 <tr>
-                    <td colspan=3>
+                    <td colspan='3'>
                         $top_facet_html
                     </td>
                 </tr>
                 <tr valign=\"top\">
                     $left_facet_html
-                    <td ex:role=\"viewPanel\">
-                        $view_html
-                    </td>
+                    <td colspan='$exhibit_colspan' ex:role=\"viewPanel\">$view_html</td>
                     $right_facet_html
                 </tr>
                 <tr>
-                    <td colspan=3>
+                    <td colspan='3'>
                         $bottom_facet_html
                     	$tracker
 					</td>
