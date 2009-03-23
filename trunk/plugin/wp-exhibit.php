@@ -184,9 +184,10 @@ if (!$guessurl = site_url())
 	$guessurl = wp_guess_url();
 $baseuri = $guessurl;
 
-wp_register_script( 'exhibit-api', 'http://static.simile.mit.edu/exhibit/api-2.0/exhibit-api.js', array(  ) );
-wp_register_script( 'exhibit-chart', 'http://static.simile.mit.edu/exhibit/extensions-2.0/chart/chart-extension.js', array( 'exhibit-api' ) );
-wp_register_script( 'exhibit-time', 'http://static.simile.mit.edu/exhibit/extensions-2.0/time/time-extension.js', array( 'exhibit-api' ) );
+
+wp_register_script( 'exhibit-api', 'http://api.simile-widgets.org/exhibit/2.2.0/exhibit-api.js', array(  ) );
+wp_register_script( 'exhibit-chart', 'http://api.simile-widgets.org/exhibit/2.2.0/extensions/chart/chart-extension.js', array( 'exhibit-api' ) );
+wp_register_script( 'exhibit-time', 'http://api.simile-widgets.org/exhibit/2.2.0/extensions/time/time-extension.js', array( 'exhibit-api' ) );
 
 wp_register_script( 'dp-jquery', "$baseuri/wp-includes/js/jquery/jquery.js?ver=1.2.6", array() );
 wp_register_script( 'dp-jquery-ui', "$baseuri/wp-includes/js/jquery/ui.core.js?ver=1.5.2", array('dp-jquery') );
