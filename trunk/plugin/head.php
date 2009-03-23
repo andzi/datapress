@@ -30,9 +30,6 @@ if (isset($lightboxed_exhibit) && ($lightboxed_exhibit != NULL)) {
     // Weire inside the lightbox
 	include('head-datasources.php');
 	include('head-exhibit.php');
-	echo('<script type="text/javascript">');
-	include('head-start-exhibit.js');    
-	echo('</script>');
 }
 else {
     // We're not inside the lightbox
@@ -40,9 +37,6 @@ else {
     include('head-lightbox-library.php');
     if (count($exhibits_to_show) == 1) {
     	include('head-exhibit.php');
-    	echo('<script type="text/javascript">');
-    	include('head-start-exhibit.js');    
-    	echo('</script>');
     }
 }
 ?>
