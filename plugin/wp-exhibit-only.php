@@ -21,12 +21,20 @@
         $lightboxed_exhibit = new WpPostExhibit();
         DbMethods::loadFromDatabase($lightboxed_exhibit, $exhibitid);
     }
+    $justview = $_GET['justview'];
+    $exhibit_html = "";
+    if ($justview == "true") {
+        $exhibit_html = WpExhibitHtmlBuilder::get_view_html($lightboxed_exhibit, true);
+    } else {
+        $exhibit_html = WpExhibitHtmlBuilder::get_exhibit_html($lightboxed_exhibit);
+    }
+    
 ?>
 <html>
 <head>
 <?php require('head.php'); ?>
 </head>
 <body>
-<?php echo(WpExhibitHtmlBuilder::get_exhibit_html($lightboxed_exhibit)); ?>
+<?php echo($exhibit_html); ?>
 </body>
 </html>

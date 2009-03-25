@@ -58,37 +58,54 @@ class WpExhibitHtmlBuilder {
 		    $baseuri = $guessurl;
 		    $exhibituri = $baseuri . '/wp-content/plugins/datapress';
 		    $exhibitid = $exhibit->get('id');
-        	$exhibit_html = "<a href='$exhibituri/wp-exhibit-only.php?iframe&exhibitid=" . $exhibitid . "' class='exhibit_link_$exhibitid'>";	
+		    $exhibit_html = "<a href='$exhibituri/wp-exhibit-only.php?iframe&exhibitid=$exhibitid' class='exhibit_link_$exhibitid'>";	
 			// Check for usage study
-			if (get_option('datapress_et_phone_home') == "Y") {
+			/*if (get_option('datapress_et_phone_home') == "Y") {
 	        	$exhibit_html .= "<img src='http://projects.csail.mit.edu/datapress/static/exhibit_lightbox.png?" . $exhibit->getStatisticReport() . "' />";
 			}
 			else {
 	        	$exhibit_html .= "<img src='$exhibituri/images/exhibit_lightbox.png' />";				
-			}
-					
+			}*/
+			
+            $exhibit_html .= "<div class='teaser' id='teaser_$exhibitid'>
+                              <iframe src='$exhibituri/wp-exhibit-only.php?iframe&exhibitid=$exhibitid&justview=true' width='100%' height='300' scrolling='no' frameborder='0'>
+                              <p>Your browser does not support iframes.</p>
+                              </iframe>
+                              </div>
+                              <div class='cover' id='cover_$exhibitid'>
+                              <p>Your browser does not support iframes.</p>
+                              </div>";
+                              					
 			$exhibit_html .= "</a>";
 			return $exhibit_html;
 	}
 
-    static function get_exhibit_html($exhibit) {	
+    static function get_view_html($exhibit, $only_first = false) {
         $view_html = "";
         foreach ($exhibit->get('views') as $view) {
             $view_html = $view_html . $view->htmlContent();
             $view_html = $view_html . "\n";
+            if ($only_first) {
+                break;
+            }
 		}
-		
+	    
+        if ($view_html == "") {
+            $view_html = "<div ex:role=\"view\"></div>";
+        }
+        
+        return $view_html;
+	}
+
+    static function get_exhibit_html($exhibit) {	
+        $view_html = self::get_view_html($exhibit);
+        		
         $lens_html = "";
         foreach ($exhibit->get('lenses') as $lens) {
             $lens_html = $lens_html . $lens->htmlContent();
             $lens_html = $lens_html . "\n";
         }
-
-        
-        if ($view_html == "") {
-            $view_html = "<div ex:role=\"view\"></div>";
-        }
-        
+      
         $top_facet_html = self::facet_html($exhibit->get('facets'), 'top');
         $bottom_facet_html = self::facet_html($exhibit->get('facets'), 'bottom');
         $left_facet_html = self::facet_html($exhibit->get('facets'), 'left');
