@@ -10,7 +10,9 @@ $time = base64_encode(time());
 $logstr = "referer:$ref,ip:$ip,time:$time,";
 
 foreach ($_GET as $key => $value) {
-  $value = base64_encode($value);
+  if (!strcmp($key, "_")) {
+    continue;
+  }
   $logstr .= "$key:$value,";
 }
 
@@ -25,4 +27,6 @@ if (!$handle = fopen($logfile, 'a')) {
 
 fwrite($handle, $logstr);
 fclose($handle);
+header("Content-type: text/javascript");
+echo "";
 ?>
