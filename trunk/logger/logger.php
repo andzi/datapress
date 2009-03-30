@@ -1,4 +1,11 @@
 <?php
+/*
+ * For every request, log the referrer, client ip, time, and all
+ * GET-request variables.  These are stores in one line per
+ * request.  Keys and values are encoded as key:base64(value),
+ * and key-value pairs of one request are separated by commas. 
+ * The logfile is specified by a variable $logfile set in config.php.
+ */
 require_once('config.php');
 
 $logstr = "";
