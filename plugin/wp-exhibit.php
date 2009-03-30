@@ -73,13 +73,13 @@ class WpExhibit {
 	
 	function edit_page_inclusions() {
 		$ex = $this->get_current_exhibit_from_admin_page();
-		if ($ex == NULL) {
+/*		if ($ex == NULL) {
 			echo "<input type='hidden' id='exhibitid' name='exhibitid' value='' />";
 		}
 		else {
 			$ex_id = $ex->get('id');
 			echo "<input type='hidden' id='exhibitid' name='exhibitid' value='$ex_id' />";
-		}
+		}*/
 	}
 	
 	function save_post() {
@@ -122,11 +122,11 @@ class WpExhibit {
   function make_exhibit_button() {
 	$ex = $this->get_current_exhibit_from_admin_page();
 	if ($ex == NULL) {
-		echo "Datapress <a id='load_datapress_config_link' href='" . wp_guess_url() . "/wp-admin/admin-ajax.php?action=datapress_configurator&TB_iframe=true' id='add_exhibit' class='thickbox' title='Add an Exhibit'><img src='" . wp_guess_url() . "/wp-content/plugins/datapress/images/exhibit-small-RoyalBlue.png' alt='Add an Image' /></a> &nbsp; &nbsp;";		
+		echo "Datapress <a id='load_datapress_config_link' href='" . wp_guess_url() . "/wp-admin/admin-ajax.php?action=datapress_configurator&TB_iframe=true' id='add_exhibit' class='thickbox' title='Add an Exhibit'><img src='" . wp_guess_url() . "/wp-content/plugins/datapress/images/exhibit-small-RoyalBlue.png' alt='Add an Image' /></a> &nbsp; &nbsp;<input type='hidden' id='exhibitid' name='exhibitid' value='' />";		
 	}
 	else {
 		$ex_id = $ex->get('id');
-		echo "Datapress <a id='load_datapress_config_link' href='" . wp_guess_url() . "/wp-admin/admin-ajax.php?action=datapress_configurator&exhibitid=$ex_id&TB_iframe=true' id='add_exhibit' class='thickbox' title='Add an Exhibit'><img src='" . wp_guess_url() . "/wp-content/plugins/datapress/images/exhibit-small-RoyalBlue.png' alt='Add an Image' /></a> &nbsp; &nbsp;";				
+		echo "Datapress <a id='load_datapress_config_link' href='" . wp_guess_url() . "/wp-admin/admin-ajax.php?action=datapress_configurator&exhibitid=$ex_id&TB_iframe=true' id='add_exhibit' class='thickbox' title='Add an Exhibit'><img src='" . wp_guess_url() . "/wp-content/plugins/datapress/images/exhibit-small-RoyalBlue.png' alt='Add an Image' /></a> &nbsp; &nbsp;<input type='hidden' id='exhibitid' name='exhibitid' value='$ex_id' />";				
 	}
  }
 
