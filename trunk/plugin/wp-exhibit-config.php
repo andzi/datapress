@@ -7,7 +7,7 @@ class WpExhibitConfig {
     // table keys
     public static $EXHIBITS_TABLE_KEY = "exhibits";
     public static $PARROTABLE_URLS_TABLE_KEY = "parrotable_urls";
-
+    public static $EXHIBITS_ASSOC_TABLE_KEY = "posts_exhibits";
 	// Form prefixes
 	public static $DATA_FORM_PREFIX = "data";
 	public static $FACET_FORM_PREFIX = "facet";

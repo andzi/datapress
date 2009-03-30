@@ -56,12 +56,11 @@ class WpExhibit {
 		$postID = $_GET['post'];
 		if ($postID != NULL) {
 			// See if we know about any data sources associated with this item.
-		    $ex_exhibit = new WpPostExhibit();
-		    $ex_success = DbMethods::loadFromDatabase($ex_exhibit, $postID, 'postid');
-			if ($ex_success) {
+		    $ex_exhibit = WpPostExhibit::getForPost($postID);
+            if ($ex_exhibit != NULL) {
 				$this->exhibit_from_admin_page = $ex_exhibit;
 				return $ex_exhibit;
-			}
+            }
 		}
 		$this->exhibit_from_admin_page = 0;
 		return NULL;		
@@ -82,8 +81,8 @@ class WpExhibit {
 		}*/
 	}
 	
-	function save_post() {
-		SaveExhibitPost::save();
+	function save_post($post_id, $post) {
+		SaveExhibitPost::save($post_id);
 	}
 	
 	function privacy_notice() {
@@ -105,7 +104,7 @@ class WpExhibit {
 	function load_exhibit() {
 		global $wp_query;
 		foreach ($wp_query->posts as $apost) {
-			$apost->datapress_exhibit = WpExhibitHtmlBuilder::get_associated_exhibit($apost->ID);
+			$apost->datapress_exhibit = WpPostExhibit::getForPost($apost->ID);
 		}		
 	}
 	
@@ -171,7 +170,7 @@ add_action('edit_page_form', array($exhibit, 'edit_page_inclusions'));
 add_action('edit_form_advanced', array($exhibit, 'edit_page_inclusions'));
 add_action('admin_notices', array($exhibit, 'privacy_notice'));
 
-add_filter('save_post', array($exhibit, 'save_post'));
+add_filter('save_post', array($exhibit, 'save_post'), 10, 2);
 
 register_activation_hook(__FILE__, array($exhibit, 'activate_plugin'));
 register_deactivation_hook(__FILE__, array($exhibit, 'deactivate_plugin'));
