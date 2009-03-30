@@ -1,6 +1,8 @@
 <?php
 
 class WpExhibitHtmlBuilder {
+    static $datapress_statistics_logger = "http://projects.csail.mit.edu/datapress/logger/logger.php";
+
     static function get_associated_exhibit($id) {
 	 	$post_exhibit = new WpPostExhibit();
 		if (DbMethods::loadFromDatabase($post_exhibit, $id, 'postid')) {
@@ -29,21 +31,14 @@ class WpExhibitHtmlBuilder {
         $content = str_replace("{{Footnotes}}", $footnotes_string, $content);            
         return $content;
     }
-
-    static function insert_exhibit_callout($exhibit, $content) {
-        $content = str_replace("{{Exhibit}}", "<b>View full post to see Exhibit.</b>", $content);
-        $footnotes_string = self::get_data_footnotes_html($exhibit);
-        $content = str_replace("{{Footnotes}}", $footnotes_string, $content);            
-        return $content;
-    }
-		
+	
     static function insert_exhibit($exhibit, $content) {
 		$exhibit_string = '';
 		if ($exhibit->get('lightbox')) {
 			$exhibit_string = self::get_exhibit_lightbox_link($exhibit);
 		}
 		else {
-	        $exhibit_string = self::get_exhibit_html($exhibit);			
+	        $exhibit_string = self::get_exhibit_html($exhibit, 'inline');
 		}	
         $content = str_replace("{{Exhibit}}", $exhibit_string, $content);
         $footnotes_string = self::get_data_footnotes_html($exhibit);
@@ -58,15 +53,8 @@ class WpExhibitHtmlBuilder {
 		    $baseuri = $guessurl;
 		    $exhibituri = $baseuri . '/wp-content/plugins/datapress';
 		    $exhibitid = $exhibit->get('id');
-		    $exhibit_html = "<a href='$exhibituri/wp-exhibit-only.php?iframe&exhibitid=$exhibitid' class='exhibit_link_$exhibitid'>";	
-			// Check for usage study
-			/*if (get_option('datapress_et_phone_home') == "Y") {
-	        	$exhibit_html .= "<img src='http://projects.csail.mit.edu/datapress/static/exhibit_lightbox.png?" . $exhibit->getStatisticReport() . "' />";
-			}
-			else {
-	        	$exhibit_html .= "<img src='$exhibituri/images/exhibit_lightbox.png' />";				
-			}*/
-			
+		    $exhibit_html = self::statistics_html($exhibit, 'preview');
+		    $exhibit_html .= "<a href='$exhibituri/wp-exhibit-only.php?iframe&exhibitid=$exhibitid' class='exhibit_link_$exhibitid'>";
             $exhibit_html .= "<div class='teaser' id='teaser_$exhibitid'>
                               <iframe src='$exhibituri/wp-exhibit-only.php?iframe&exhibitid=$exhibitid&justview=true' width='100%' height='300' scrolling='no' frameborder='0'>
                               <p>Your browser does not support iframes.</p>
@@ -79,6 +67,17 @@ class WpExhibitHtmlBuilder {
 			$exhibit_html .= "</a>";
 			return $exhibit_html;
 	}
+
+    static function statistics_html($exhibit, $currentView) {
+        $html = "";
+        if (get_option('datapress_et_phone_home') == "Y") {
+            $html .= "<script type='text/javascript'>\n";
+	        $report = $exhibit->getStatisticReport($currentView);
+            $html .= "$.get('" . self::$datapress_statistics_logger . "', $report, null, 'script');\n";
+	        $html .= "</script>\n";
+	    }
+	    return $html;
+    }
 
     static function get_view_html($exhibit, $only_first = false) {
         $view_html = "";
@@ -97,7 +96,7 @@ class WpExhibitHtmlBuilder {
         return $view_html;
 	}
 
-    static function get_exhibit_html($exhibit) {	
+    static function get_exhibit_html($exhibit, $currentView) {	
         $view_html = self::get_view_html($exhibit);
         		
         $lens_html = "";
@@ -124,11 +123,7 @@ class WpExhibitHtmlBuilder {
             $right_facet_html = "<td width=\"15%\"> $right_facet_html </td>";
         }
 
-		$tracker = "";
-		// Check for usage study
-		if (get_option('datapress_et_phone_home') == "Y") {
-        	$tracker = "<img src='http://projects.csail.mit.edu/datapress/static/tiny.png?" . $exhibit->getStatisticReport() . "' />";
-		}
+		$tracker = self::statistics_html($exhibit, $currentView);
 		
         $exhibit_html = "
 			$lens_html

@@ -76,12 +76,13 @@ class WpPostExhibit {
 		}
 	}
 	
-	function getStatisticReport() {
+	function getStatisticReport($currentView) {
     	$postid = $this->get('postid');
-		$permalink = urlencode(get_permalink($this->get('postid')));
-		$viewState = $this->get('lightbox') ? "lightbox" : "inline";
-		$postType = get_post($postid)->post_type;
-		$report = "viewstate=$viewState&posttype=$postType&permalink=$permalink";
+		$permalink = base64_encode(get_permalink($this->get('postid')));
+		$viewState = base64_encode($this->get('lightbox') ? "lightbox" : "inline");
+		$postType = base64_encode(get_post($postid)->post_type);
+		$currentView = base64_encode($currentView);
+		$report = "{currentview: \"$currentView\", viewstate: \"$viewState\", posttype: \"$postType\", permalink: \"$permalink\"}";
 		return $report;
 	}
 	
