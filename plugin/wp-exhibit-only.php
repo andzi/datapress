@@ -26,7 +26,8 @@
     if ($justview == "true") {
         $exhibit_html = WpExhibitHtmlBuilder::get_view_html($lightboxed_exhibit, true);
     } else {
-        $exhibit_html = WpExhibitHtmlBuilder::get_exhibit_html($lightboxed_exhibit, 'lightbox');
+        $postid = $_POST["postid"];
+        $exhibit_html = WpExhibitHtmlBuilder::get_exhibit_html($lightboxed_exhibit, 'lightbox', $postid);
     }
     
 ?>

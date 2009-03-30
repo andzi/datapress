@@ -11,12 +11,13 @@ class WpExhibitHtmlBuilder {
     }
 	
     static function insert_exhibit($exhibit, $content) {
+		global $wp_query;
 		$exhibit_string = '';
 		if ($exhibit->get('lightbox')) {
 			$exhibit_string = self::get_exhibit_lightbox_link($exhibit);
 		}
 		else {
-	        $exhibit_string = self::get_exhibit_html($exhibit, 'inline');
+	        $exhibit_string = self::get_exhibit_html($exhibit, 'inline', $wp_query->post->ID);
 		}	
         $content = str_replace("{{Exhibit}}", $exhibit_string, $content);
         $footnotes_string = self::get_data_footnotes_html($exhibit);
@@ -26,31 +27,32 @@ class WpExhibitHtmlBuilder {
     }
     
     static function get_exhibit_lightbox_link($exhibit) {	
+	    global $wp_query;
 			if (!$guessurl = site_url())
 		    	$guessurl = wp_guess_url();
 		    $baseuri = $guessurl;
 		    $exhibituri = $baseuri . '/wp-content/plugins/datapress';
 		    $exhibitid = $exhibit->get('id');
-		    $exhibit_html = self::statistics_html($exhibit, 'preview');
-		    $exhibit_html .= "<a href='$exhibituri/wp-exhibit-only.php?iframe&exhibitid=$exhibitid' class='exhibit_link_$exhibitid'>";
-            $exhibit_html .= "<div class='teaser' id='teaser_$exhibitid'>
-                              <iframe src='$exhibituri/wp-exhibit-only.php?iframe&exhibitid=$exhibitid&justview=true' width='100%' height='300' scrolling='no' frameborder='0'>
-                              <p>Your browser does not support iframes.</p>
-                              </iframe>
-                              </div>
-                              <div class='cover' id='cover_$exhibitid'>
-                              <p>Your browser does not support iframes.</p>
-                              </div>";
-                              					
-			$exhibit_html .= "</a>";
+		    $exhibit_html = self::statistics_html($exhibit, 'preview', $wp_query->post->ID);
+                     $exhibit_html .= "<a href='$exhibituri/wp-exhibit-only.php?iframe&exhibitid=$exhibitid&postid=" . $wp_query->post->ID . "' class='exhibit_link_$exhibitid'>";
+                        $exhibit_html .= "<div class='teaser' id='teaser_$exhibitid'>
+                                          <iframe src='$exhibituri/wp-exhibit-only.php?iframe&exhibitid=$exhibitid&justview=true' width='100%' height='300' scrolling='no' frameborder='0'>
+                                          <p>Your browser does not support iframes.</p>
+                                          </iframe>
+                                          </div>
+                                          <div class='cover' id='cover_$exhibitid'>
+                                          <p>Your browser does not support iframes.</p>
+                                          </div>";
+                                                             
+            $exhibit_html .= "</a>";
 			return $exhibit_html;
 	}
 
-    static function statistics_html($exhibit, $currentView) {
+    static function statistics_html($exhibit, $currentView, $postid) {
         $html = "";
         if (get_option('datapress_et_phone_home') == "Y") {
             $html .= "<script type='text/javascript'>\n";
-	        $report = $exhibit->getStatisticReport($currentView);
+	        $report = $exhibit->getStatisticReport($currentView, $postid);
             $html .= "$.get('" . self::$datapress_statistics_logger . "', $report, null, 'script');\n";
 	        $html .= "</script>\n";
 	    }
@@ -74,7 +76,7 @@ class WpExhibitHtmlBuilder {
         return $view_html;
 	}
 
-    static function get_exhibit_html($exhibit, $currentView) {	
+    static function get_exhibit_html($exhibit, $currentView, $postid) {	
         $view_html = self::get_view_html($exhibit);
         		
         $lens_html = "";
@@ -101,7 +103,7 @@ class WpExhibitHtmlBuilder {
             $right_facet_html = "<td width=\"15%\"> $right_facet_html </td>";
         }
 
-		$tracker = self::statistics_html($exhibit, $currentView);
+		$tracker = self::statistics_html($exhibit, $currentView, $postid);
 		
         $exhibit_html = "
 			$lens_html
