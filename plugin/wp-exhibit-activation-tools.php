@@ -43,10 +43,9 @@ class WpExhibitActivationTools {
 
     static function setup_post_exhibits_table() {
         $creation_sql = "  (
-            id INT NOT NULL AUTO_INCREMENT,
             postid INT,
-            exhibitid INT,
-            PRIMARY KEY (id)
+            exhibitid INT, 
+            INDEX (postid, exhibitid)
             )";
         self::setup_table(WpExhibitConfig::$EXHIBITS_ASSOC_TABLE_KEY,
                           $creation_sql);
