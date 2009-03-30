@@ -3,7 +3,7 @@
 	<table>
 		<tr><td><i>Visualization Title</i></td><td><input id="exhibit-views-table-label" type="text" size="30" /></td><td></td></tr>
 		<tr><td><i>Include Fields</i></td><td><select id="exhibit-views-table-field" style="height: 100px; width: 200px;" class="allpropbox" multiple></select></td><td></td></tr>
-		<tr><td><i>Field Captions</i><br />(Comma-separated)</td><td><input id="exhibit-views-table-caption" type="text" size="30" /></td><td>(Optional)</td></tr>
+		<tr><td><i>Field Captions</i><br />(Comma-separated)</td><td><input id="exhibit-views-table-caption" title="Enter captions for the fields you have selected as a comme-separated list in the same order as they appear above." type="text" size="30" /></td><td>(Optional)</td></tr>
 		<tr><td><i>Only show items of type</i></td><td><select id="exhibit-views-table-klass" class="alltypebox"></select></td><td>(Optional)</td></tr>
 	</table>
 	<br />

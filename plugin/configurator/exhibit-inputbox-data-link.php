@@ -7,15 +7,22 @@ $exhibituri = $baseuri . '/wp-content/plugins/datapress';
 
 <table>
 	<tr>
-		<td>Data URL</td>
+		<td>URL</td>
 		<td><input id="exhibit-datasource-link-uri" type="text" size="30" /></td>
 	</tr>
 	<tr>
-		<td>Data Type</td>
-		<td><select id="exhibit-datasource-link-kind"><option  value="exhibit">Exhibit (web page)</option><option value="google-spreadsheet">Google Spreadsheet (JSONP)</option><option value="application/json">JSON</option></select></td>
+		<td>Type</td>
+		<td><p>
+		    <select id="exhibit-datasource-link-kind">
+		        <option  value="exhibit">Exhibit</option>
+		        <option value="google-spreadsheet">Google Spreadsheet</option>
+		        <option value="application/json">Exhibit-Style JSON</option>
+		    </select>
+		    <a href="#" onclick="popup('http://projects.csail.mit.edu/datapress/contacthelp/importing-data/importing-data/'); return false;"><img align="middle" src="<?php echo $exhibituri ?>/images/help.png" width="20" height="20" /></a>
+		</p></td>
 	</tr>
 	<tr>
-    	<td>Datasource Name</td>
+    	<td>Name</td>
 		<td><input id="exhibit-datasource-link-sourcename" type="text" size="30" /></td>
 	</tr>
 </table>
@@ -57,27 +64,39 @@ $exhibituri = $baseuri . '/wp-content/plugins/datapress';
   }
 
   function submit_data_link() {
+
 	var uri = jQuery('#exhibit-datasource-link-uri').val();
 	var kind = jQuery('#exhibit-datasource-link-kind').val();
     var sourcename = jQuery('#exhibit-datasource-link-sourcename').val();
+        
+	jQuery(function() {
+		jQuery.getJSON("<?php bloginfo('wpurl'); ?>/wp-admin/admin-ajax.php?action=import_datafiles&url=" + encodeURIComponent(uri) + "&name=" + encodeURIComponent(sourcename) + "&type=" + encodeURIComponent(kind), function(json) {
+            // Process Errors
+            if (json.errors) {
+                for (var i=0; i<json.errors.length; i++) {
+                    alert("Error: " + json.errors[i]);
+                }                
+            }
+            
+            // Process Warnings
+            if (json.warnings) {
+                for (var i=0; i<json.warnings.length; i++) {
+                    alert("Warning: " + json.warnings[i]);
+                }                
+            }
 
-	if (kind == 'exhibit') {
-		// Use batch link
-		jQuery(function() {
-			jQuery.getJSON("<?php echo $exhibituri ?>" + "/proxy/link_scrape.php?url=" + encodeURIComponent(uri), function(json) {
-				for(var i=0; i<json.links.length; i++) {
-					var link_kind = json.links[i].kind;
-					var link_uri = json.links[i].href;
-					var link_sourcename = json.links[i].alt;
-					add_datasource_link(link_kind, link_uri, link_sourcename, 'remote');					
-				}
-			});	
-		});
+            // Process Links
+			if (json.links) {
+    			for(var i=0; i<json.links.length; i++) {
+    				var link_kind = json.links[i].kind;
+    				var link_uri = json.links[i].href;
+    				var link_sourcename = json.links[i].alt;
+    				add_datasource_link(link_kind, link_uri, link_sourcename, 'remote');					
+    			}
+			}
+		});	
+	});
 		
-	}
-	else {
-		add_datasource_link(kind, uri, sourcename, 'remote');
-	}
   }
 
 </script>
