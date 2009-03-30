@@ -27,7 +27,7 @@ class WpPostExhibit {
         $exhibitid = $wpdb->get_var("SELECT exhibitid FROM $table WHERE postid=$postid ;");
         if (!($exhibitid == 0)) {
     	 	$post_exhibit = new WpPostExhibit();
-    		if (DbMethods::loadFromDatabase($post_exhibit, $id, 'postid')) {
+    		if (DbMethods::loadFromDatabase($post_exhibit, $exhibitid)) {
     			return $post_exhibit;
     		}
         }
@@ -88,9 +88,9 @@ class WpPostExhibit {
 		}
 	}
 	
-	function getStatisticReport($currentView) {
-        $postid = $wpdb->get_var("SELECT postid FROM $table WHERE exhibitid=$exhibitid ;");
-		$permalink = base64_encode(get_permalink($this->get('postid')));
+	function getStatisticReport($currentView, $postid) {
+        // $postid = $wpdb->get_var("SELECT postid FROM $table WHERE exhibitid=$exhibitid ;");
+		$permalink = base64_encode(get_permalink($postid));
 		$viewState = base64_encode($this->get('lightbox') ? "lightbox" : "inline");
 		$postType = base64_encode(get_post($postid)->post_type);
 		$currentView = base64_encode($currentView);
@@ -106,15 +106,16 @@ class WpPostExhibit {
 	    $table = $this->getTableName();
 	    if ($this->dbfields['id'] == NULL) {
 			// Do an insert
-			$sql = "INSERT INTO $table (id, exhibit_config, version) VALUES (%d, %d, %s, %d);";
+			$sql = "INSERT INTO $table (id, exhibit_config, version) VALUES (%d, %s, %d);";
 			$sql = $wpdb->prepare($sql, $this->dbfields['id'], base64_encode($this->dbfields['exhibit_config']), $this->dbfields['version']);
 		} else {
 			// Do an update
 			$sql = "UPDATE $table SET exhibit_config=%s, version=%d WHERE id=%d";
 			$sql = $wpdb->prepare($sql, base64_encode($this->dbfields['exhibit_config']), $this->dbfields['version'], $this->dbfields['id']);
 		}
-		
+
 		$result = $wpdb->query($sql);
+		
 		if ($this->dbfields['id'] == NULL) {
 			// Get the ID of the insert and set it.
 			$sql = "SELECT LAST_INSERT_ID();";
