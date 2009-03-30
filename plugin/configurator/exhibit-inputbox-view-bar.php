@@ -4,7 +4,7 @@
 	<table>
 		<tr><td><i>Visualization Title</i></td><td><input id="exhibit-views-bar-label" type="text" size="30" /></td><td></td></tr>
 		<tr><td><i>Categories</i></td><td><select id="exhibit-views-bar-yField" class="allpropbox"></select></td><td></td></tr>
-		<tr><td><i>Y Category Label</i></td><td><input id="exhibit-views-bar-yLabel" /></td><td></td></tr>
+		<tr><td><i>Categories Label</i></td><td><input id="exhibit-views-bar-yLabel" /></td><td></td></tr>
 		<tr><td><i>Values</i></td><td><select id="exhibit-views-bar-xField" class="allpropbox"></select></td><td></td></tr>
 		<tr><td><i>Values Label</i></td><td><input id="exhibit-views-bar-xLabel" /></td><td></td></tr>
 		<tr>

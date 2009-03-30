@@ -4,6 +4,7 @@ class WpExhibitActivationTools {
     static function activate_plugin() {
         self::setup_exhibits_table();
         self::setup_parrotable_urls_table();
+        self::setup_post_exhibits_table();
     
         if (get_option(WpExhibitConfig::$WP_EXHIBIT_DB_VERSION_KEY)) {
             update_option(WpExhibitConfig::$WP_EXHIBIT_DB_VERSION_KEY,
@@ -32,12 +33,22 @@ class WpExhibitActivationTools {
     static function setup_exhibits_table() {
         $creation_sql = "  (
             id INT NOT NULL AUTO_INCREMENT,
-            postid INT,
             version INT,
             exhibit_config TEXT,
             PRIMARY KEY  (id)
             )";
         self::setup_table(WpExhibitConfig::$EXHIBITS_TABLE_KEY,
+                          $creation_sql);
+    }
+
+    static function setup_post_exhibits_table() {
+        $creation_sql = "  (
+            id INT NOT NULL AUTO_INCREMENT,
+            postid INT,
+            exhibitid INT,
+            PRIMARY KEY (id)
+            )";
+        self::setup_table(WpExhibitConfig::$EXHIBITS_ASSOC_TABLE_KEY,
                           $creation_sql);
     }
     

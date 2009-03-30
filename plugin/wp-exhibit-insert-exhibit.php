@@ -3,28 +3,6 @@
 class WpExhibitHtmlBuilder {
     static $datapress_statistics_logger = "http://projects.csail.mit.edu/datapress/logger/logger.php";
 
-    static function get_associated_exhibit($id) {
-	 	$post_exhibit = new WpPostExhibit();
-		if (DbMethods::loadFromDatabase($post_exhibit, $id, 'postid')) {
-/*			$sample_facet = new WpExhibitFacet();
-			$exhibitId = $post_exhibit->getId();
-	        $post_exhibit->setFacets(WpExhibitModel::loadManyFromDatabase($sample_facet,
-                                                       $exhibitId,
-	                                                       'exhibitid'));  
-      
-	        $sample_view = new WpExhibitView();
-	        $post_exhibit->setViews(WpExhibitModel::loadManyFromDatabase($sample_view,
-	                                                      $exhibitId,
-	                                                      'exhibitid'));
-
-			$sample_lens = new WpExhibitLens();
-			$lenses = $post_exhibit->setLenses(WpExhibitModel::loadManyFromDatabase($sample_lens, $exhibitId, 'exhibitid'));
-	*/		
-			return $post_exhibit;
-		}
-		return NULL;
-	}
-
     static function insert_exhibit_lightbox($exhibit, $content) {
         $content = str_replace("{{Exhibit}}", self::get_exhibit_lightbox_link($exhibit), $content);
         $footnotes_string = self::get_data_footnotes_html($exhibit);

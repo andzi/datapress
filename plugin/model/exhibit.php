@@ -22,6 +22,19 @@ class WpPostExhibit {
 		'custom_html' => NULL
 	);
 	
+	static function getForPost($postid) {
+        global $wpdb;
+        $table = WpExhibitConfig::table_name(WpExhibitConfig::$EXHIBITS_ASSOC_TABLE_KEY);
+        $exhibitid = $wpdb->get_var("SELECT exhibitid FROM $table WHERE postid=$postid ;");
+        if (!($exhibitid == 0)) {
+    	 	$post_exhibit = new WpPostExhibit();
+    		if (DbMethods::loadFromDatabase($post_exhibit, $id, 'postid')) {
+    			return $post_exhibit;
+    		}
+        }
+		return NULL;
+	}
+	
 	protected $constructedexhibit = array();
 	
 	function WpPostExhibit() {
