@@ -5,7 +5,6 @@ class WpPostExhibit {
     // Used to save the exhibit in a DB
 	protected $dbfields = array(
 	    'id' => NULL,
-		'postid' => NULL,
     	'exhibit_config' => NULL,
 	    'version' => 1,
 	);
@@ -90,7 +89,7 @@ class WpPostExhibit {
 	}
 	
 	function getStatisticReport($currentView) {
-    	$postid = $this->get('postid');
+        $postid = $wpdb->get_var("SELECT postid FROM $table WHERE exhibitid=$exhibitid ;");
 		$permalink = base64_encode(get_permalink($this->get('postid')));
 		$viewState = base64_encode($this->get('lightbox') ? "lightbox" : "inline");
 		$postType = base64_encode(get_post($postid)->post_type);
@@ -107,12 +106,12 @@ class WpPostExhibit {
 	    $table = $this->getTableName();
 	    if ($this->dbfields['id'] == NULL) {
 			// Do an insert
-			$sql = "INSERT INTO $table (id, postid, exhibit_config, version) VALUES (%d, %d, %s, %d);";
-			$sql = $wpdb->prepare($sql, $this->dbfields['id'], $this->dbfields['postid'], base64_encode($this->dbfields['exhibit_config']), $this->dbfields['version']);
+			$sql = "INSERT INTO $table (id, exhibit_config, version) VALUES (%d, %d, %s, %d);";
+			$sql = $wpdb->prepare($sql, $this->dbfields['id'], base64_encode($this->dbfields['exhibit_config']), $this->dbfields['version']);
 		} else {
 			// Do an update
-			$sql = "UPDATE $table SET postid=%d, exhibit_config=%s, version=%d WHERE id=%d";
-			$sql = $wpdb->prepare($sql, $this->dbfields['postid'], base64_encode($this->dbfields['exhibit_config']), $this->dbfields['version'], $this->dbfields['id']);
+			$sql = "UPDATE $table SET exhibit_config=%s, version=%d WHERE id=%d";
+			$sql = $wpdb->prepare($sql, base64_encode($this->dbfields['exhibit_config']), $this->dbfields['version'], $this->dbfields['id']);
 		}
 		
 		$result = $wpdb->query($sql);
