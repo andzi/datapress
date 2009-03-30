@@ -16,6 +16,7 @@ include_once('wp-exhibit-save-post.php');
 include_once('save-exhibit.php');
 include_once('model/wp-exhibit-model.php');
 include_once('proxy/insert-parrotable-url.php');	
+include_once('proxy/import-datafiles.php');
 include_once('configurator/exhibit-configurator.php');
 
 class WpExhibit {
@@ -163,6 +164,7 @@ add_action('wp', array($exhibit, 'load_exhibit'));
 add_action('wp_ajax_insert_parrotable_url', array($exhibit, 'insert_parrotable_url') );
 add_action('wp_ajax_save_exhibit_configuration', array($exhibit, 'save_exhibit_configuration') );
 add_action('wp_ajax_datapress_configurator', 'show_datapress_configurator' );
+add_action('wp_ajax_import_datafiles', 'import_data_files' );
 add_action('media_buttons', array($exhibit, 'make_exhibit_button'));
 add_filter('the_content', array($exhibit, 'insert_exhibit'));
 add_action('edit_page_form', array($exhibit, 'edit_page_inclusions'));
@@ -184,7 +186,6 @@ if (!$guessurl = site_url())
 	$guessurl = wp_guess_url();
 $baseuri = $guessurl;
 
-
 wp_register_script( 'exhibit-api', 'http://api.simile-widgets.org/exhibit/2.2.0/exhibit-api.js', array(  ) );
 wp_register_script( 'exhibit-chart', 'http://api.simile-widgets.org/exhibit/2.2.0/extensions/chart/chart-extension.js', array( 'exhibit-api' ) );
 wp_register_script( 'exhibit-time', 'http://api.simile-widgets.org/exhibit/2.2.0/extensions/time/time-extension.js', array( 'exhibit-api' ) );
@@ -196,6 +197,11 @@ wp_register_script( 'dp-tinymce', "$baseuri/wp-includes/js/tinymce/tiny_mce.js?v
 wp_register_script( 'dp-tinymce-langs', "$baseuri/wp-includes/js/tinymce/langs/wp-langs-en.js?ver=20081129", array('dp-tinymce') );
 wp_register_script( 'base64', "$baseuri/wp-content/plugins/datapress/js/jquery.base64.js", array() );
 wp_register_script( 'configurator', "$baseuri/wp-content/plugins/datapress/configurator/configurator.js.php");
+
+wp_register_script( 'hoverIntent', "$baseuri/wp-content/plugins/datapress/js/jquery.hoverIntent.minified.js");
+wp_register_script( 'beautytips',  "$baseuri/wp-content/plugins/datapress/js/jquery.bt.min.js");
+wp_register_script( 'bgiframe',    "$baseuri/wp-content/plugins/datapress/js/jquery.bgiframe.min.js");
+wp_register_script( 'excanvas',    "$baseuri/wp-content/plugins/datapress/js/excanvas-compressed.js");
 
 
 /* ---------------------------------------------------------------------------

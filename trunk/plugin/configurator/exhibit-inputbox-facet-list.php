@@ -11,6 +11,9 @@ $exhibituri = $baseuri . '/wp-content/plugins/datapress';
 	    <td><input id="exhibit-facet-list-label" type="text" size="30" /></td>
 	    <td></td>
 	</tr>
+	<tr class="help">
+	    <td colspan=3>
+	    </td>
 	<tr>
 	    <td><i>Use Field</i></td>
 	    <td><select id="exhibit-facet-list-field" class="allpropbox"></select></td>
