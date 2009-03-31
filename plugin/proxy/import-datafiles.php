@@ -122,6 +122,14 @@ function scrape_exhibit($url, $contents) {
 			$href=$hrefmatch[1];
 			$type=$typematch[1];
 			
+			// Special handling for Parroted links
+    		$parrot_pattern = "/proxy\/parrot.php\?url=([^&]*)/";			
+			$parrot_matched = preg_match($parrot_pattern, $href, $parrotmatch);	
+			
+			if ($parrot_matched) {
+			    $href = urldecode($parrotmatch[1]);
+			}
+			
 			// Fix the converter if it is a Google Spreadsheet
 			if ($converter_matched && ($convertermatch[1] = "googleSpreadsheets")) {
 				$type="google-spreadsheet";
@@ -137,14 +145,14 @@ function scrape_exhibit($url, $contents) {
 			$alt = "";
 			
 			if ($alt_matched) {
-				$alt=$altmatch[1];				
+				$alt=$altmatch[1];	
 			}
 			else {
 				if ($type == "google-spreadsheet") {
 					$alt = "UnnamedSpreadsheet";
 				}
 				else {
-					$alt= substr($href, strripos($url, '/') - strlen($alt) + 1);					
+					$alt= substr($href, strripos($url, '/') - strlen($alt) + 1);	
 				}
 			}
 			
