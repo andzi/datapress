@@ -13,6 +13,7 @@ class WpPostExhibit {
 	// Use an object to clone for arrays of objects
 	protected $exhibitfields = array(
 	    'lightbox' => NULL,
+   	    'height' => NULL,
    	    'lenses' => NULL,
   	    'views' => NULL,
   	    'facets' => NULL,

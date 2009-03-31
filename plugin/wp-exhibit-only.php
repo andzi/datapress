@@ -21,15 +21,9 @@
         $lightboxed_exhibit = new WpPostExhibit();
         DbMethods::loadFromDatabase($lightboxed_exhibit, $exhibitid);
     }
-    $justview = $_GET['justview'];
-    $exhibit_html = "";
-    if ($justview == "true") {
-        $exhibit_html = WpExhibitHtmlBuilder::get_view_html($lightboxed_exhibit, true);
-    } else {
-        $postid = $_POST["postid"];
-        $exhibit_html = WpExhibitHtmlBuilder::get_exhibit_html($lightboxed_exhibit, 'lightbox', $postid);
-    }
-    
+    $currentview = $_GET['currentview'];
+    $postid = $_GET['postid'];
+    $exhibit_html = $exhibit_html = WpExhibitHtmlBuilder::get_exhibit_html($lightboxed_exhibit, $currentview, $postid);  
 ?>
 <html>
 <head>
