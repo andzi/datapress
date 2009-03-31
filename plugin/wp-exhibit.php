@@ -127,19 +127,12 @@ class WpExhibit {
 		$ex_id = $ex->get('id');
 		echo "Datapress <a id='load_datapress_config_link' href='" . wp_guess_url() . "/wp-admin/admin-ajax.php?action=datapress_configurator&exhibitid=$ex_id&TB_iframe=true' id='add_exhibit' class='thickbox' title='Add an Exhibit'><img src='" . wp_guess_url() . "/wp-content/plugins/datapress/images/exhibit-small-RoyalBlue.png' alt='Add an Image' /></a> &nbsp; &nbsp;<input type='hidden' id='exhibitid' name='exhibitid' value='$ex_id' />";				
 	}
- }
+    }
 
 	function insert_exhibit($content) {
 		global $wp_query;
 		if ($wp_query->post->datapress_exhibit != NULL) {
-			if (sizeof($wp_query->posts) > 1) {
-				// Just display a callout about the exhibit.
-				return WpExhibitHtmlBuilder::insert_exhibit_lightbox($wp_query->post->datapress_exhibit, $content);			
-			}
-			else {
-				// Display the exhibit
-				return WpExhibitHtmlBuilder::insert_exhibit($wp_query->post->datapress_exhibit, $content);			
-			}
+		    return WpExhibitHtmlBuilder::insert_exhibit($wp_query->post->datapress_exhibit, $content);			
 		}
 		else {
 			return $content;
@@ -196,12 +189,6 @@ wp_register_script( 'dp-tinymce', "$baseuri/wp-includes/js/tinymce/tiny_mce.js?v
 wp_register_script( 'dp-tinymce-langs', "$baseuri/wp-includes/js/tinymce/langs/wp-langs-en.js?ver=20081129", array('dp-tinymce') );
 wp_register_script( 'base64', "$baseuri/wp-content/plugins/datapress/js/jquery.base64.js", array() );
 wp_register_script( 'configurator', "$baseuri/wp-content/plugins/datapress/configurator/configurator.js.php");
-
-wp_register_script( 'hoverIntent', "$baseuri/wp-content/plugins/datapress/js/jquery.hoverIntent.minified.js");
-wp_register_script( 'beautytips',  "$baseuri/wp-content/plugins/datapress/js/jquery.bt.min.js");
-wp_register_script( 'bgiframe',    "$baseuri/wp-content/plugins/datapress/js/jquery.bgiframe.min.js");
-wp_register_script( 'excanvas',    "$baseuri/wp-content/plugins/datapress/js/excanvas-compressed.js");
-
 
 /* ---------------------------------------------------------------------------
  * Stylesheet Registration
