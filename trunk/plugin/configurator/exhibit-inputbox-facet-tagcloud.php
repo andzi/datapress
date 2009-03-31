@@ -25,7 +25,7 @@ Exhibit data, displaying those buckets as a cloud of words.</b></p>
 	    <option value="left">Left</option>
 	    <option value="right">Right</option>
 		<option value="top">Top</option>
-		<option value="bottom">Bottom</option>
+		<option selected value="bottom">Bottom</option>
   	    <option value="widget">Sidebar Widget</option>
 	  </select>
 	</td>
