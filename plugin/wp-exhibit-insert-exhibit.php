@@ -60,6 +60,14 @@ class WpExhibitHtmlBuilder {
     }
 
     static function get_view_html($exhibit, $only_first = false) {
+        // add lenses
+        $lens_html = "";
+        foreach ($exhibit->get('lenses') as $lens) {
+            $lens_html = $lens_html . $lens->htmlContent();
+            $lens_html = $lens_html . "\n";
+        }
+        
+        // add views
         $view_html = "";
         foreach ($exhibit->get('views') as $view) {
             $view_html = $view_html . $view->htmlContent();
@@ -73,18 +81,12 @@ class WpExhibitHtmlBuilder {
             $view_html = "<div ex:role=\"view\"></div>";
         }
         
-        return $view_html;
+        return "$lens_html $view_html";
 	}
 
     static function get_exhibit_html($exhibit, $currentView, $postid) {	
         $view_html = self::get_view_html($exhibit);
         		
-        $lens_html = "";
-        foreach ($exhibit->get('lenses') as $lens) {
-            $lens_html = $lens_html . $lens->htmlContent();
-            $lens_html = $lens_html . "\n";
-        }
-      
         $top_facet_html = self::facet_html($exhibit->get('facets'), 'top');
         $bottom_facet_html = self::facet_html($exhibit->get('facets'), 'bottom');
         $left_facet_html = self::facet_html($exhibit->get('facets'), 'left');
@@ -106,7 +108,6 @@ class WpExhibitHtmlBuilder {
 		$tracker = self::statistics_html($exhibit, $currentView, $postid);
 		
         $exhibit_html = "
-			$lens_html
             <table width=\"100%\">
                 <tr>
                     <td colspan='3'>
