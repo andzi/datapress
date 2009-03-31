@@ -35,9 +35,10 @@ else {
     // We're not inside the lightbox
 	include('head-datasources.php');
     include('head-lightbox-library.php');
-    if (count($exhibits_to_show) == 1) {
-    	include('head-exhibit.php');
-    }
+    // Taken out because now we're in an iframe. 
+    // if (count($exhibits_to_show) == 1) {
+    //  include('head-exhibit.php');
+    // }
 }
 ?>
 
