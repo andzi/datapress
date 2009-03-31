@@ -3,21 +3,21 @@
 class WpExhibitHtmlBuilder {
     static $datapress_statistics_logger = "http://projects.csail.mit.edu/datapress/logger/logger.php";
 
-    static function insert_exhibit_lightbox($exhibit, $content) {
-        $content = str_replace("{{Exhibit}}", self::get_exhibit_lightbox_link($exhibit), $content);
-        $footnotes_string = self::get_data_footnotes_html($exhibit);
-        $content = str_replace("{{Footnotes}}", $footnotes_string, $content);            
-        return $content;
-    }
-	
     static function insert_exhibit($exhibit, $content) {
 		global $wp_query;
+		
 		$exhibit_string = '';
 		if ($exhibit->get('lightbox')) {
 			$exhibit_string = self::get_exhibit_lightbox_link($exhibit);
 		} else {
 	        $exhibit_string = self::get_inline_exhibit($exhibit);
 		}
+        if (is_feed()) {
+            $postid = $wp_query->post->ID;
+            $permalink = get_permalink($postid);
+            $exhibit_string .= "<p><b>Note: This post contains a interactive data presentation that may not show up in your feed reader.</b> For the full experience, visit <a href='$permalink'>this article</a> in your web browser.</p>";
+        }
+
         $content = str_replace("{{Exhibit}}", $exhibit_string, $content);
         $footnotes_string = self::get_data_footnotes_html($exhibit);
         $content = str_replace("{{Footnotes}}", $footnotes_string, $content);            
