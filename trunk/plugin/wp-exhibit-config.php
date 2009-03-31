@@ -2,7 +2,7 @@
 
 class WpExhibitConfig {
     // datapress schema version
-    public static $DB_VERSION = "2";
+    public static $DB_VERSION = "3";
 
     // table keys
     public static $EXHIBITS_TABLE_KEY = "exhibits";
