@@ -3,13 +3,16 @@
 </div>
 
 <?php
-    $checked = "checked";
+    $checked = "";
 	$css = "";
 	$custom_html = "";
 	$height = 700;
 	if ($exhibitConfig != NULL) {
  		if ($exhibitConfig->get('lightbox') == false) {
 			$checked = "";
+		}
+		else {
+		    $checked = "checked";
 		}
 		if ($exhibitConfig->get('css') != NULL) {
 			$css = $exhibitConfig->get('css');
