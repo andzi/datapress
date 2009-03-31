@@ -57,10 +57,15 @@ class SaveExhibitConfiguration {
 
         // Save exhibit-level configuration options
         $lightbox = (WpExhibitModel::findFormObjectValue('display-configuration-lightbox') == 'show-lightbox');
+        $height = WpExhibitModel::findFormObjectValue('display-configuration-height');
         $css = WpExhibitModel::findFormObjectValue('display-configuration-css');
         $custom_html = WpExhibitModel::findFormObjectValue('display-configuration-custom-html');
 
         $ex_exhibit->set('lightbox', $lightbox);
+        if (!$height) {
+            $height = 700;
+        }
+        $ex_exhibit->set('height', $height);
         if ($css) {
 	        $ex_exhibit->set('css', $css);				
         }
