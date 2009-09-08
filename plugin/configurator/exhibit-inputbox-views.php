@@ -25,14 +25,14 @@
 	</ul>
 	<div id="exhibit-views-list" class="inner-tabs-panel"><?php include('exhibit-inputbox-view-list.php'); ?></div>
 	<div id="exhibit-views-table" class="inner-tabs-panel"><?php include('exhibit-inputbox-view-table.php'); ?></div>
-	<div id="exhibit-views-maps" class="inner-tabs-panel" style="display: none;"><?php include('exhibit-inputbox-view-map.php'); ?></div>
-	<div id="exhibit-views-timeline" class="inner-tabs-panel" style="display: none;"><?php include('exhibit-inputbox-view-timeline.php'); ?></div>
-	<div id="exhibit-views-scatter" class="inner-tabs-panel" style="display: none;"><?php include('exhibit-inputbox-view-scatter.php'); ?></div>
-	<div id="exhibit-views-bar" class="inner-tabs-panel" style="display: none;"><?php include('exhibit-inputbox-view-bar.php'); ?></div>
+	<div id="exhibit-views-maps" class="inner-tabs-panel"><?php include('exhibit-inputbox-view-map.php'); ?></div>
+	<div id="exhibit-views-timeline" class="inner-tabs-panel"><?php include('exhibit-inputbox-view-timeline.php'); ?></div>
+	<div id="exhibit-views-scatter" class="inner-tabs-panel"><?php include('exhibit-inputbox-view-scatter.php'); ?></div>
+	<div id="exhibit-views-bar" class="inner-tabs-panel"><?php include('exhibit-inputbox-view-bar.php'); ?></div>
 </div>
 
 <script type="text/javascript">
 jQuery(document).ready(function(){
-	var datasource_tabs = jQuery("#exhibit-views-tabs > ul").tabs();
+	var datasource_tabs = jQuery("#exhibit-views-tabs").tabs();
 });
 </script>

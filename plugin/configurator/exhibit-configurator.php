@@ -22,47 +22,51 @@ function show_datapress_html() {
 	<form id="exhibit-config-form" action="javascript:return false;">
 	<div id="exhibit-input">
 		<div class="inside">
-		  <div id="exhibit-input-container">
 
+		  <div id="exhibit-input-container">
 			<ul id="ex-tabs" class="outer-tabs">
-				<li class="ui-tabs-selected"><a href="#exhibit-data">Add Data</a></li>
+				<li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#exhibit-data"><span>Add Data</span></a></li>
 				<li class="spacer">&gt;</li>
-				<li class="wp-no-js-hidden"><a href="#exhibit-views">Add Visualizations</a></li>
+				<li class="ui-state-default ui-corner-top wp-no-js-hidden"><a href="#exhibit-views"><span>Add Visualizations</span></a></li>
 				<li class="spacer">&gt;</li>
-				<li class="wp-no-js-hidden"><a href="#exhibit-facets" >Add Facets</a></li>
+				<li class="ui-state-default ui-corner-top wp-no-js-hidden"><a href="#exhibit-facets" ><span>Add Facets</span></a></li>
 				<li class="spacer">&gt;</li>
-	    		<li class="wp-no-js-hidden"><a href="#exhibit-display" >Configure Display</a></li>
+	    		<li class="ui-state-default ui-corner-top wp-no-js-hidden"><a href="#exhibit-display" ><span>Configure Display</span></a></li>
 				<li class="spacer">&gt;</li>
-				<li class="wp-no-js-hidden" ><a href="#exhibit-lenses">Lenses (Advanced)</a></li>
+				<li class="ui-state-default ui-corner-top wp-no-js-hidden" ><a href="#exhibit-lenses"><span>Lenses (Advanced)</span></a></li>
 			</ul>
 
-			<div id="exhibit-data" class="outer-tabs-panel">
+			<div id="exhibit-data" class="outer-tabs-panel ui-tabs-hide">
 				<?php include("exhibit-inputbox-data.php") ?>
 			</div>
-			<div id="exhibit-views" class="outer-tabs-panel" style="display: none;">
-				<?php include("exhibit-inputbox-views.php") ?>
+			<div id="exhibit-views" class="outer-tabs-panel ui-tabs-hide">
+                 <?php include("exhibit-inputbox-views.php") ?>
 			</div>
-			<div id="exhibit-lenses" class="outer-tabs-panel" style="display: none;">
+			<div id="exhibit-lenses" class="outer-tabs-panel ui-tabs-hide">
 				<?php include("exhibit-inputbox-lenses.php") ?>
 			</div>
-			<div id="exhibit-facets" class="outer-tabs-panel" style="display: none;">
+			<div id="exhibit-facets" class="outer-tabs-panel ui-tabs-hide">
 				<?php include("exhibit-inputbox-facets.php") ?>
 			</div>
-			<div id="exhibit-display" class="outer-tabs-panel" style="display: none;">
+			<div id="exhibit-display" class="outer-tabs-panel ui-tabs-hide">
 				<?php include("exhibit-inputbox-display.php") ?>
 			</div>
 		  </div>
+
+		</div>
 
 		  <p align="right">
 			<input type="hidden" value="<?php echo $exhibitID ?>" name="exhibitid" />
 			<input type="hidden" value="save_exhibit_configuration" name="action" />
 			<input id="save_btn" type="button" class="button savebutton" name="save" value="<?php echo attribute_escape( __( 'Save' ) ); ?>" />
 		  </p>
-		</div>
-	</div>
+     </div>
 	</form>
-	<script>
-		$(document).ready(function(){		    
+	<script>	    
+	    jQuery(function() {
+    	    jQuery("#exhibit-input-container").tabs();
+    	});
+		jQuery(document).ready(function(){		    
 			function postExhibit(e) {
 				var paste_exhibit = false;
 				var paste_footnotes = false;
@@ -84,13 +88,18 @@ function show_datapress_html() {
 							
 			}
 			
-			$('#save_btn').bind("click", postExhibit);
-			$('#save_insert_btn').bind("click", postExhibit);
-			$('#save_insert_footnotes_btn').bind("click", postExhibit);
-			
+			jQuery('#save_btn').bind("click", postExhibit);
+			jQuery('#save_insert_btn').bind("click", postExhibit);
+			jQuery('#save_insert_footnotes_btn').bind("click", postExhibit);
+			jQuery('#ex-tabs').tabs({
+                select: function(event, ui) {
+                    alert('selected');
+                    return true;
+                }    
+			});
 			remove_callbacks = new Array();
 			db = Exhibit.Database.create();
-			var category_tabs = jQuery("#exhibit-input-container > ul").tabs();
+			
 			ex_load_links();
 		});
 	</script>
@@ -124,16 +133,10 @@ function datapress_iframe($content_func /* ... */) {
 wp_enqueue_style( 'global' );
 wp_enqueue_style( 'wp-admin' );
 wp_enqueue_style( 'colors' );
-if ( 0 === strpos( $content_func, 'media' ) )
+if ( 0 === strpos( $content_func, 'media' ) ) {
 	wp_enqueue_style( 'media' );
+}
 
-?>
-<script type="text/javascript">
-//<![CDATA[
-function addLoadEvent(func) {if ( typeof wpOnload!='function'){wpOnload=func;}else{ var oldonload=wpOnload;wpOnload=function(){oldonload();func();}}}
-//]]>
-</script>
-<?php
 do_action('admin_print_styles');
 do_action('admin_print_scripts');
 do_action('admin_head');
@@ -153,20 +156,17 @@ if ( is_string($content_func) )
 }
 
 function show_datapress_configurator() {
-	wp_enqueue_script('common');
-	wp_enqueue_script('exhibit-api');
-	wp_enqueue_script('dp-jquery');
-	wp_enqueue_script('dp-jquery-ui');
-	wp_enqueue_script('dp-jquery-tabs');
-	wp_enqueue_script('dp-tinymce');
-	wp_enqueue_script('dp-tinymce-langs');	
+    wp_enqueue_script('exhibit-api');
+    wp_enqueue_script('dp-jquery');
+    wp_enqueue_script('dp-jquery-ui');
 	wp_enqueue_script('configurator');	
 	wp_enqueue_script('base64');
 	wp_enqueue_style( 'global' );
 	wp_enqueue_style( 'wp-admin' );
 	wp_enqueue_style( 'colors' );
-	wp_enqueue_style( 'media' );
 	wp_enqueue_style('dp-configurator');
+	wp_enqueue_style( 'media' );
+	
 	echo datapress_iframe('show_datapress_html');
 	die();
 }

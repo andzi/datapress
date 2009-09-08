@@ -305,7 +305,7 @@
 				"documentation.html"
 			</td>
 			<td style="">
-				$(obj).sheet({<br style="height: 25px;">
+				jQuery(obj).sheet({<br style="height: 25px;">
 				&nbsp;&nbsp;&nbsp;&nbsp;urlGet: "function.html",<br style="height: 25px;">
 				&nbsp;&nbsp;&nbsp;&nbsp;width: "100%"<br style="height: 25px;">
 				});
@@ -399,7 +399,7 @@
 				false
 			</td>
 			<td style="">
-				$(obj).sheet({<br style="height: 25px;">
+				jQuery(obj).sheet({<br style="height: 25px;">
 				&nbsp;&nbsp;&nbsp;&nbsp;buildSheet: "10x30"<br style="height: 25px;">
 				});
 			</td>
@@ -441,7 +441,7 @@
 				Initialize:
 			</td>
 			<td style="">
-				$(document).ready(function()&nbsp;{&nbsp;<br style="height: 25px;">
+				jQuery(document).ready(function()&nbsp;{&nbsp;<br style="height: 25px;">
 				&nbsp;&nbsp;&nbsp;&nbsp;$(selector).sheet();<br style="height: 25px;">
 				});
 			</td>
