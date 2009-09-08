@@ -21,12 +21,12 @@
     	<li class="wp-no-js-hidden"><a href="#exhibit-facet-tagcloud" >Tag Cloud</a></li>
 	</ul>
 	<div id="exhibit-facet-search" class="inner-tabs-panel"><?php include("exhibit-inputbox-facet-search.php") ?></div>
-	<div id="exhibit-facet-list" class="inner-tabs-panel" style="display: none;"><?php include("exhibit-inputbox-facet-list.php") ?></div>
-	<div id="exhibit-facet-tagcloud" class="inner-tabs-panel" style="display: none;"><?php include("exhibit-inputbox-facet-tagcloud.php") ?></div>
+	<div id="exhibit-facet-list" class="inner-tabs-panel"><?php include("exhibit-inputbox-facet-list.php") ?></div>
+	<div id="exhibit-facet-tagcloud" class="inner-tabs-panel"><?php include("exhibit-inputbox-facet-tagcloud.php") ?></div>
 </div>
 
 <script type="text/javascript">
 jQuery(document).ready(function(){
-	var datasource_tabs = jQuery("#exhibit-facet-tabs > ul").tabs();
+	var datasource_tabs = jQuery("#exhibit-facet-tabs").tabs();
 });
 </script>
