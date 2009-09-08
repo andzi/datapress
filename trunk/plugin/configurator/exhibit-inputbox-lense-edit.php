@@ -18,7 +18,7 @@
 </div>
 
 <script>
-	$(document).ready(function(){
+	jQuery(document).ready(function(){
 		// <![CDATA[
 		// var win = window.dialogArguments || opener || parent || top;
 		// var lens_editor = window.tinyMCE.execCommand('mceAddControl', false, 'lens-text');

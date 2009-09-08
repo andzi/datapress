@@ -177,24 +177,32 @@ register_deactivation_hook(__FILE__, array($exhibit, 'deactivate_plugin'));
 if (!$guessurl = site_url())
 	$guessurl = wp_guess_url();
 $baseuri = $guessurl;
+$wp_datapress_plugin_url = trailingslashit( get_bloginfo('wpurl') ).PLUGINDIR.'/datapress';    
 
 wp_register_script( 'exhibit-api', 'http://api.simile-widgets.org/exhibit/2.2.0/exhibit-api.js', array(  ) );
 wp_register_script( 'exhibit-chart', 'http://api.simile-widgets.org/exhibit/2.2.0/extensions/chart/chart-extension.js', array( 'exhibit-api' ) );
 wp_register_script( 'exhibit-time', 'http://api.simile-widgets.org/exhibit/2.2.0/extensions/time/time-extension.js', array( 'exhibit-api' ) );
 
-wp_register_script( 'dp-jquery', "$baseuri/wp-includes/js/jquery/jquery.js?ver=1.2.6", array() );
-wp_register_script( 'dp-jquery-ui', "$baseuri/wp-includes/js/jquery/ui.core.js?ver=1.5.2", array('dp-jquery') );
-wp_register_script( 'dp-jquery-tabs', "$baseuri/wp-includes/js/jquery/ui.tabs.js?ver=1.5.2", array('dp-jquery-ui') );
-wp_register_script( 'dp-tinymce', "$baseuri/wp-includes/js/tinymce/tiny_mce.js?ver=20081129", array() );
-wp_register_script( 'dp-tinymce-langs', "$baseuri/wp-includes/js/tinymce/langs/wp-langs-en.js?ver=20081129", array('dp-tinymce') );
-wp_register_script( 'base64', "$baseuri/wp-content/plugins/datapress/js/jquery.base64.js", array() );
-wp_register_script( 'configurator', "$baseuri/wp-content/plugins/datapress/configurator/configurator.js.php");
+wp_register_script( 'dp-jquery', "$wp_datapress_plugin_url/js/jquery-1.3.2.min.js", array() );
+wp_register_script( 'dp-jquery-ui', "$wp_datapress_plugin_url/js/jquery-ui-1.7.2.custom.min", array('dp-jquery') );
+
+wp_register_script( 'base64', "$wp_datapress_plugin_url/js/jquery.base64.js", array() );
+wp_register_script( 'configurator', "$wp_datapress_plugin_url/configurator/configurator.js.php");
+
+function datapress_ScriptsAction() {  
+    if (is_admin()) { 	  
+        wp_enqueue_script('jquery'); 
+        wp_enqueue_script('wp_datapress_test_script', $wp_datapress_plugin_url.'/TEST.js', array('jquery')); 
+    }
+}
+
 
 /* ---------------------------------------------------------------------------
  * Stylesheet Registration
  * --------------------------------------------------------------------------- */
 
-wp_register_style( 'dp-configurator', "$baseuri/wp-content/plugins/datapress/css/wpexhibit.css");
+wp_register_style( 'dp-configurator', "$wp_datapress_plugin_url/css/wpexhibit.css");
+wp_register_style( 'dp-jquery', "$wp_datapress_plugin_url/css/jquery-ui-1.7.2.custom.css");
 
 include_once('facet_widget.php');
 
