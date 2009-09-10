@@ -24,7 +24,6 @@
 	<div id="exhibit-facet-list" class="inner-tabs-panel"><?php include("exhibit-inputbox-facet-list.php") ?></div>
 	<div id="exhibit-facet-tagcloud" class="inner-tabs-panel"><?php include("exhibit-inputbox-facet-tagcloud.php") ?></div>
 </div>
-
 <script type="text/javascript">
 jQuery(document).ready(function(){
 	var datasource_tabs = jQuery("#exhibit-facet-tabs").tabs();

@@ -42,9 +42,14 @@ class WpExhibitLens extends WpExhibitModel {
 	}
 	
 	function massage_html($html) {
-		$pattern = "~{{([^\}]*)}}~";
-		$replacement = "<span ex:content=\"$1\"></span>";
-		return preg_replace($pattern, $replacement, $html);
+	    // Replace images
+		$image_pattern = "~{{image ([^\}]*)}}~";
+	    $image_replacement = "<img ex:src-content=\"$1\" />";
+        $first_pass = preg_replace($image_pattern, $image_replacement, $html);
+		$text_pattern = "~{{([^\}]*)}}~";
+		$text_replacement = "<span ex:content=\"$1\"></span>";
+		$second_pass = preg_replace($text_pattern, $text_replacement, $first_pass);
+		return $second_pass;
 	}
 	
 	function getEditInfo() {

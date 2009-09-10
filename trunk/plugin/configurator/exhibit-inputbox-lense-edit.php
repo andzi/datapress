@@ -4,25 +4,56 @@
 			<td><select id="exhibit-lenses-edit-class" class="alltypebox"></select></td>
 		</tr>
 	</table>
-<div style="height: 150px;" id='lenscontainer'>
-	<textarea id='exhibit-lenses-edit-html' class='' style="height: 150px; width: 80%;" ></textarea>
-</div>
-
+	<textarea id='exhibit-lenses-edit-html' class='' style="height: 300px; width: 100%;" ></textarea>
 <table width="100%">
 	<tr>
-		<td><p align="left">Available Properties: <select id="lense-prop-possibilities" class="allpropbox"></select><a href="#" onClick="appendToLens('{{.' + jQuery('#lense-prop-possibilities').val() + '}}'); return false;">Insert Property</a></p></td>
-		<td><p align="right"><a href="#" class="addlink" onclick="submit_lens(); return false">Add Lens</a></p></td>
+		<td><p align="left">Available Properties: <select id="lense-prop-possibilities" class="allpropbox"></select>
+		        <a href="#" class="addlink" onClick="appendToLens('{{.' + jQuery('#lense-prop-possibilities').val() + '}}'); return false;">Add as Text</a>
+		        <a href="#" class="addlink" onClick="appendToLens('{{image .' + jQuery('#lense-prop-possibilities').val() + '}}'); return false;">Add as Image</a>
+		</p></td>
+		<td><p align="right"><a href="#" class="addlink" onclick="submit_lens(); return false">Save Lens</a></p></td>
 	</tr>
 </table>
 
 </div>
 
-<script>
-	jQuery(document).ready(function(){
-		// <![CDATA[
-		// var win = window.dialogArguments || opener || parent || top;
-		// var lens_editor = window.tinyMCE.execCommand('mceAddControl', false, 'lens-text');
-		// ]]>
+<script type="text/javascript">
+	jQuery().ready(function() {
+		jQuery('#exhibit-lenses-edit-html').tinymce({
+<?php
+    $wp_datapress_plugin_url = trailingslashit( get_bloginfo('wpurl') ).PLUGINDIR.'/datapress';    
+    $mce_url = "$wp_datapress_plugin_url/tinymce/tiny_mce.js";
+?>
+	        script_url : '<? echo $mce_url ?>',
+			// General options
+			theme : "advanced",
+			plugins : "safari,pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template",
+
+			// Theme options
+			theme_advanced_buttons1 : "bold,italic,underline,strikethrough,|,forecolor,backcolor,|,justifyleft,justifycenter,justifyright,justifyfull,formatselect,fontselect,fontsizeselect",
+			theme_advanced_buttons2 : "cut,copy,paste,pastetext,pasteword,|,bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,anchor,image,cleanup,help,code,|preview",
+			theme_advanced_buttons3 : "tablecontrols,|,hr,removeformat,visualaid,|,sub,sup,|,charmap,emotions,iespell,media,advhr,|,fullscreen",
+			theme_advanced_buttons4 : "insertlayer,moveforward,movebackward,absolute,|,styleprops,|,cite,abbr,acronym,del,ins,attribs,|,visualchars,nonbreaking,template,pagebreak",
+			theme_advanced_toolbar_location : "top",
+			theme_advanced_toolbar_align : "left",
+			theme_advanced_statusbar_location : "bottom",
+			theme_advanced_resizing : true,
+
+			// Example content CSS (should be your site CSS)
+			content_css : "css/content.css",
+
+			// Drop lists for link/image/media/template dialogs
+			template_external_list_url : "lists/template_list.js",
+			external_link_list_url : "lists/link_list.js",
+			external_image_list_url : "lists/image_list.js",
+			media_external_list_url : "lists/media_list.js",
+
+			// Replace values for the template plugin
+			template_replace_values : {
+				username : "Some User",
+				staffid : "991234"
+			}
+		});
 	});
 </script>
 

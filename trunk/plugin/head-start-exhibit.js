@@ -16,7 +16,7 @@ Exhibit.Functions["contains"] = {
     }
 };
 
-jQuery(document).ready(function() { 
+SimileAjax.jQuery(document).ready(function() { 
     window.database = Exhibit.Database.create(); 
     window.database.loadDataLinks(onDataLoaded); 
 });
