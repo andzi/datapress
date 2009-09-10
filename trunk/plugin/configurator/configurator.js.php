@@ -118,8 +118,9 @@ function appendToPost(myValue) {
 }
 
 function appendToLens(myValue) {
+    jQuery('#exhibit-lenses-edit-html').tinymce().execCommand('mceInsertContent',false,myValue);
 	// var win = window.dialogArguments || opener || parent || top;
-    jQuery('#exhibit-lenses-edit-html').val(jQuery('#exhibit-lenses-edit-html').val() + myValue);
+    // jQuery('#exhibit-lenses-edit-html').val(jQuery('#exhibit-lenses-edit-html').val() + myValue);
 	// win.tinyMCE.execInstanceCommand("exhibit-lenses-edit-html", "mceInsertContent",true,myValue);
 }
 
