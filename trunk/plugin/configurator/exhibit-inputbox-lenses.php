@@ -15,7 +15,9 @@
 </div>
 </div>
 
+<div id="exhibit-lenses-edit">
 <?php include('exhibit-inputbox-lense-edit.php'); ?>
+</div>
 
 <script type="text/javascript">
 jQuery(document).ready(function(){
