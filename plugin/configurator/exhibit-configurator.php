@@ -159,6 +159,7 @@ function show_datapress_configurator() {
     wp_enqueue_script('exhibit-api');
     wp_enqueue_script('dp-jquery');
     wp_enqueue_script('dp-jquery-ui');
+    wp_enqueue_script('dp-mce');
 	wp_enqueue_script('configurator');	
 	wp_enqueue_script('base64');
 	wp_enqueue_style( 'global' );

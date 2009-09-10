@@ -8,9 +8,7 @@
 		<tr>
 			<td><i>Location field</i></td>
 			<td><select id="exhibit-views-maps-field" class="allpropbox"></select> contains a 
-				<select id="exhibit-views-maps-fieldtype">
-					<option selected value="latlng">Lat,Lng</select>
-				</select>
+				<select id="exhibit-views-maps-fieldtype"><option selected value="latlng">Lat,Lng</select>
 			</td>
 			<td></td>
 		</tr>	

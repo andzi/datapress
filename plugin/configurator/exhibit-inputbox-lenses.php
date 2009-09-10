@@ -15,12 +15,7 @@
 </div>
 </div>
 
-<div id="exhibit-lenses-tabs">
-	<ul id="ex-lenses-tabs-list" class="inner-tabs">
-		<li class="ui-tabs-selected"><a href="#exhibit-lenses-edit" >List</a></li>
-    </ul>
-	<div id="exhibit-lenses-edit" class="inner-tabs-panel"><?php include('exhibit-inputbox-lense-edit.php'); ?></div>
-</div>
+<?php include('exhibit-inputbox-lense-edit.php'); ?>
 
 <script type="text/javascript">
 jQuery(document).ready(function(){
