@@ -91,7 +91,8 @@ function editExhibitElementLink(tabid, liid) {
       .not("[multiple]").each(function(i, val) {
           var keyid = jQuery(val).attr('id');
           var key = keyid.substring(keyid.lastIndexOf("-")+1, keyid.length);
-          jQuery(val).val(jQuery.base64Decode(inputs[key]));
+          var decodedkey = inputs[key];
+          jQuery(val).val(jQuery.base64Decode(decodedkey));
         })
       .end()
       .filter("[multiple]").each(function(i, val) {
