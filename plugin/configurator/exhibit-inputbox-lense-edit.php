@@ -1,7 +1,7 @@
 	<table>
 		<tr>
 			<td>Create a New Lens for</td>
-			<td><select id="exhibit-lenses-edit-class" class="alltypebox"></select></td>
+			<td><select id="exhibit-lenses-edit-klass" class="alltypebox"></select></td>
 		</tr>
 	</table>
 	<textarea id='exhibit-lenses-edit-html' class='' style="height: 300px; width: 100%;" ></textarea>
@@ -60,7 +60,7 @@
 <script type="text/javascript">
 function submit_lens() {
 		// var win = window.dialogArguments || opener || parent || top;
-        var klass = jQuery('#exhibit-lenses-edit-class').val();
+        var klass = jQuery('#exhibit-lenses-edit-klass').val();
         var html = jQuery('#exhibit-lenses-edit-html').val(); // win.tinyMCE.getInstanceById('lens-text').getContent(); // 
         var kind = 'lens';
         
@@ -75,7 +75,7 @@ function submit_lens() {
                 'lens',
                 {
                         kind: kind,
-                        'class': klass,
+                        'klass': klass,
                         html: html 
                 },
                 editinfo);        

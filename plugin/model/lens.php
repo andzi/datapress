@@ -3,6 +3,7 @@ class WpExhibitLens extends WpExhibitModel {
 	
 	protected $fields = array(
 		'kind' => NULL,
+		'klass'  => NULL,
 		'class'  => NULL,
 		'html' => NULL,
 		'exhibitid' => NULL,
@@ -30,11 +31,11 @@ class WpExhibitLens extends WpExhibitModel {
 	}	
 
 	function getLinkCaption() {
-		return $this->getShortKind() . " for " . $this->get('class');
+		return $this->getShortKind() . " for " . $this->get('klass');
 	}	
 	
 	function htmlContent() {
-		$klass = $this->get('class');
+		$klass = $this->get('klass');
 		$html = $this->get('html');
 		$massaged_html = $this->massage_html($html);
 		$ret = "<div ex:role=\"lens\" itemTypes=\"$klass\" style=\"display: none;\">$massaged_html</div>";
