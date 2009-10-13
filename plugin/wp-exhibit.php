@@ -18,6 +18,7 @@ include_once('model/wp-exhibit-model.php');
 include_once('proxy/insert-parrotable-url.php');	
 include_once('proxy/import-datafiles.php');
 include_once('configurator/exhibit-configurator.php');
+include_once('data-editor/template-browser.php');
 
 class WpExhibit {
  	var $wp_version;
@@ -121,12 +122,16 @@ class WpExhibit {
   function make_exhibit_button() {
 	$ex = $this->get_current_exhibit_from_admin_page();
 	if ($ex == NULL) {
-		echo "Datapress <a id='load_datapress_config_link' href='" . wp_guess_url() . "/wp-admin/admin-ajax.php?action=datapress_configurator&TB_iframe=true' id='add_exhibit' class='thickbox' title='Add an Exhibit'><img src='" . wp_guess_url() . "/wp-content/plugins/datapress/images/exhibit-small-RoyalBlue.png' alt='Add an Image' /></a> &nbsp; &nbsp;<input type='hidden' id='exhibitid' name='exhibitid' value='' />";		
+		echo "Exhibit <a id='load_datapress_config_link' href='" . wp_guess_url() . "/wp-admin/admin-ajax.php?action=datapress_configurator&TB_iframe=true' id='add_exhibit' class='thickbox' title='Add an Exhibit'><img src='" . wp_guess_url() . "/wp-content/plugins/datapress/images/exhibit-small-RoyalBlue.png' alt='Add an Image' /></a> &nbsp; &nbsp;<input type='hidden' id='exhibitid' name='exhibitid' value='' />";		
 	}
 	else {
 		$ex_id = $ex->get('id');
-		echo "Datapress <a id='load_datapress_config_link' href='" . wp_guess_url() . "/wp-admin/admin-ajax.php?action=datapress_configurator&exhibitid=$ex_id&TB_iframe=true' id='add_exhibit' class='thickbox' title='Add an Exhibit'><img src='" . wp_guess_url() . "/wp-content/plugins/datapress/images/exhibit-small-RoyalBlue.png' alt='Add an Image' /></a> &nbsp; &nbsp;<input type='hidden' id='exhibitid' name='exhibitid' value='$ex_id' />";				
+		echo "Exhibit <a id='load_datapress_config_link' href='" . wp_guess_url() . "/wp-admin/admin-ajax.php?action=datapress_configurator&exhibitid=$ex_id&TB_iframe=true' id='add_exhibit' class='thickbox' title='Add an Exhibit'><img src='" . wp_guess_url() . "/wp-content/plugins/datapress/images/exhibit-small-RoyalBlue.png' alt='Add an Image' /></a> &nbsp; &nbsp;<input type='hidden' id='exhibitid' name='exhibitid' value='$ex_id' />";				
 	}
+	
+	// Show show the type adder
+    echo "Item <a id='load_data_template_editor' href='" . wp_guess_url() . "/wp-admin/admin-ajax.php?action=template_picker&TB_iframe=true' id='add_new_template' class='thickbox' title='Add a Data Item'><img src='" . wp_guess_url() . "/wp-content/plugins/datapress/images/exhibit-small-RoyalBlue.png' alt='Add an Image' /></a> &nbsp; &nbsp;";     
+
     }
 
 	function insert_exhibit($content) {
@@ -156,6 +161,7 @@ add_action('wp', array($exhibit, 'load_exhibit'));
 add_action('wp_ajax_insert_parrotable_url', array($exhibit, 'insert_parrotable_url') );
 add_action('wp_ajax_save_exhibit_configuration', array($exhibit, 'save_exhibit_configuration') );
 add_action('wp_ajax_datapress_configurator', 'show_datapress_configurator' );
+add_action('wp_ajax_template_picker', 'show_data_template_picker' );
 add_action('wp_ajax_import_datafiles', 'import_data_files' );
 add_action('media_buttons', array($exhibit, 'make_exhibit_button'));
 add_filter('the_content', array($exhibit, 'insert_exhibit'));
