@@ -19,6 +19,7 @@ include_once('proxy/insert-parrotable-url.php');
 include_once('proxy/import-datafiles.php');
 include_once('configurator/exhibit-configurator.php');
 include_once('data-editor/template-browser.php');
+include_once('data-editor/template-editor.php');
 
 class WpExhibit {
  	var $wp_version;
@@ -161,7 +162,8 @@ add_action('wp', array($exhibit, 'load_exhibit'));
 add_action('wp_ajax_insert_parrotable_url', array($exhibit, 'insert_parrotable_url') );
 add_action('wp_ajax_save_exhibit_configuration', array($exhibit, 'save_exhibit_configuration') );
 add_action('wp_ajax_datapress_configurator', 'show_datapress_configurator' );
-add_action('wp_ajax_template_picker', 'show_data_template_picker' );
+add_action('wp_ajax_template_picker', 'show_datapress_template_browser' );
+add_action('wp_ajax_template_editor', 'show_datapress_template_editor' );
 add_action('wp_ajax_import_datafiles', 'import_data_files' );
 add_action('media_buttons', array($exhibit, 'make_exhibit_button'));
 add_filter('the_content', array($exhibit, 'insert_exhibit'));
