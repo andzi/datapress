@@ -4,7 +4,15 @@ global $DPTEMPLATES;
 ob_start();
 header("Content-type: text/javascript");
 $callback = $_GET["jsoncallback"];
-$json = json_encode($DPTEMPLATES);
+$ident = $_GET["identifier"];
+$template = NULL;
+foreach ($DPTEMPLATES as $tem) {
+	if ($tem["identifier"] == $ident) {
+		$template = $tem;
+		break;
+	}
+}	
+$json = json_encode($template);
 print <<<EOF
 $callback($json);
 EOF

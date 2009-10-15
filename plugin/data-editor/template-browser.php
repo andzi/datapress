@@ -33,7 +33,7 @@ function show_source() {
     jQuery.getJSON(datasource, function(data) {
         jQuery("#templates").html("");
         for (var i=0; i<data.length; i++) {
-            jQuery("#templates").append("<li><a href=\"http://datapress.local/wp-admin/admin-ajax.php?action=template_editor&TB_iframe=true&width=640&height=673\">" + data[i].name + "</a></li>");
+            jQuery("#templates").append("<li><a href=\"<?php echo wp_guess_url() ?>/wp-admin/admin-ajax.php?identifier=" + data[i].identifier + "&action=template_editor&TB_iframe=true&width=640&height=673\">" + data[i].name + "</a></li>");
         }
     });
 }
