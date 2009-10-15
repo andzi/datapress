@@ -12,7 +12,7 @@ function show_template_editor_html() {
 	?>
 <div id="templateeditor">
 <h1>Add a new <span id="template_name">Item</span></h1>
-
+<div id="template_source"></div>
 <form id="template-editor-form" action="javascript:return false;">
 <table id="form_table">
 	
@@ -113,6 +113,7 @@ function show_datapress_template_editor() {
 	wp_enqueue_style( 'wp-admin' );
 	wp_enqueue_style( 'colors' );
 	wp_enqueue_style( 'media' );
+	wp_enqueue_style( 'dp-template' );
 	
 	echo template_editor_iframe('show_template_editor_html');
 	die();

@@ -197,6 +197,7 @@ wp_register_script( 'dp-jquery', "$wp_datapress_plugin_url/js/jquery-1.3.2.min.j
 wp_register_script( 'dp-jquery-ui', "$wp_datapress_plugin_url/js/jquery-ui-1.7.2.custom.min.js", array('dp-jquery') );
 wp_register_script( 'dp-mce', "$wp_datapress_plugin_url/tinymce/jquery.tinymce.js", array('dp-jquery') );
 
+
 wp_register_script( 'base64', "$wp_datapress_plugin_url/js/jquery.base64.js", array() );
 wp_register_script( 'configurator', "$wp_datapress_plugin_url/configurator/configurator.js.php");
 
@@ -214,6 +215,7 @@ function datapress_ScriptsAction() {
 
 wp_register_style( 'dp-configurator', "$wp_datapress_plugin_url/css/wpexhibit.css");
 wp_register_style( 'dp-jquery', "$wp_datapress_plugin_url/css/jquery-ui-1.7.2.custom.css");
+wp_register_style( 'dp-template', "$wp_datapress_plugin_url/css/template.css");
 
 include_once('facet_widget.php');
 
