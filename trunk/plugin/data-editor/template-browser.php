@@ -100,6 +100,7 @@ function show_datapress_template_browser() {
 	wp_enqueue_style( 'wp-admin' );
 	wp_enqueue_style( 'colors' );
 	wp_enqueue_style( 'media' );
+	wp_enqueue_style( 'dp-template' );
 	
 	echo template_browser_iframe('show_template_browser_html');
 	die();
