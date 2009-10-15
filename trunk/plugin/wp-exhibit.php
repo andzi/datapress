@@ -20,6 +20,7 @@ include_once('proxy/import-datafiles.php');
 include_once('configurator/exhibit-configurator.php');
 include_once('data-editor/template-browser.php');
 include_once('data-editor/template-editor.php');
+include_once('data-editor/save.php');
 
 class WpExhibit {
  	var $wp_version;
@@ -161,6 +162,7 @@ add_action('admin_menu', array($exhibit, 'add_options_page'));
 add_action('wp', array($exhibit, 'load_exhibit'));
 add_action('wp_ajax_insert_parrotable_url', array($exhibit, 'insert_parrotable_url') );
 add_action('wp_ajax_save_exhibit_configuration', array($exhibit, 'save_exhibit_configuration') );
+add_action('wp_ajax_save_data_template', 'save_data_template' );
 add_action('wp_ajax_datapress_configurator', 'show_datapress_configurator' );
 add_action('wp_ajax_template_picker', 'show_datapress_template_browser' );
 add_action('wp_ajax_template_editor', 'show_datapress_template_editor' );

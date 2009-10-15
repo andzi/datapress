@@ -1,16 +1,61 @@
 <?php
+include_once("default-templates.php");
+
 function show_template_editor_html() { 
+	global $DPTEMPLATES;
+	
 	if (!$guessurl = site_url())
 		$guessurl = wp_guess_url();
 	$baseuri = $guessurl;
 	$exhibituri = $baseuri . '/wp-content/plugins/datapress';
-?>
+	$identifier = $_GET["identifier"];
+	?>
 <div id="templateeditor">
-<h1>Template Editor</h1>
+<h1>Add a new <span id="template_name">Item</span></h1>
+
+<form id="template-editor-form" action="javascript:return false;">
+<table id="form_table">
+	
+</table>
+
+<input type="hidden" value="save_data_template" name="action" />
+<input id="save_btn" type="button" class="button savebutton" name="save" value="<?php echo attribute_escape( __( 'Save' ) ); ?>" />
+
+</form>
 </div>
 <script>	    
-</script>
-<?php 
+
+	function postTemplate(e) {
+		
+		jQuery.post("<?php bloginfo('wpurl'); ?>/wp-admin/admin-ajax.php",
+		            jQuery("#template-editor-form").serialize(),
+			        function(data) {
+						var win = window.dialogArguments || opener || parent || top;
+						win.save_data_and_exit();
+					});
+					
+	}
+	
+	jQuery(document).ready(function(){		    
+		jQuery('#save_btn').bind("click", postTemplate);
+	});
+
+function get_template() {
+    var datasource = "<?php echo $exhibituri ?>/data-editor/template-data.js.php?identifier=<?php echo $identifier ?>&jsoncallback=?";
+    jQuery.getJSON(datasource, function(data) {
+    	jQuery("#template_name").html(data.name);
+		// Build the form
+		for (var field in data.fields) {
+			var spec = data.fields[field];
+			jQuery("#form_table").append("<tr><th>" + spec.name + "</th><td><input name=\"" + spec.name + "\" /></td></tr>");
+		}		
+    });
+}
+
+	jQuery(function() {
+		get_template();
+    });
+</script><?php 
 }
 
 /**

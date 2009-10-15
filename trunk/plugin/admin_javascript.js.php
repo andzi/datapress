@@ -50,6 +50,11 @@ function add_exhibit_token_and_exit() {
 	tb_remove();
 }
 
+// send html to the post editor
+function save_data_and_exit() {
+	tb_remove();
+}
+
 
 EOF
 ?>
