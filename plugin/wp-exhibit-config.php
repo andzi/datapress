@@ -2,19 +2,23 @@
 
 class WpExhibitConfig {
     // datapress schema version
-    public static $DB_VERSION = "3";
+    public static $DB_VERSION = "4";
 
     // table keys
     public static $EXHIBITS_TABLE_KEY = "exhibits";
     public static $PARROTABLE_URLS_TABLE_KEY = "parrotable_urls";
     public static $EXHIBITS_ASSOC_TABLE_KEY = "posts_exhibits";
-	// Form prefixes
+    public static $DATASCRAPS_TABLE_KEY = "datascraps";
+    public static $DATASCRAPS_ASSOC_TABLE_KEY = "posts_datascraps";
+    
+    // Form prefixes
 	public static $DATA_FORM_PREFIX = "data";
 	public static $FACET_FORM_PREFIX = "facet";
 	public static $LENSE_FORM_PREFIX = "lens";
 	public static $VIEW_FORM_PREFIX = "view";	
 	public static $EXHIBIT_FORM_PREFIX = "exhibit";	
-    
+	public static $DATASCRAP_FORM_PREFIX = "dscrap";
+	
     // wp configuration keys
     public static $WP_EXHIBIT_DB_VERSION_KEY = "wp_exhibit_dbversion";
  

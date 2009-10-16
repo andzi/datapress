@@ -40,7 +40,29 @@ class WpExhibitActivationTools {
         self::setup_table(WpExhibitConfig::$EXHIBITS_TABLE_KEY,
                           $creation_sql);
     }
+    
+    static function setup_datascrap_table() {
+        $creation_sql = "  (
+            id INT NOT NULL AUTO_INCREMENT,
+            datascrap TEXT,
+            kind varchar(255),
+            PRIMARY KEY  (id)
+            )";
+        self::setup_table(WpExhibitConfig::$DATASCRAPS_TABLE_KEY,
+                          $creation_sql);
+    }
 
+    static function setup_post_datascraps_table() {
+        $creation_sql = "  (
+            postid INT,
+            datascrapid INT, 
+            INDEX (postid, datascrapid)
+            )";
+        self::setup_table(WpExhibitConfig::$DATASCRAPS_ASSOC_TABLE_KEY,
+                          $creation_sql);
+    }
+    
+    
     static function setup_post_exhibits_table() {
         $creation_sql = "  (
             postid INT,
