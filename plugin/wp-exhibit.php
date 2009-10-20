@@ -124,15 +124,15 @@ class WpExhibit {
   function make_exhibit_button() {
 	$ex = $this->get_current_exhibit_from_admin_page();
 	if ($ex == NULL) {
-		echo "Exhibit <a id='load_datapress_config_link' href='" . wp_guess_url() . "/wp-admin/admin-ajax.php?action=datapress_configurator&TB_iframe=true' id='add_exhibit' class='thickbox' title='Add an Exhibit'><img src='" . wp_guess_url() . "/wp-content/plugins/datapress/images/exhibit-small-RoyalBlue.png' alt='Add an Exhibit' /></a> &nbsp; &nbsp;<input type='hidden' id='exhibitid' name='exhibitid' value='' />";		
+		echo "Visualization <a id='load_datapress_config_link' href='" . wp_guess_url() . "/wp-admin/admin-ajax.php?action=datapress_configurator&TB_iframe=true' id='add_exhibit' class='thickbox' title='Add an Exhibit'><img src='" . wp_guess_url() . "/wp-content/plugins/datapress/images/exhibit-small-RoyalBlue.png' alt='Add an Exhibit' /></a> &nbsp; &nbsp;<input type='hidden' id='exhibitid' name='exhibitid' value='' />";		
 	}
 	else {
 		$ex_id = $ex->get('id');
-		echo "Exhibit <a id='load_datapress_config_link' href='" . wp_guess_url() . "/wp-admin/admin-ajax.php?action=datapress_configurator&exhibitid=$ex_id&TB_iframe=true' id='add_exhibit' class='thickbox' title='Add an Exhibit'><img src='" . wp_guess_url() . "/wp-content/plugins/datapress/images/exhibit-small-RoyalBlue.png' alt='Edit the Exhibit' /></a> &nbsp; &nbsp;<input type='hidden' id='exhibitid' name='exhibitid' value='$ex_id' />";				
+		echo "Visualization <a id='load_datapress_config_link' href='" . wp_guess_url() . "/wp-admin/admin-ajax.php?action=datapress_configurator&exhibitid=$ex_id&TB_iframe=true' id='add_exhibit' class='thickbox' title='Add an Exhibit'><img src='" . wp_guess_url() . "/wp-content/plugins/datapress/images/exhibit-small-RoyalBlue.png' alt='Edit the Exhibit' /></a> &nbsp; &nbsp;<input type='hidden' id='exhibitid' name='exhibitid' value='$ex_id' />";				
 	}
 	
 	// Show show the type adder
-    echo "Item <a id='load_data_template_editor' href='" . wp_guess_url() . "/wp-admin/admin-ajax.php?action=template_picker&TB_iframe=true' id='add_new_template' class='thickbox' title='Add a Data Item'><img src='" . wp_guess_url() . "/wp-content/plugins/datapress/images/exhibit-small-RoyalBlue.png' alt='Add some Data' /></a> &nbsp; &nbsp;";
+    echo "Data Item <a id='load_data_template_editor' href='" . wp_guess_url() . "/wp-admin/admin-ajax.php?action=template_picker&TB_iframe=true' id='add_new_template' class='thickbox' title='Add a Data Item'><img src='" . wp_guess_url() . "/wp-content/plugins/datapress/images/database_link.png' alt='Add some Data' /></a> &nbsp; &nbsp;";
     
         // Context menu for data editor, and location for changing url that is to
         // be clicked if someone wants to edit data.
