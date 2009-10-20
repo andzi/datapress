@@ -124,16 +124,23 @@ class WpExhibit {
   function make_exhibit_button() {
 	$ex = $this->get_current_exhibit_from_admin_page();
 	if ($ex == NULL) {
-		echo "Exhibit <a id='load_datapress_config_link' href='" . wp_guess_url() . "/wp-admin/admin-ajax.php?action=datapress_configurator&TB_iframe=true' id='add_exhibit' class='thickbox' title='Add an Exhibit'><img src='" . wp_guess_url() . "/wp-content/plugins/datapress/images/exhibit-small-RoyalBlue.png' alt='Add an Image' /></a> &nbsp; &nbsp;<input type='hidden' id='exhibitid' name='exhibitid' value='' />";		
+		echo "Exhibit <a id='load_datapress_config_link' href='" . wp_guess_url() . "/wp-admin/admin-ajax.php?action=datapress_configurator&TB_iframe=true' id='add_exhibit' class='thickbox' title='Add an Exhibit'><img src='" . wp_guess_url() . "/wp-content/plugins/datapress/images/exhibit-small-RoyalBlue.png' alt='Add an Exhibit' /></a> &nbsp; &nbsp;<input type='hidden' id='exhibitid' name='exhibitid' value='' />";		
 	}
 	else {
 		$ex_id = $ex->get('id');
-		echo "Exhibit <a id='load_datapress_config_link' href='" . wp_guess_url() . "/wp-admin/admin-ajax.php?action=datapress_configurator&exhibitid=$ex_id&TB_iframe=true' id='add_exhibit' class='thickbox' title='Add an Exhibit'><img src='" . wp_guess_url() . "/wp-content/plugins/datapress/images/exhibit-small-RoyalBlue.png' alt='Add an Image' /></a> &nbsp; &nbsp;<input type='hidden' id='exhibitid' name='exhibitid' value='$ex_id' />";				
+		echo "Exhibit <a id='load_datapress_config_link' href='" . wp_guess_url() . "/wp-admin/admin-ajax.php?action=datapress_configurator&exhibitid=$ex_id&TB_iframe=true' id='add_exhibit' class='thickbox' title='Add an Exhibit'><img src='" . wp_guess_url() . "/wp-content/plugins/datapress/images/exhibit-small-RoyalBlue.png' alt='Edit the Exhibit' /></a> &nbsp; &nbsp;<input type='hidden' id='exhibitid' name='exhibitid' value='$ex_id' />";				
 	}
 	
 	// Show show the type adder
-    echo "Item <a id='load_data_template_editor' href='" . wp_guess_url() . "/wp-admin/admin-ajax.php?action=template_picker&TB_iframe=true' id='add_new_template' class='thickbox' title='Add a Data Item'><img src='" . wp_guess_url() . "/wp-content/plugins/datapress/images/exhibit-small-RoyalBlue.png' alt='Add an Image' /></a> &nbsp; &nbsp;";     
-
+    echo "Item <a id='load_data_template_editor' href='" . wp_guess_url() . "/wp-admin/admin-ajax.php?action=template_picker&TB_iframe=true' id='add_new_template' class='thickbox' title='Add a Data Item'><img src='" . wp_guess_url() . "/wp-content/plugins/datapress/images/exhibit-small-RoyalBlue.png' alt='Add some Data' /></a> &nbsp; &nbsp;";
+    
+        // Context menu for data editor
+        echo '<div class="contextMenu" id="dataEditMenu">
+          <ul>
+            <li id="edit">Edit Data</li>
+            <li id="delete">Delete</li>
+          </ul>
+        </div>';
     }
 
 	function insert_exhibit($content) {
@@ -145,6 +152,15 @@ class WpExhibit {
 			return $content;
 		}
 	}
+
+    // Add tinymce plugin for editing data
+    function tinymce_editdata_plugin($plugin_array) {
+        $plugin_array['dpeditdata'] = wp_guess_url() . "/wp-content/plugins/datapress/js/tinymce_editdata_plugin.js";
+         return $plugin_array;
+    }
+    function tinymce_plugin_css($css) {
+        return $css . "," . wp_guess_url() . "/wp-content/plugins/datapress/css/tinymce_editdata_plugin.css";
+    }
 }
 
 $exhibit = new WpExhibit();
@@ -172,8 +188,9 @@ add_filter('the_content', array($exhibit, 'insert_exhibit'));
 add_action('edit_page_form', array($exhibit, 'edit_page_inclusions'));
 add_action('edit_form_advanced', array($exhibit, 'edit_page_inclusions'));
 add_action('admin_notices', array($exhibit, 'privacy_notice'));
-
 add_filter('save_post', array($exhibit, 'save_post'), 10, 2);
+add_filter("mce_external_plugins", array($exhibit, 'tinymce_editdata_plugin'));
+add_filter("mce_css", array($exhibit, "tinymce_plugin_css"));
 
 register_activation_hook(__FILE__, array($exhibit, 'activate_plugin'));
 register_deactivation_hook(__FILE__, array($exhibit, 'deactivate_plugin'));
