@@ -50,11 +50,42 @@ function add_exhibit_token_and_exit() {
 	tb_remove();
 }
 
-// send html to the post editor
-function save_data_and_exit() {
+// Add dataset marker to the current editing location in the editor
+function add_dataset_token_and_exit(dbid) {
+    length = jQuery.fn.contextMenu.displayfuncs ? jQuery.fn.contextMenu.displayfuncs.length : 0;
+    button_text = "<span class='dp_editdata' dbid='" + dbid + "' displayid='" + length + "'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>";;
+	var h = button_text;
+	var searchfor = button_text;
+	
+	if ( typeof tinyMCE != 'undefined' && ( ed = tinyMCE.activeEditor ) && !ed.isHidden() ) {
+		ed.focus();
+		if (ed.getContent().indexOf(searchfor) == -1) {
+			if (tinymce.isIE)
+				ed.selection.moveToBookmark(tinymce.EditorManager.activeEditor.windowManager.bookmark);
+			ed.execCommand('mceInsertContent', false, h);			
+		}
+	} else if ( typeof edInsertContent == 'function' ) {
+		if ((typeof edCanvas.value != 'undefined') && (edCanvas.value.indexOf(searchfor) == -1)) {
+			edInsertContent(edCanvas, h);
+		}
+	} else {
+		if (jQuery(edCanvas).val().indexOf(searchfor) == -1) {
+			jQuery( edCanvas ).val( jQuery( edCanvas ).val() + h );			
+		}
+	}
+	
 	tb_remove();
+
+    jQuery(".dp_editdata[dbid=" + dbid + "]").contextMenu('dataEditMenu', {
+      bindings: {
+        'edit': function(t) {
+          alert('Trigger was ' + dbid + 'Action was Edit Data');
+        },
+        'delete': function(t) {
+            jQuery(".dp_editdata[dbid=" + dbid + "]").remove();
+        },
+      }
+    });
 }
-
-
 EOF
 ?>
