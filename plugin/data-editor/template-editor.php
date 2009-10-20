@@ -9,6 +9,7 @@ function show_template_editor_html() {
 	$baseuri = $guessurl;
 	$exhibituri = $baseuri . '/wp-content/plugins/datapress';
 	$identifier = $_GET["identifier"];
+	$repository = $_GET["repository"];
 	?>
 <div id="templateeditor">
 <h1>Add a new <span id="template_name">Item</span></h1>
@@ -41,7 +42,18 @@ function show_template_editor_html() {
 	});
 
 function get_template() {
-    var datasource = "<?php echo $exhibituri ?>/data-editor/template-data.js.php?identifier=<?php echo $identifier ?>&jsoncallback=?";
+<?php 
+	if ($repository == "wibbit") {
+?>
+var datasource = "http://projects.csail.mit.edu/wibit/wiki/index.php?title=Special:GetTemplate/<?php echo $identifier ?>&callback=?";
+<?php 
+}
+else {
+?>
+var datasource = "<?php echo $exhibituri ?>/data-editor/template-data.js.php?identifier=<?php echo $identifier ?>&jsoncallback=?";
+<?php 
+}
+?>
     jQuery.getJSON(datasource, function(data) {
     	jQuery("#template_name").html(data.name);
 		// Build the form
