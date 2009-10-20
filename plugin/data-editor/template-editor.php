@@ -31,7 +31,7 @@ function show_template_editor_html() {
 		            jQuery("#template-editor-form").serialize(),
 			        function(data) {
 						var win = window.dialogArguments || opener || parent || top;
-						win.add_dataset_token_and_exit('dbid');
+						win.add_dataset_token_and_exit(data);
 					});
 					
 	}
