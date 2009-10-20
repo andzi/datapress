@@ -134,12 +134,14 @@ class WpExhibit {
 	// Show show the type adder
     echo "Item <a id='load_data_template_editor' href='" . wp_guess_url() . "/wp-admin/admin-ajax.php?action=template_picker&TB_iframe=true' id='add_new_template' class='thickbox' title='Add a Data Item'><img src='" . wp_guess_url() . "/wp-content/plugins/datapress/images/exhibit-small-RoyalBlue.png' alt='Add some Data' /></a> &nbsp; &nbsp;";
     
-        // Context menu for data editor
+        // Context menu for data editor, and location for changing url that is to
+        // be clicked if someone wants to edit data.
         echo '<div class="contextMenu" id="dataEditMenu">
           <ul>
             <li id="edit">Edit Data</li>
             <li id="delete">Delete</li>
           </ul>
+          <span id="dpEditDataLinkContainer"></span>
         </div>';
     }
 

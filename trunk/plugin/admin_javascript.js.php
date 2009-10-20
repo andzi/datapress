@@ -52,24 +52,24 @@ function add_exhibit_token_and_exit() {
 
 // Add dataset marker to the current editing location in the editor
 function add_dataset_token_and_exit(dbid) {
-    length = jQuery.fn.contextMenu.displayfuncs ? jQuery.fn.contextMenu.displayfuncs.length : 0;
-    button_text = "<span class='dp_editdata' dbid='" + dbid + "' displayid='" + length + "'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>";;
-	var h = button_text;
-	var searchfor = button_text;
+    var length = jQuery.fn.contextMenu.displayfuncs ? jQuery.fn.contextMenu.displayfuncs.length : 0;
+    var spanopen = "<span class='dp_editdata' dbid='" + dbid + "' displayid='" + length + "'>";
+	var h = spanopen + "&nbsp;</span>";
+	var searchfor = spanopen + "\\s+</span>";
 	
 	if ( typeof tinyMCE != 'undefined' && ( ed = tinyMCE.activeEditor ) && !ed.isHidden() ) {
 		ed.focus();
-		if (ed.getContent().indexOf(searchfor) == -1) {
+		if (ed.getContent().search(searchfor) == -1) {
 			if (tinymce.isIE)
 				ed.selection.moveToBookmark(tinymce.EditorManager.activeEditor.windowManager.bookmark);
-			ed.execCommand('mceInsertContent', false, h);			
+			ed.execCommand('mceInsertContent', false, h);
 		}
 	} else if ( typeof edInsertContent == 'function' ) {
-		if ((typeof edCanvas.value != 'undefined') && (edCanvas.value.indexOf(searchfor) == -1)) {
+		if ((typeof edCanvas.value != 'undefined') && (edCanvas.value.search(searchfor) == -1)) {
 			edInsertContent(edCanvas, h);
 		}
 	} else {
-		if (jQuery(edCanvas).val().indexOf(searchfor) == -1) {
+		if (jQuery(edCanvas).val().search(searchfor) == -1) {
 			jQuery( edCanvas ).val( jQuery( edCanvas ).val() + h );			
 		}
 	}
@@ -79,10 +79,12 @@ function add_dataset_token_and_exit(dbid) {
     jQuery(".dp_editdata[dbid=" + dbid + "]").contextMenu('dataEditMenu', {
       bindings: {
         'edit': function(t) {
-          alert('Trigger was ' + dbid + 'Action was Edit Data');
+          jQuery("span#dpEditDataLinkContainer").html("<a href=\"$baseuri/wp-admin/admin-ajax.php?identifier=" + dbid + "&action=template_editor&TB_iframe=true&width=640&height=673\" id=\"dpEditDataLink\" class=\"thickbox\">test</a>");
+          tb_init('a#dpEditDataLink')
+          jQuery("a#dpEditDataLink").click();
         },
         'delete': function(t) {
-            jQuery(".dp_editdata[dbid=" + dbid + "]").remove();
+            tinyMCE.activeEditor.execCommand('mceRemoveNode', false, null);
         },
       }
     });
