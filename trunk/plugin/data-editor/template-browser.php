@@ -24,22 +24,28 @@ function show_template_browser_html() {
 <script>	    
 
 function show_source() {
-    var name = jQuery("#template_source_select").val();
-    var datasource = "<?php echo $exhibituri ?>/data-editor/default-templates.js.php?jsoncallback=?";
-    
+	var name = jQuery("#template_source_select").val();
+	var datasource = "<?php echo $exhibituri ?>/data-editor/default-templates.js.php?jsoncallback=?";
+	var repository = "local";
+	    
     if (name == "smw") {
-    // Do something
-    }
+		datasource = "http://projects.csail.mit.edu/wibit/wiki/index.php?title=Special:JSONTemplates&callback=?";		
+		repository = "wibbit";	
+	}
     jQuery.getJSON(datasource, function(data) {
         jQuery("#templates").html("");
         for (var i=0; i<data.length; i++) {
-            jQuery("#templates").append("<li><a href=\"<?php echo wp_guess_url() ?>/wp-admin/admin-ajax.php?identifier=" + data[i].identifier + "&action=template_editor&TB_iframe=true&width=640&height=673\">" + data[i].name + "</a></li>");
+        	jQuery("#templates").append("<li><a href=\"<?php echo wp_guess_url() ?>/wp-admin/admin-ajax.php?repository=" + repository + "&identifier=" + data[i].identifier + "&action=template_editor&TB_iframe=true&width=640&height=673\">" + data[i].name + "</a></li>");        
         }
     });
 }
 
 	jQuery(function() {
         show_source();
+        jQuery("#template_source_select").change(function () {
+			show_source();
+        });
+          
     });
 </script>
 <?php 
