@@ -7,7 +7,7 @@
     $overlaystring = "";
     foreach ($exhibits_to_show as $exhibit) {
         $exhibitid = $exhibit->get('id');
-        $linkstring .= "$('a.exhibit_link_$exhibitid').fancybox({ 'frameWidth': $(window).width()*.9, 'frameHeight': $(window).height()*.9 });\n";
+        $linkstring .= "$('a.exhibit_link_$exhibitid').fancybox({ 'padding':0, frameWidth': $(window).width()*.9, 'frameHeight': $(window).height()*.9 });\n";
         $overlaystring .= "cover = $('div[id=cover_$exhibitid]');\n";
         $overlaystring .= "teaser = $('div[id=teaser_$exhibitid]');\n";
         $overlaystring .= "teaserpos = teaser.position();\n";
