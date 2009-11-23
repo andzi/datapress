@@ -11,7 +11,18 @@ if (count($exhibits_to_show) == 1) {
         <script src="http://api.simile-widgets.org/exhibit/2.2.0/extensions/time/time-extension.js" type="text/javascript"></script>
         <script src="http://api.simile-widgets.org/exhibit/2.2.0/extensions/chart/chart-extension.js" type="text/javascript"></script>
         <link rel="stylesheet" type="text/css" href="<?php echo $plugin_dir ?>/exhibit.css" />
-                
+
+        <?php
+        // Insert lense decoration css files for each lens decoration
+        foreach ($exhibits_to_show[0]->get('lenses') as $lens) {
+            if ($lens->get('decoration') != 'none') {
+                ?>
+                <link rel="stylesheet" type="text/css" href="<?php echo $plugin_dir ?>/css/<?php echo $lens->get('decoration') ?>.css" />
+                <?php
+            }
+        }
+        ?>
+
         <?php 
         if ($google_map_api_key != null) { 
             ?><script src="http://api.simile-widgets.org/exhibit/2.2.0/extensions/map/map-extension.js?gmapkey=<?php echo $google_map_api_key ?>"></script><?php
