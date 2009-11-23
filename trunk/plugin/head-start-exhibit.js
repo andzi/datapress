@@ -24,7 +24,7 @@ SimileAjax.jQuery(document).ready(function() {
 function onDataLoaded() { 
     window.exhibit = Exhibit.create();
     createCollections();
-    window.exhibit.configureFromDOM(); 
+    window.exhibit.configureFromDOM();
 };
 
 function createCollections() {

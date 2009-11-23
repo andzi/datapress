@@ -6,6 +6,7 @@ class WpExhibitLens extends WpExhibitModel {
 		'klass'  => NULL,
 		'class'  => NULL,
 		'html' => NULL,
+        'decoration' => NULL,
 		'exhibitid' => NULL,
 	);
 	
@@ -38,10 +39,30 @@ class WpExhibitLens extends WpExhibitModel {
 		$klass = $this->get('klass');
 		$html = $this->get('html');
 		$massaged_html = $this->massage_html($html);
-		$ret = "<div ex:role=\"lens\" itemTypes=\"$klass\" style=\"display: none;\">$massaged_html</div>";
+		$ret = "<div ex:role=\"lens\" itemTypes=\"$klass\" style=\"display: none;\">
+           <div class=\"dp-lenswrapper\">
+             <div class=\"t\">
+             <div class=\"b\">
+             <div class=\"r\">
+             <div class=\"l\">
+             <div class=\"bl\">
+             <div class=\"br\">
+             <div class=\"tl\">
+             <div class=\"tr\">
+             $massaged_html
+             </div>
+             </div>
+             </div>
+             </div>
+             </div>
+             </div>
+             </div>
+             </div>
+            </div>
+        </div>";
 		return $ret;
 	}
-	
+
 	function massage_html($html) {
 	    // Replace images
 		$image_pattern = "~{{image ([^\}]*)}}~";

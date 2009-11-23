@@ -6,7 +6,7 @@ class WpPostExhibit {
 	protected $dbfields = array(
 	    'id' => NULL,
     	'exhibit_config' => NULL,
-	    'version' => 1,
+	    'version' => 2,
 	);
 	
 	// Use null for non-list strings
@@ -14,10 +14,10 @@ class WpPostExhibit {
 	protected $exhibitfields = array(
 	    'lightbox' => NULL,
    	    'height' => NULL,
-   	    'lenses' => NULL,
-  	    'views' => NULL,
-  	    'facets' => NULL,
-  	    'datasources' => NULL,
+   	    'lenses' => NULL, // instantiated in constructor
+  	    'views' => NULL, // instantiated in constructor
+  	    'facets' => NULL, // instantiated in constructor
+  	    'datasources' => NULL, // instantiated in constructor
 		'css' => NULL,
 		'custom_html' => NULL
 	);
@@ -56,9 +56,21 @@ class WpPostExhibit {
 		return "Exhibit #" . $this->getId();
 	}
 	
-	function afterDbLoad() {
-	   $this->dbfields['exhibit_config'] = base64_decode($this->dbfields['exhibit_config']);
-	   $this->constructedexhibit = self::build_from_json($this->dbfields['exhibit_config'], $this->exhibitfields);	  
+	// On JSON schema upgrade, edit this function, and update the version
+    // variable
+    function afterDbLoad() {
+        $this->dbfields['exhibit_config'] = base64_decode($this->dbfields['exhibit_config']);
+        $this->constructedexhibit = self::build_from_json($this->dbfields['exhibit_config'], $this->exhibitfields);
+        // version 1 -> version 2 upgrade: add a 'decoration' field on all
+        // lenses.
+        if ($this->get('version') == 1) {
+           $this->set('version', 2);
+           foreach ($this->get('lenses') as $lens) {
+               if ($lens->get('decoration') == NULL) {
+                   $lens->set('decoration', 'none');
+               }
+           }
+        }
 	}
 	
 	function getFields() {

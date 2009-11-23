@@ -1,5 +1,4 @@
 <?php
-
 abstract class WpExhibitModel {
 	protected $fields = array(); /* This should be overridden by the child class */	
 	abstract function getTableName();
@@ -12,7 +11,7 @@ abstract class WpExhibitModel {
 		
 		if (isset($opts['formid'])) {
 			$formid = $opts['formid'];
-			WpExhibitModel::loadFromForm($this, $formid);		
+			WpExhibitModel::loadFromForm($this, $formid);	
 		}
 	}
 

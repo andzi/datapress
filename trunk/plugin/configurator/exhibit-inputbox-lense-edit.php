@@ -6,12 +6,21 @@
 	</table>
 	<textarea id='exhibit-lenses-edit-html' class='' style="height: 300px; width: 100%;" ></textarea>
 <table width="100%">
-	<tr>
-		<td><p align="left">Available Properties: <select id="lense-prop-possibilities" class="allpropbox"></select>
+	<tr colspan="2">
+		<td align="left">Available Properties: <select id="lense-prop-possibilities" class="allpropbox"></select>
 		        <a href="#" class="addlink" onClick="appendToLens('{{.' + jQuery('#lense-prop-possibilities').val() + '}}'); return false;">Add as Text</a>
 		        <a href="#" class="addlink" onClick="appendToLens('{{image .' + jQuery('#lense-prop-possibilities').val() + '}}'); return false;">Add as Image</a>
-		</p></td>
-		<td><p align="right"><a href="#" class="addlink" onclick="submit_lens(); return false">Save Lens</a></p></td>
+		</td>
+    </tr>
+    <tr>
+        <td align="left">
+            Lens Decoration:
+            <select id="exhibit-lenses-edit-decoration">
+                <option value="none">None</option>
+                <option value="simple-orange">Simple Orange Border</option>
+            </select>
+        </td>
+        <td align="right"><a href="#" class="addlink" onclick="submit_lens(); return false">Save Lens</a></td>
 	</tr>
 </table>
 
@@ -61,7 +70,8 @@
 function submit_lens() {
 		// var win = window.dialogArguments || opener || parent || top;
         var klass = jQuery('#exhibit-lenses-edit-klass').val();
-        var html = jQuery('#exhibit-lenses-edit-html').val(); // win.tinyMCE.getInstanceById('lens-text').getContent(); // 
+        var html = jQuery('#exhibit-lenses-edit-html').val(); // win.tinyMCE.getInstanceById('lens-text').getContent(); //
+        var decoration = jQuery('#exhibit-lenses-edit-decoration').val()
         var kind = 'lens';
         
         editinfo = {
@@ -76,7 +86,8 @@ function submit_lens() {
                 {
                         kind: kind,
                         'klass': klass,
-                        html: html 
+                        html: html,
+                        decoration: decoration
                 },
                 editinfo);        
 }
