@@ -59,7 +59,7 @@ var datasource = "<?php echo $exhibituri ?>/data-editor/template-data.js.php?ide
 		// Build the form
 		for (var field in data.fields) {
 			var spec = data.fields[field];
-			jQuery("#form_table").append("<tr><th>" + spec.name + "</th><td><input name=\"" + spec.name + "\" /></td></tr>");
+			jQuery("#form_table").append("<tr><th>" + spec.name + "</th><td><input style='width: 300px'	 name=\"" + spec.name + "\" /></td></tr>");
 		}		
     });
 }
