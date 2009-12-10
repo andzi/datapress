@@ -20,6 +20,7 @@ class WpExhibitView extends WpExhibitModel {
 		'xScale' => NULL,
 		'color' => NULL,
 		'sortby' => NULL,
+		'decoration' => NULL,
 		'proxy' => NULL,
 		'icon' => NULL,
 		'bubblewidth' => NULL,
@@ -79,8 +80,8 @@ class WpExhibitView extends WpExhibitModel {
 
 		if ($kind == "view-tile") {
 			// Todo: add the actual date and time stuff
-			
-			return "<div ex:role=\"exhibit-view\" ex:viewClass=\"Exhibit.TileView\" $collection_insert ex:label=\"$label\"></div>";
+			$bulletstyle = $this->get('decoration');
+			return "<div class=\"$bulletstyle\" ex:role=\"exhibit-view\" ex:viewClass=\"Exhibit.TileView\" $collection_insert ex:label=\"$label\"></div>";
 		}		
 		
 		if ($kind == "view-timeline") {

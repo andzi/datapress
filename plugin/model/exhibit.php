@@ -6,7 +6,7 @@ class WpPostExhibit {
 	protected $dbfields = array(
 	    'id' => NULL,
     	'exhibit_config' => NULL,
-	    'version' => 2,
+	    'version' => 3,
 	);
 	
 	// Use null for non-list strings
@@ -71,6 +71,19 @@ class WpPostExhibit {
                }
            }
         }
+		
+		// To version 3
+		if ($this->get('version') == 2) {
+			$this->set('version', 3);
+           foreach ($this->get('views') as $view) {
+			   if ($view->get('kind') == 'view-tile') {
+	               if ($view->get('decoration') == NULL) {
+	                   $view->set('decoration', 'none');
+	               }				
+			   }
+           }			
+		}
+
 	}
 	
 	function getFields() {

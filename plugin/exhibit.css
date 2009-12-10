@@ -237,3 +237,19 @@ div.itemThumbnail-blocker {
     left:       0px; 
     z-index:    1000;
 }
+
+div.numbered ol {
+    list-style-type: decimal;
+}
+
+div.bulleted ol {
+    list-style-type: circle;
+}
+
+div.squared ol {
+    list-style-type: square;
+}
+
+div.none li {
+    list-style-type: none;
+}

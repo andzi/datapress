@@ -113,7 +113,7 @@ class WpExhibitHtmlBuilder {
 	
             $exhibit_html = "
                 $lens_html
-                <table width=\"100%\">
+                <table class=\"dpcontainer\" width=\"100%\">
                     <tr>
                         <td colspan='3'>
                             $top_facet_html

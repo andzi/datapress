@@ -17,7 +17,9 @@
             Lens Decoration:
             <select id="exhibit-lenses-edit-decoration">
                 <option value="none">None</option>
-                <option value="simple-orange">Simple Orange Border</option>
+                <option value="simple-box">Grey Box</option>
+                <option value="simple-orange">Rounded Orange Border</option>
+
             </select>
         </td>
         <td align="right"><a href="#" class="addlink" onclick="submit_lens(); return false">Save Lens</a></td>
