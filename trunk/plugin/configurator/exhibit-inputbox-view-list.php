@@ -4,7 +4,18 @@
 <table>
 	<tr>
 		<td><i>Visualization Title</i></td>
-		<td><br /><input id="exhibit-views-list-label" type="text" size="30" /></td>
+		<td><input id="exhibit-views-list-label" type="text" size="30" /></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td><i>List Type</i></td>
+		<td><select id="exhibit-views-list-decoration">
+            <option value="numbered">Numbered List</option>
+            <option value="bulleted">Bullet Points</option>
+            <option value="squared">Square Bullet Points</option>
+            <option value="none">No Decoration</option>
+		</select>	
+		</td>
 		<td></td>
 	</tr>
 	<tr>
@@ -27,12 +38,14 @@ function submit_view_list_facet() {
 	var label = jQuery('#exhibit-views-list-label').val();
 	var kind = 'view-tile';
 	var sortby = jQuery('#exhibit-views-list-sortby').val();
+	var decoration = jQuery('#exhibit-views-list-decoration').val()
 	var klass = jQuery('#view-list-klass').val();
 	// var extra_attributes = jQuery('#view-list-extra-attributes').val();
 	
 	var params = 	{
 			kind: kind,
-			label: label
+			label: label,
+			decoration: decoration
 	};
 	
 	if (sortby != null) {
