@@ -7,9 +7,9 @@ if (count($exhibits_to_show) == 1) {
         $plugin_dir = trailingslashit( get_bloginfo('wpurl') ).PLUGINDIR.'/datapress';    
 
         ?>
-        <script src="http://api.simile-widgets.org/exhibit/2.2.0/exhibit-api.js?autoCreate=false" type="text/javascript"></script> 
-        <script src="http://api.simile-widgets.org/exhibit/2.2.0/extensions/time/time-extension.js" type="text/javascript"></script>
-        <script src="http://api.simile-widgets.org/exhibit/2.2.0/extensions/chart/chart-extension.js" type="text/javascript"></script>
+        <script src="http://projects.csail.mit.edu/datapress/exhibit-files/exhibit-api/exhibit-api.js?autoCreate=false" type="text/javascript"></script> 
+        <script src="http://projects.csail.mit.edu/datapress/exhibit-files/exhibit-api/extensions/time/time-extension.js" type="text/javascript"></script>
+        <script src="http://projects.csail.mit.edu/datapress/exhibit-files/exhibit-api/extensions/chart/chart-extension.js" type="text/javascript"></script>
         <link rel="stylesheet" type="text/css" href="<?php echo $plugin_dir ?>/exhibit.css" />
 
         <?php
@@ -25,7 +25,7 @@ if (count($exhibits_to_show) == 1) {
 
         <?php 
         if ($google_map_api_key != null) { 
-            ?><script src="http://api.simile-widgets.org/exhibit/2.2.0/extensions/map/map-extension.js?gmapkey=<?php echo $google_map_api_key ?>"></script><?php
+            ?><script src="http://projects.csail.mit.edu/datapress/exhibit-files/exhibit-api/extensions/map/map-extension.js?gmapkey=<?php echo $google_map_api_key ?>"></script><?php
         }
         
         $css = $exhibits_to_show[0]->get('css');
