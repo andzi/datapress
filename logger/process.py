@@ -22,7 +22,7 @@ for line in f:
         k = secs[0]
         if doHeaders:
             headers.append(k)
-        v = base64.b64decode(secs[1])
+				v = base64.b64decode(secs[1])
         row.append(v)
     doHeaders = False
     data.append(row)
