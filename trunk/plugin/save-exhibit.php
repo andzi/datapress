@@ -53,7 +53,20 @@ class SaveExhibitConfiguration {
 	        $ex_next_view = new WpExhibitView(array('formid'=>$formId));
             array_push($views, $ex_next_view);
         }
+	/*
+	Add tile view if no other views are present.
+	if(count($views) == 0) {
+		$list_view = new WpExhibitView();
+		$list_view->set('kind', 'view-tile');
+		$list_view->set('label', 'List');
+		if(count($datasources) > 0) {
+			$title = $datasources[0]->get('sourcename');	
+			$list_view->set('label', $title);
+		}
+
+	}*/
         $ex_exhibit->set('views', $views);
+
 
         // Save exhibit-level configuration options
         $lightbox = (WpExhibitModel::findFormObjectValue('display-configuration-lightbox') == 'show-lightbox');
