@@ -18,6 +18,18 @@ $exhibituri = $baseuri . '/wp-content/plugins/datapress';
 
 print <<<EOF
 
+function guess_type(input) {
+	var siteUrl = location.hostname;
+	var jsonRegEx = RegExp("https?:\/\/(w{3}.)?("  + siteUrl + "|.+)\..+\.js(on)?");
+	if(input.match(/https?:\/\/.+\.google.com.+/)) {
+		return "google-spreadsheet";
+	} else if(match = jsonRegEx.exec(input)) {
+		return "application/json";
+	}
+	return "exhibit";
+}
+
+
 function set_post_exhibit(exhibit_id) {
 	var datapress_link = jQuery('#load_datapress_config_link');
 	datapress_link[0].href = '$baseuri/wp-admin/admin-ajax.php?action=datapress_configurator&exhibitid=' + exhibit_id + '&TB_iframe=true';	
