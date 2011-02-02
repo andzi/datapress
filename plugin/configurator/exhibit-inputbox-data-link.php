@@ -10,7 +10,7 @@ $exhibituri = $baseuri . '/wp-content/plugins/datapress';
 		<td>URL</td>
 		<td><input id="exhibit-datasource-link-uri" type="text" size="30" /></td>
 	</tr>
-	<tr>
+	<!--<tr>
 		<td>Type</td>
 		<td><p>
 		    <select id="exhibit-datasource-link-kind">
@@ -20,7 +20,7 @@ $exhibituri = $baseuri . '/wp-content/plugins/datapress';
 		    </select>
 		    <a href="#" onclick="popup('http://projects.csail.mit.edu/datapress/contacthelp/importing-data/importing-data/'); return false;"><img align="middle" src="<?php echo $exhibituri ?>/images/help.png" width="20" height="20" /></a>
 		</p></td>
-	</tr>
+	</tr>-->
 	<tr>
     	<td>Name</td>
 		<td><input id="exhibit-datasource-link-sourcename" type="text" size="30" /></td>
@@ -66,7 +66,9 @@ $exhibituri = $baseuri . '/wp-content/plugins/datapress';
   function submit_data_link() {
 
 	var uri = jQuery('#exhibit-datasource-link-uri').val();
-	var kind = jQuery('#exhibit-datasource-link-kind').val();
+
+	var kind = guess_type(uri);
+	//var kind = jQuery('#exhibit-datasource-link-kind').val();
     var sourcename = jQuery('#exhibit-datasource-link-sourcename').val();
         
 	jQuery(function() {
