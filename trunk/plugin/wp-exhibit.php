@@ -20,6 +20,7 @@ include_once('proxy/import-datafiles.php');
 include_once('configurator/exhibit-configurator.php');
 include_once('data-editor/template-browser.php');
 include_once('data-editor/template-editor.php');
+include_once('wp-exhibit-geocoder.php');
 include_once('data-editor/save.php');
 
 class WpExhibit {
