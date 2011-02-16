@@ -10,6 +10,7 @@ class WpExhibitConfig {
     public static $EXHIBITS_ASSOC_TABLE_KEY = "posts_exhibits";
     public static $DATASCRAPS_TABLE_KEY = "datascraps";
     public static $DATASCRAPS_ASSOC_TABLE_KEY = "posts_datascraps";
+	public static $GEOCODE_TABLE_KEY = "dp_geocode";
     
     // Form prefixes
 	public static $DATA_FORM_PREFIX = "data";
