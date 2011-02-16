@@ -5,6 +5,7 @@ class WpExhibitActivationTools {
         self::setup_exhibits_table();
         self::setup_parrotable_urls_table();
         self::setup_post_exhibits_table();
+        self::setup_geocode_table();
     
         if (get_option(WpExhibitConfig::$WP_EXHIBIT_DB_VERSION_KEY)) {
             update_option(WpExhibitConfig::$WP_EXHIBIT_DB_VERSION_KEY,
@@ -50,6 +51,20 @@ class WpExhibitActivationTools {
             )";
         self::setup_table(WpExhibitConfig::$DATASCRAPS_TABLE_KEY,
                           $creation_sql);
+    }
+    
+    static function setup_geocode_table() {
+        $creation_sql = " (
+            id INT NOT NULL AUTO_INCREMENT,
+            exhibit_id INT NOT NULL DEFAULT 0,
+            datum_id varchar(255),
+            address TEXT,
+            lat FLOAT,
+            lng FLOAT,
+            PRIMARY KEY (id)
+        )
+        ";
+        self::setup_table(WpExhibitConfig::$GEOCODE_TABLE_KEY, $creation_sql);
     }
 
     static function setup_post_datascraps_table() {
