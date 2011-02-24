@@ -85,6 +85,9 @@ class SaveExhibitConfiguration {
         if ($custom_html) {
 	        $ex_exhibit->set('custom_html', $custom_html);				
         }
+        else {
+            $ex_exhibit->set('custom_html', NULL);
+        }
         $ex_exhibit->save();
         echo $ex_exhibit->get('id');
     }
