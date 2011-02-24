@@ -32,7 +32,11 @@
 			<td><select id="exhibit-views-maps-icon" class="allpropbox"></select></td>
 			<td>(Optional)</td>
 		</tr>
-	</table>
+	    <tr>
+            <td><i>Extra Attributes (Advanced)</i></td>
+            <td><input id="exhibit-views-maps-extra-attributes" type="text" size="60" /></td>
+        </tr>   
+     </table>
 <!--	
 <p><i>What field (if any) varies the size of the marker?</i><br /><select id="view-map-coderfield" class="allpropbox"></select></p> 
 NOTE: Currently disabled. You have to put the coder definition OUTSIDE the view panel for it to work. Then we can add this back in.
@@ -48,8 +52,8 @@ function submit_view_map_facet() {
 	var field = jQuery('#exhibit-views-maps-field').val();
 	var coderfield = jQuery('#exhibit-views-maps-coderfield').val();
 	var locationtype = jQuery('#exhibit-views-maps-fieldtype').val();
-	// var extra_attributes = jQuery('#view-map-extra-attributes').val();
-	var icon = jQuery('#exhibit-views-maps-icon').val();
+    var extra_attributes = jQuery('#exhibit-views-maps-extra-attributes').val();
+    var icon = jQuery('#exhibit-views-maps-icon').val();
 	var bw = jQuery('#exhibit-views-maps-bubblewidth').val();
 	var bh = jQuery('#exhibit-views-maps-bubbleheight').val();
 	var mw = jQuery('#exhibit-views-maps-markerwidth').val();
@@ -68,9 +72,9 @@ function submit_view_map_facet() {
 		locationtype: locationtype
 	};
 	
-	// if (extra_attributes != null) {
-	// 	params['extra_attributes'] = extra_attributes;
-	// }
+	if (extra_attributes != null) {
+	 	params['extra_attributes'] = extra_attributes;
+    }
 	if (icon != null) {
 		params['icon'] = icon;
 	}

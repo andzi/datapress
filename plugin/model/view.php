@@ -26,7 +26,10 @@ class WpExhibitView extends WpExhibitModel {
 		'bubblewidth' => NULL,
 		'bubbleheight' => NULL,		
 		'markerwidth' => NULL,
-		'markerheight' => NULL,		
+        'markerheight' => NULL,
+        'height' => NULL,
+        'topBandUnit' => NULL,
+        'bottomBandUnit' => NULL,        
 		'extra_attributes' => NULL
 	);
 	
@@ -64,8 +67,22 @@ class WpExhibitView extends WpExhibitModel {
 	function getLinkCaption() {
 		return $this->getShortKind() . ": " . $this->get('label');
 	}	
-	
-	function htmlContent() {
+    
+    function propString($prop, $value, $default) {
+      if ($value == NULL) {
+          if ($default == NULL) {
+              return "";
+          }
+          else {
+              return " " . $prop . "=\"" . $default . "\" ";
+          }
+      }
+      else {
+          return " " . $prop . "=\"" . $value . "\" ";
+      }
+    }
+
+    function htmlContent() {
 		$kind = $this->get('kind');
 		$label = $this->get('label');
 		
@@ -81,7 +98,13 @@ class WpExhibitView extends WpExhibitModel {
 		if ($kind == "view-tile") {
 			// Todo: add the actual date and time stuff
 			$bulletstyle = $this->get('decoration');
-			return "<div class=\"$bulletstyle\" ex:role=\"exhibit-view\" ex:viewClass=\"Exhibit.TileView\" $collection_insert ex:label=\"$label\"></div>";
+            $inner = "";
+
+            if ($this->get('extra_attributes') != NULL) {
+                $inner .= " " . $this->get('extra_attributes') . " ";
+            }
+ 
+            return "<div class=\"$bulletstyle\" ex:role=\"exhibit-view\" ex:viewClass=\"Exhibit.TileView\" $collection_insert $inner ex:label=\"$label\"></div>";
 		}		
 		
 		if ($kind == "view-timeline") {
@@ -92,9 +115,16 @@ class WpExhibitView extends WpExhibitModel {
 			$inner = "";
 			if ($proxy != NULL) {
 				$inner .= " ex:proxy='.$proxy' ";
-			}
-						
-			$ret =  "<div ex:role=\"view\" ex:viewClass=\"Timeline\" $collection_insert ex:bubbleWidth='320' ex:topBandPixelsPerUnit='400' $inner ex:timelineHeight='170' ex:label=\"$label\" ex:start=\".$start\"";
+            }
+            
+            $inner .= $this->propString("ex:timelineHeight", $this->get('height'), "170");
+            $inner .= $this->propString("ex:topBandUnit", $this->get('topBandUnit'), NULL);
+            $inner .= $this->propString("ex:bottomBandUnit", $this->get('bottomBandUnit'), NULL);
+            if ($this->get('extra_attributes') != NULL) {
+                $inner .= " " . $this->get('extra_attributes') . " ";
+            }
+           
+            $ret =  "<div ex:role=\"view\" ex:viewClass=\"Timeline\" $collection_insert ex:bubbleWidth='320' ex:topBandPixelsPerUnit='400' $inner ex:label=\"$label\" ex:start=\".$start\"";
 			if ($this->get('end') != null) {
 				$end = $this->get('end');
 				$ret = $ret . " ex:end=\".$end\"";
@@ -123,7 +153,11 @@ class WpExhibitView extends WpExhibitModel {
 			if ($proxy != NULL) {
 				$inner .= " ex:proxy='.$proxy' ";
 			}
-
+            
+            if ($this->get('extra_attributes') != NULL) {
+                $inner .= " " . $this->get('extra_attributes') . " ";
+            }
+ 
 			// NOTE: There is currently no nocderfeld thing being put in here.
 			$ret = "<div ex:role='view' ex:viewClass='Map' ex:label='$label' $collection_insert ex:latlng='.$field' ex:bubbleWidth='$bw' ex:bubbleHeight='$bh' ex:shapeWidth='$mw' ex:shapeHeight='$mh' $inner ></div>";   
 			return $ret;
@@ -132,9 +166,15 @@ class WpExhibitView extends WpExhibitModel {
 			$columns = $this->get('field');
 			$columnlabels = $this->get('caption');
 			$klass = $this->get('klass');
-			
+
+            $inner = "";
+
+            if ($this->get('extra_attributes') != NULL) {
+                $inner .= " " . $this->get('extra_attributes') . " ";
+            }
+ 
 			// Todo: add the actual location stuff
-			$ret = "<div ex:role=\"view\" ex:viewClass=\"Exhibit.TabularView\" $collection_insert ex:label=\"$label\" ex:columns=\"$columns\" ex:columnLabels=\"$columnlabels\">";
+			$ret = "<div ex:role=\"view\" ex:viewClass=\"Exhibit.TabularView\" $collection_insert $inner ex:label=\"$label\" ex:columns=\"$columns\" ex:columnLabels=\"$columnlabels\">";
 			$ret .= "<table style=\"display: none;\"><tr>";			
 			$columns_arr = explode(",", $columns);
 			foreach($columns_arr as $column) {
@@ -148,8 +188,13 @@ class WpExhibitView extends WpExhibitModel {
 			$field_x = $this->get("xField");
 			$field_y = $this->get("yField");
 			$field_xLabel = $this->get("xLabel");
-			$field_yLabel = $this->get("yLabel");
-			$ret =  "<div ex:role=\"view\" ex:viewClass=\"Exhibit.ScatterPlotView\" $collection_insert ex:label=\"$label\" ex:x=\".$field_x\" ex:y=\".$field_y\" ex:xLabel=\"$field_xLabel\" ex:yLabel=\"$field_yLabel\"";
+            $field_yLabel = $this->get("yLabel");
+            $inner = "";
+            if ($this->get('extra_attributes') != NULL) {
+                $inner .= " " . $this->get('extra_attributes') . " ";
+            }
+ 
+			$ret =  "<div ex:role=\"view\" ex:viewClass=\"Exhibit.ScatterPlotView\" $collection_insert $inner ex:label=\"$label\" ex:x=\".$field_x\" ex:y=\".$field_y\" ex:xLabel=\"$field_xLabel\" ex:yLabel=\"$field_yLabel\"";
 			$ret = $ret . "></div>";        
 			return $ret;
 		}		      
@@ -158,8 +203,13 @@ class WpExhibitView extends WpExhibitModel {
 			$field_x = $this->get("xField");
 			$field_y = $this->get("yField");
 			$field_xLabel = $this->get("xLabel");
-			$field_yLabel = $this->get("yLabel");
-			$ret =  "<div ex:role=\"view\" ex:viewClass=\"Exhibit.BarChartView\" $collection_insert ex:label=\"$label\" ex:x=\".$field_x\" ex:y=\".$field_y\" ex:xLabel=\"$field_xLabel\" ex:yLabel=\"$field_yLabel\"";
+            $field_yLabel = $this->get("yLabel");
+            $inner = "";
+            if ($this->get('extra_attributes') != NULL) {
+                $inner .= " " . $this->get('extra_attributes') . " ";
+            }
+ 
+			$ret =  "<div ex:role=\"view\" ex:viewClass=\"Exhibit.BarChartView\" $collection_insert $inner ex:label=\"$label\" ex:x=\".$field_x\" ex:y=\".$field_y\" ex:xLabel=\"$field_xLabel\" ex:yLabel=\"$field_yLabel\"";
 			$ret = $ret . "></div>";        
 			return $ret;
 		}		      

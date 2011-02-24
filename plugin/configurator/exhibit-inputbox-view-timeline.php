@@ -21,17 +21,37 @@
 			<td><select id="exhibit-views-timeline-color" class="allpropbox"></select></td>
 			<td>(Optional)</td>
 		</tr>
-		<tr>
-			<td><i>Proxy (advanced)</i></td>
-			<td><select id="exhibit-views-timeline-proxy" class="allpropbox"></select></td>
-			<td>(Optional)</td>
-		</tr>
-		<tr>
+        <tr>
+            <td><i>Timeline Height</i></td>
+            <td><input id="exhibit-views-timeline-height" type="text" value="170" /></td>
+        </tr>
+        <tr>
+            <td><i>Top Band Unit</i></td>
+            <td><select id="exhibit-views-timeline-topBandUnit">
+                 <option value="year">Year</option><option value="month">Month</option><option value="week">Week</option><option value="day">Day</option>
+                 </select></td>
+        </tr>
+        <tr>
+            <td><i>Bottom Band Unit</i></td>
+            <td><select id="exhibit-views-timeline-bottomBandUnit">
+                <option value="year">Year</option><option value="month">Month</option><option value="week">Week</option><option value="day">Day</option>
+            </select></td>
+        </tr>
+ 		<tr>
 			<td><i>Only show items of type</i></td>
 			<td><select id="view-timeline-klass" class="alltypebox"></select></td>
 			<td>(Optional)</td>
 		</tr>
-	</table>
+        <tr>
+			<td><i>Proxy (advanced)</i></td>
+			<td><select id="exhibit-views-timeline-proxy" class="allpropbox"></select></td>
+			<td>(Optional)</td>
+		</tr>
+       <tr>
+            <td><i>Extra Attributes (Advanced)</i></td>
+            <td><input id="exhibit-views-timeline-extra-attributes" type="text" size="60" /></td>
+        </tr>    
+</table>
 <br />
 <p align="right"><a href="#" class="addlink" onclick="submit_view_timeline_facet(); return false">Add Timeline</a></p>
 
@@ -46,13 +66,18 @@ function submit_view_timeline_facet() {
 	var color = jQuery('#exhibit-views-timeline-color').val();
 	var proxy = jQuery('#exhibit-views-timeline-proxy').val();
 	var klass = jQuery('#view-timeline-klass').val();
-	
-	// var extra_attributes = jQuery('#view-timeline-extra-attributes').val();
+    var height = jQuery('#exhibit-views-timeline-height').val();
+    var topUnit = jQuery('#exhibit-views-timeline-topBandUnit').val();
+    var bottomUnit = jQuery('#exhibit-views-timeline-bottomBandUnit').val();    
+	var extra_attributes = jQuery('#exhibit-views-timeline-extra-attributes').val();
 	
 	var params = {
 		kind: kind,
 		label: label,
-		field : start
+        field : start,
+        height : height,
+        topBandUnit : topUnit,
+        bottomBandUnit : bottomUnit
 	};
 	
 	if (end != null) {
@@ -63,10 +88,11 @@ function submit_view_timeline_facet() {
 	}
 	if (color != null) {
 		params['color'] = color;
-	}
-	// if (extra_attributes != null) {
-	// 	params['extra_attributes'] = extra_attributes;
-	// }	
+    }
+    
+    if (extra_attributes != null) {
+	    params['extra_attributes'] = extra_attributes;
+	}	
 	if (proxy != null) {
 		params['proxy'] = proxy;		
 	}
