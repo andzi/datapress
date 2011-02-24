@@ -30,8 +30,9 @@ class WpExhibitView extends WpExhibitModel {
         'height' => NULL,
         'topBandUnit' => NULL,
         'bottomBandUnit' => NULL,        
-		'extra_attributes' => NULL
-	);
+		'extra_attributes' => NULL,
+        'ungrouped' => NULL 
+    );
 	
 	function WpExhibitView($opts = NULL) {
 		parent::WpExhibitModel($opts);		

@@ -66,18 +66,40 @@ class WpExhibitHtmlBuilder {
                
         // add views
         $view_html = "";
+
+        if ($currentView == 'preview') {
+          foreach ($exhibit->get('views') as $view) {
+             $view_html .= $view->htmlContent();
+             return "$tracker_html $view_html"; 
+          }
+        
+        }
+        else {
+
+        $grouped_html = "";
+
         foreach ($exhibit->get('views') as $view) {
-            $view_html = $view_html . $view->htmlContent();
-            $view_html = $view_html . "\n";
-            if ($currentView == 'preview') {
-                break;
+            if ($view->get('ungrouped') == NULL) {
+                $grouped_html .= "\n" . $view->htmlContent();
             }
-		}
+        }
+        $printedGroup = 0;
+        foreach ($exhibit->get('views') as $view) {
+            if (($view->get('ungrouped') == NULL) && (0 == $printedGroup)) {
+                $view_html .= "<div ex:role=\"viewPanel\">$grouped_html</div>";
+                $printedGroup = 1;
+            }
+            else {
+              //$view_html .= "\n" . $view->htmlContent();
+            }
+        }
+
+        }
 	    
         if ($view_html == "") {
             $view_html = "<div ex:role=\"view\"></div>";
         }
-        
+       //  ex:role=\"viewPanel\"> 
         return "$tracker_html $view_html";
 	}
 
@@ -127,7 +149,7 @@ class WpExhibitHtmlBuilder {
                     </tr>
                     <tr valign=\"top\">
                         $left_facet_html
-                        <td colspan='$exhibit_colspan' ex:role=\"viewPanel\">$view_html</td>
+                        <td colspan='$exhibit_colspan'>$view_html</td>
                         $right_facet_html
                     </tr>
                     <tr>

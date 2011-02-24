@@ -42,7 +42,7 @@ function addExhibitElementLink(listId, caption, prefix, fields, editinfo, alread
 	next_id++;
 	var liid = listId + "_" + next_id;
 	var opStr = "";
-	opStr = opStr + "<li id='" + liid + "'>" + caption + " ";
+	opStr = opStr + "<li class=\"ui-state-default\" id='" + liid + "'><span style=\"float:left;\" class=\"ui-icon ui-icon-arrowthick-2-n-s\"></span>" + caption + " ";
 	SimileAjax.jQuery.each(fields, function(key, value) {
         var field_name = prefix + "_" + next_id + "_" + key;
         if (alreadyBase64Encoded) {
@@ -58,7 +58,7 @@ function addExhibitElementLink(listId, caption, prefix, fields, editinfo, alread
 	if ((editinfo != undefined) && (editinfo.editable)) {
 		opStr = opStr + "[ <a href='#' onclick='editExhibitElementLink(\"" + editinfo.tabid + "\", \"" + liid + "\"); return false;'>edit</a> ]";
     }
-	opStr = opStr + "</li>";
+	opStr = opStr + "</li><script>jQuery(\"#" + liid + "\").parent().sortable();</script>";
 	SimileAjax.jQuery('#' + listId).append(opStr);
 	return removeID(liid);
 }
