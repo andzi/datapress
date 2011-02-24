@@ -111,7 +111,13 @@ class WpExhibitHtmlBuilder {
                 $right_facet_html = "<td width=\"15%\"> $right_facet_html </td>";
             }
 	
+            $custom_html = "";
+            if ($exhibit->get('custom_html') != NULL) {
+                $custom_html .= $exhibit->get('custom_html');
+            }
+
             $exhibit_html = "
+                $custom_html
                 $lens_html
                 <table class=\"dpcontainer\" width=\"100%\">
                     <tr>

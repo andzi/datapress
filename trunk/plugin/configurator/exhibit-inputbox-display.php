@@ -19,7 +19,10 @@
 		}
 		if ($exhibitConfig->get('height', true) != NULL) {
 			$height = $exhibitConfig->get('height');
-		}
+        }
+        if ($exhibitConfig->get('custom_html') != NULL) {
+            $custom_html = $exhibitConfig->get('custom_html');
+        }
 	}
 ?>
 
@@ -38,6 +41,13 @@
 		<td><i>Attach custom CSS<br /> (provide URL)</i></td> 
 		<td><input style="width: 300px;" name="display-configuration-css" id="display-configuration-css" value="<?php echo $css ?>" /></td>
 	</tr>
+    <tr>
+        <td><i>Custom HTML</i></td>
+        <td>This will be inserted into the Exhibit configuration<br />
+        <textarea name="display-configuration-custom-html" id="display-configuration-custom-html" rows="10" cols="40"><?php echo $custom_html ?></textarea>
+        </td>
+
+
 </table>	
 </div>
 
