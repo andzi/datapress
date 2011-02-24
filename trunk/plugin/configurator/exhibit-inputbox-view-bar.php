@@ -12,7 +12,13 @@
 			<td><select id="view-bar-klass" class="alltypebox"></select></td>
 			<td>(Optional)</td>
 		</tr>
-	</table>
+
+       <tr>
+            <td><i>Extra Attributes (Advanced)</i></td>
+            <td><input id="exhibit-views-bar-extra-attributes" type="text" size="60" /></td>
+        </tr>    
+
+    </table>
 	<br />
 	<p align="right"><a href="#" class="addlink" onclick="submit_view_bar_facet(); return false">Add Bar Chart</a></p>
 
@@ -26,7 +32,7 @@ function submit_view_bar_facet() {
 		var xLabel = jQuery('#exhibit-views-bar-xLabel').val();
 		var yLabel = jQuery('#exhibit-views-bar-yLabel').val();
 		var klass = jQuery('#view-bar-klass').val();
-		// var extra_attributes = jQuery('#view-bar-extra-attributes').val();
+		var extra_attributes = jQuery('#exhibit-views-bar-extra-attributes').val();
 
 		var params = 	{
 			kind: kind,
@@ -37,9 +43,9 @@ function submit_view_bar_facet() {
 			label: label
 		};
 		
-		// if (extra_attributes != null) {
-		// 	params['extra_attributes'] = extra_attributes;
-		// }
+		if (extra_attributes != null) {
+			params['extra_attributes'] = extra_attributes;
+		}
 
 		if (klass != null) {
 			params['klass'] = klass;

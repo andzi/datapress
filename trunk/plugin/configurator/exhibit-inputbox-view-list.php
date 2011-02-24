@@ -28,6 +28,14 @@
 		<td><select id="exhibit-views-list-sortby" class="allpropbox"></select></td>
 		<td>(Optional)</td>
 	</tr>
+
+        <tr>
+            <td><i>Extra Attributes (Advanced)</i></td>
+            <td><input id="exhibit-views-list-extra-attributes" type="text" size="60" /></td>
+        </tr>    
+
+
+
 </table>
 <br />
 <p align="right"><a href="#" class="addlink" onclick="submit_view_list_facet(); return false">Add List</a></p>
@@ -40,7 +48,7 @@ function submit_view_list_facet() {
 	var sortby = jQuery('#exhibit-views-list-sortby').val();
 	var decoration = jQuery('#exhibit-views-list-decoration').val()
 	var klass = jQuery('#view-list-klass').val();
-	// var extra_attributes = jQuery('#view-list-extra-attributes').val();
+	var extra_attributes = jQuery('#exhibit-views-list-extra-attributes').val();
 	
 	var params = 	{
 			kind: kind,
@@ -55,9 +63,9 @@ function submit_view_list_facet() {
 		params['klass'] = klass;
 	}
 
-	// if (extra_attributes != null) {
-	// 	params['extra_attributes'] = extra_attributes;
-	// }
+	if (extra_attributes != null) {
+		params['extra_attributes'] = extra_attributes;
+	}
 	
 	editinfo = {
             editable: true,
