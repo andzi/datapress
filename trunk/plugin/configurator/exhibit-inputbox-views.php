@@ -1,4 +1,8 @@
 <div class="outer-tabs-panel-header">
+<script>
+  jQuery("#views-list").sortable();
+</script>
+
 <div class="current">
 <ul id="views-list">
 </ul>

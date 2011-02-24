@@ -137,6 +137,8 @@ if ( 0 === strpos( $content_func, 'media' ) ) {
 	wp_enqueue_style( 'media' );
 }
 
+wp_enqueue_style("dp-jquery");
+
 do_action('admin_print_styles');
 do_action('admin_print_scripts');
 do_action('admin_head');
