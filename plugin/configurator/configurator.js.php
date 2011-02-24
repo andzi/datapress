@@ -110,7 +110,7 @@ function editExhibitElementLink(tabid, liid) {
       })
       .end();
     tab_parent_id = tabid.substr(0, tabid.lastIndexOf("-")) + "-tabs";
-    jQuery("#" + tab_parent_id + "> ul").tabs('select', "#" + tabid);
+    jQuery("#" + tab_parent_id).tabs('select', "#" + tabid);
     removeExhibitElementLink(liid);
 }
 
