@@ -49,7 +49,7 @@
 		</tr>
        <tr>
             <td><i>Extra Attributes (Advanced)</i></td>
-            <td><input id="exhibit-views-timeline-extra-attributes" type="text" size="60" /></td>
+            <td><input id="exhibit-views-timeline-extra-attributes" type="text" size="40" /></td>
         </tr>    
 </table>
 <br />

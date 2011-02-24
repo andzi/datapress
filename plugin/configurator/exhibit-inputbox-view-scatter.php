@@ -33,7 +33,7 @@
 
        <tr>
             <td><i>Extra Attributes (Advanced)</i></td>
-            <td><input id="exhibit-views-scatter-extra-attributes" type="text" size="60" /></td>
+            <td><input id="exhibit-views-scatter-extra-attributes" type="text" size="40" /></td>
         </tr>    
 
 
