@@ -69,7 +69,7 @@ function scrape_google_spreadsheet($url, $type, $contents) {
 		}	
 	}
 	if (count($linkdatas) == 0) {
-	    array_push($warnings, "Datapress could find parse the provided URL as a Google Spreadsheet. Are you sure this is the publicly-shared sheet URL?");
+	    array_push($warnings, "Datapress could not parse the provided URL as a Google Spreadsheet. Are you sure this is the publicly-shared sheet URL?");
 	}
 	send_back($linkdatas, $errors, $warnings);
     
