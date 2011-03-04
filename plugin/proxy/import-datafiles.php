@@ -58,8 +58,14 @@ function scrape_google_spreadsheet($url, $type, $contents) {
             $title=$titlematch[1];
 			$type="google-spreadsheet";
 			
-			// Fix the href
-			$href .= "?alt=json-in-script";        
+         // Fix the href
+         if (strpos($href, "?") === false) {
+           $href .= "?";
+         } else {
+           $href .= "&";
+         }
+         $href .= "alt=json-in-script";
+
 			
 			$linkdata = array();
 			$linkdata["href"] = $href;
