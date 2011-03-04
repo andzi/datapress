@@ -8,7 +8,7 @@ $exhibituri = $baseuri . '/wp-content/plugins/datapress';
 <table>
 	<tr>
 		<td>URL</td>
-		<td><input id="exhibit-datasource-link-uri" type="text" size="30" /></td>
+		<td><input id="exhibit-datasource-link-uri" type="text" size="30" />[<a href="http://projects.csail.mit.edu/datapress/help/importing-data/" target="_blank">URLs for different data sources</a>]</td>
 	</tr>
 	<!--<tr>
 		<td>Type</td>
