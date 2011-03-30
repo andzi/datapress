@@ -28,8 +28,8 @@ else {
  */
 if (isset($lightboxed_exhibit) && ($lightboxed_exhibit != NULL)) {
     // Weire inside the lightbox
-	include('head-datasources.php');
-	include('head-exhibit.php');
+    	include('head-exhibit.php');
+    	include('head-datasources.php');
 }
 else {
     // We're not inside the lightbox

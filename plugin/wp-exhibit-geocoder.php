@@ -27,6 +27,15 @@ class WpExhibitGeocoder {
 	}
 	return false;
     }
+    
+    static function getGeocodedFieldsForExhibit($exhibit_id) {
+    	global $wpdb;
+    	$table = WpExhibitConfig::table_name(WpExhibitConfig::$GEOCODE_TABLE_KEY);
+    	$query = "SELECT DISTINCT addressField FROM $table WHERE exhibit_id = %d";
+    	$query = $wpdb->prepare($query, $exhibit_id);
+    	return $wpdb->get_col($query);
+    }
+    
     //look up the lat and lng for a given exhibit, data set, and address.
     //If not found, geocode and store in table
     static function lookup($exhibit_id, $address_field, $datum_id, $address) {
