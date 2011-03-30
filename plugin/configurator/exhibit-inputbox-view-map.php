@@ -8,7 +8,7 @@
 		<tr>
 			<td><i>Location field</i></td>
 			<td><select id="exhibit-views-maps-field" class="allpropbox"></select> contains a 
-				<select id="exhibit-views-maps-fieldtype"><option selected value="latlng">Lat,Lng</select>
+				<select id="exhibit-views-maps-locationtype"><option selected value="latlng">Lat,Lng</option><option value="address">Address</option></select>
 			</td>
 			<td></td>
 		</tr>	
@@ -45,13 +45,13 @@ NOTE: Currently disabled. You have to put the coder definition OUTSIDE the view 
 	<p align="right"><a href="#" class="addlink" onclick="submit_view_map_facet(); return false">Add Map</a></p>
 
 <script type="text/JavaScript">
-
+var geocodeFields = Array();
 function submit_view_map_facet() {
 	var label = jQuery('#exhibit-views-maps-label').val();
 	var kind = 'view-map';
 	var field = jQuery('#exhibit-views-maps-field').val();
 	var coderfield = jQuery('#exhibit-views-maps-coderfield').val();
-	var locationtype = jQuery('#exhibit-views-maps-fieldtype').val();
+	var locationtype = jQuery('#exhibit-views-maps-locationtype').val();
     var extra_attributes = jQuery('#exhibit-views-maps-extra-attributes').val();
     var icon = jQuery('#exhibit-views-maps-icon').val();
 	var bw = jQuery('#exhibit-views-maps-bubblewidth').val();
@@ -71,7 +71,6 @@ function submit_view_map_facet() {
 		coderfield: coderfield,
 		locationtype: locationtype
 	};
-	
 	if (extra_attributes != null) {
 	 	params['extra_attributes'] = extra_attributes;
     }
@@ -87,6 +86,11 @@ function submit_view_map_facet() {
             editable: true,
             tabid: "exhibit-views-maps"
     };
+    	//if the user selected "address", then geocode
+    	if(locationtype == 'address') {
+		geocodeFields.push(field);
+	}
+	
 
 	addExhibitElementLink("views-list", "Map: " + label, 'view', params, editinfo);
 

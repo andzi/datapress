@@ -1,5 +1,6 @@
 <?php
 require_once('wp-exhibit-config.php');
+require('wp-exhibit-geocoder.php');
 
 class SaveExhibitPost {
     function save($ex_post_id) {
@@ -21,8 +22,6 @@ class SaveExhibitPost {
                 // There was an association. Upate it
                 $assoc = $wpdb->query("UPDATE $table SET postid = $ex_post_id, exhibitid = $ex_exhibit_id WHERE postid = $ex_post_id ;", ARRAY_A);
             }
-            
-            
             
             
             // $ex_exhibit = new WpPostExhibit();

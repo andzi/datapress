@@ -86,15 +86,14 @@ class WpExhibitView extends WpExhibitModel {
     function htmlContent() {
 		$kind = $this->get('kind');
 		$label = $this->get('label');
-		
 		$klass = $this->get('klass');
 		$collection_insert = '';
-		if ($klass != NULL) {
+		/*if ($klass != NULL) {
 			$collection_insert = "ex:collectionID='collection_$klass'";
 		}
 		else {
 			$collection_insert = "ex:collectionID='auto_union'";
-		}
+		}*/
 
 		if ($kind == "view-tile") {
 			// Todo: add the actual date and time stuff
@@ -158,7 +157,10 @@ class WpExhibitView extends WpExhibitModel {
             if ($this->get('extra_attributes') != NULL) {
                 $inner .= " " . $this->get('extra_attributes') . " ";
             }
- 
+	    	//This case will handle if we are using geocoded data.
+			if($locationtype == 'address') {
+				$field = $field . '_generatedLatLng';	
+			} 
 			// NOTE: There is currently no nocderfeld thing being put in here.
 			$ret = "<div ex:role='view' ex:viewClass='Map' ex:label='$label' $collection_insert ex:latlng='.$field' ex:bubbleWidth='$bw' ex:bubbleHeight='$bh' ex:shapeWidth='$mw' ex:shapeHeight='$mh' $inner ></div>";   
 			return $ret;

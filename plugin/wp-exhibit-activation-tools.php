@@ -61,6 +61,7 @@ class WpExhibitActivationTools {
             address TEXT,
             lat FLOAT,
             lng FLOAT,
+	    addressField varchar(255),
             PRIMARY KEY (id)
         )
         ";
