@@ -68,7 +68,6 @@ function show_datapress_html() {
     	});
 		jQuery(document).ready(function(){		    
 			function postExhibit(e) {
-				debugger;
 				var paste_exhibit = false;
 				var paste_footnotes = false;
 				
