@@ -34,7 +34,7 @@ if (count($exhibits_to_show) == 1) {
     	}
     	
     	echo('<script type="text/javascript">');
-    	include('head-start-exhibit.js');    
+    	include('head-start-exhibit.js.php');    
     	echo('</script>');
     }
 }
