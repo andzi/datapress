@@ -68,6 +68,7 @@ function show_datapress_html() {
     	});
 		jQuery(document).ready(function(){		    
 			function postExhibit(e) {
+				debugger;
 				var paste_exhibit = false;
 				var paste_footnotes = false;
 				
@@ -78,14 +79,36 @@ function show_datapress_html() {
 					paste_exhibit = true;
 					paste_footnotes = true;
 				}
+
 				jQuery.post("<?php bloginfo('wpurl'); ?>/wp-admin/admin-ajax.php",
 				            jQuery("#exhibit-config-form").serialize(),
 					        function(data) {
+								if(geocodeFields.length != 0) {
+									for(key in geocodeFields) {
+										var itemProps = getItemProps(geocodeFields[key]);
+										//these are the arrays to post to wp-exhibit-geocode.php
+										var addresses = Array();
+										var datumIds = Array();
+										var i = 0;
+										for(key2 in itemProps) {
+											addresses[i] = itemProps[key2];
+											datumIds[i] = key2;
+											i++;
+										}
+										try {
+										jQuery.post(<? echo("'$exhibituri/wp-exhibit-geocode.php'"); ?>,
+										{'exhibitid': data, 'datumids[]': datumIds, 'addresses[]': addresses, 'addressField': geocodeFields[key]});
+										} catch(e) {
+											console.log(e);
+										}
+									}
+								}
 								var win = window.dialogArguments || opener || parent || top;
 								win.set_post_exhibit(data);
 								win.add_exhibit_token_and_exit();
+
 							});
-							
+
 			}
 			
 			jQuery('#save_btn').bind("click", postExhibit);
@@ -99,9 +122,29 @@ function show_datapress_html() {
 			});
 			remove_callbacks = new Array();
 			db = Exhibit.Database.create();
-			
+				
 			ex_load_links();
 		});
+
+		//print item properties (for debugging)
+		function printItemProps(propertyName) {
+			var props = getItemProps(propertyName);
+			for(key in props) {
+				alert(key + "->" + props[key]);
+			}
+		}
+
+		function getItemProps(propertyName) {
+			var ret = new Array();
+			var items = db.getAllItems();
+			items.visit(function(item) {
+				var obj = db.getObject(item, propertyName);
+				if(obj != null) {
+					ret[item] = obj;
+				}
+			});
+			return ret;
+		}
 	</script>
 <?php 
 }
@@ -119,6 +162,7 @@ function show_datapress_html() {
  * @param unknown_type $content_func
  */
 function datapress_iframe($content_func /* ... */) {
+	
 	if (!$guessurl = site_url())
 		$guessurl = wp_guess_url();
 	$baseuri = $guessurl;

@@ -142,7 +142,6 @@ function ex_data_types_changed(e, arr) {
 	for (var key in props) {
 		prop_choice = prop_choice + "<option value='" + key + "'>" + key + "</option>";
 	}	
-
 	SimileAjax.jQuery('.alltypebox').html(type_choice);		
 	SimileAjax.jQuery('.allpropbox').html(prop_choice);
 }
@@ -151,5 +150,6 @@ function ex_load_links() {
     db = Exhibit.Database.create();
 	db.loadDataLinks(ex_data_types_changed);		
 }
+
 EOF
 ?>
