@@ -40,6 +40,12 @@ class WpExhibitGeocoder {
 	    }
 	    else {
 		try {
+		    // Delete any old address for <ExhibitID, AddressField, DatumID, *>
+		    $deleteSQL = "DELETE FROM $table WHERE exhibit_id = %d AND addressField = %s AND datum_id = %s;";
+		    echo $deleteSQL;
+		    $deleteQuery = $wpdb->prepare($deleteSQL, $exhibit_id, $address_field, $datum_id);
+		    $wpdb->query($deleteQuery);
+		    
 			$geo_results = json_decode(WpExhibitGeocoder::geocode($address), true);
 			$latlng = $geo_results['results'][0]['geometry']['location'];
 			if($latlng['lat'] == 0 && $latlng['lng'] == 0)
