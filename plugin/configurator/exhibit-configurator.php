@@ -114,6 +114,7 @@ function show_datapress_html() {
 			jQuery('#save_btn').bind("click", postExhibit);
 			jQuery('#save_insert_btn').bind("click", postExhibit);
 			jQuery('#save_insert_footnotes_btn').bind("click", postExhibit);
+			
 			jQuery('#ex-tabs').tabs({
                 select: function(event, ui) {
                     alert('selected');

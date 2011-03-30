@@ -134,6 +134,8 @@ class WpExhibitView extends WpExhibitModel {
 		}
 		else if ($kind == "view-map") {		
 			// Todo: add the actual location stuff
+			
+			
 			$field = $this->get('field');
 			$locationtype = $this->get('locationtype');
 			$where = "ex:latlng='.$field'";

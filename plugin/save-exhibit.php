@@ -66,6 +66,7 @@ class SaveExhibitConfiguration {
 
 	}*/
         $ex_exhibit->set('views', $views);
+        
 
 
         // Save exhibit-level configuration options

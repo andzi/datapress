@@ -125,8 +125,7 @@ function appendToLens(myValue) {
 	// win.tinyMCE.execInstanceCommand("exhibit-lenses-edit-html", "mceInsertContent",true,myValue);
 }
 
-function ex_data_types_changed(e, arr) {
-	// Get all types
+function ex_data_types_changed(e, arr) {	
 	var types = db._types;
 	var props = db._properties;
 	var type_choice = "<option selected value=''> - </option>";

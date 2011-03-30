@@ -41,24 +41,18 @@ class WpExhibitLens extends WpExhibitModel {
 		$massaged_html = $this->massage_html($html);
 		$ret = "<div ex:role=\"lens\" itemTypes=\"$klass\" style=\"display: none;\">
            <div class=\"dp-lenswrapper\">
-             <div class=\"t\">
-             <div class=\"b\">
-             <div class=\"r\">
-             <div class=\"l\">
-             <div class=\"bl\">
-             <div class=\"br\">
-             <div class=\"tl\">
-             <div class=\"tr\">
-             $massaged_html
-             </div>
-             </div>
-             </div>
-             </div>
-             </div>
-             </div>
-             </div>
-             </div>
-            </div>
+             <div class=\"tl\"></div>
+             <div class=\"t\"></div>
+             <div class=\"tr\"></div>
+
+             <div class=\"l\"></div>
+             <div class=\"center\">$massaged_html</div>
+             <div class=\"r\"></div>
+
+             <div class=\"bl\"></div>
+             <div class=\"b\"></div>
+             <div class=\"br\"></div>
+			</div>
         </div>";
 		return $ret;
 	}
