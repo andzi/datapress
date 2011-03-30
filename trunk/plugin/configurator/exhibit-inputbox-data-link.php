@@ -8,7 +8,7 @@ $exhibituri = $baseuri . '/wp-content/plugins/datapress';
 <table>
 	<tr>
 		<td>URL</td>
-		<td><input id="exhibit-datasource-link-uri" type="text" size="30" />[<a href="http://projects.csail.mit.edu/datapress/help/importing-data/" target="_blank">URLs for different data sources</a>]</td>
+		<td><input id="exhibit-datasource-link-uri" type="text" size="30" />&nbsp; &nbsp; [ <a href="http://projects.csail.mit.edu/datapress/help/importing-data/" target="_blank">help with data importing</a> ]</td>
 	</tr>
 	<!--<tr>
 		<td>Type</td>
@@ -26,9 +26,26 @@ $exhibituri = $baseuri . '/wp-content/plugins/datapress';
 		<td><input id="exhibit-datasource-link-sourcename" type="text" size="30" /></td>
 	</tr>
 </table>
-<p align="right"><a href="#" class="addlink" onclick="submit_data_link(); return false">Add Data Link</a></p>
+<p align="right">
+<!-- <a id="#upload_button" href="#" class="addlink">Upload File</a> -->
+<a href="#" class="addlink" onclick="submit_data_link(); return false">Add Data Link</a></p>
 
 <script type="text/JavaScript">
+
+    jQuery(document).ready(function() {
+        jQuery('#upload_button').click(function() {
+         formfield = jQuery('#exhibit-datasource-link-uri').attr('name');
+         tb_show('', 'media-upload.php?type=image&amp;TB_iframe=true');
+         return false;
+        });
+
+        window.send_to_editor = function(html) {
+         imgurl = jQuery('img',html).attr('src');
+         jQuery('#exhibit-datasource-link-uri').val(imgurl);
+         tb_remove();
+        }
+   });
+
   function kind_for(kind) {
   	if (kind == "google-spreadsheet") {
 		return "Google Spreadsheet";

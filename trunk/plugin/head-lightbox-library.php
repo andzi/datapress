@@ -1,8 +1,9 @@
 <?php
 	if (!$guessurl = site_url())
     	$guessurl = wp_guess_url();
-    $baseuri = $guessurl;
-    $exhibituri = $baseuri . '/wp-content/plugins/datapress';
+        $baseuri = $guessurl;
+        $exhibituri = $baseuri . '/wp-content/plugins/datapress';
+ 
     $linkstring = "";
     $overlaystring = "";
     foreach ($exhibits_to_show as $exhibit) {

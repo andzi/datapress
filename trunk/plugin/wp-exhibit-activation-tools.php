@@ -52,7 +52,7 @@ class WpExhibitActivationTools {
         self::setup_table(WpExhibitConfig::$DATASCRAPS_TABLE_KEY,
                           $creation_sql);
     }
-    
+
     static function setup_geocode_table() {
         $creation_sql = " (
             id INT NOT NULL AUTO_INCREMENT,
