@@ -1,5 +1,7 @@
 <?php 
 
+include_once("wp-exhibit-config.php");
+
 class WpExhibitActivationTools {
     static function activate_plugin() {
         self::setup_exhibits_table();
@@ -17,6 +19,21 @@ class WpExhibitActivationTools {
 
 		// Participate in usage study by default
 		update_option( 'datapress_et_phone_home', "Y" );
+    }
+    
+    static function migrate() {
+        $cur_ver = get_option(WpExhibitConfig::$WP_EXHIBIT_DB_VERSION_KEY);
+        if ($cur_ver) {
+            // 1.5 release
+            if ($cur_ver < 16) {
+                // The diff between previous versions and 1.5
+                self::setup_geocode_table();
+            }
+            // Future release here
+
+            update_option(WpExhibitConfig::$WP_EXHIBIT_DB_VERSION_KEY,
+                          WpExhibitConfig::$DB_VERSION);
+        } 
     }
 
     static function deactivate_plugin() {
@@ -78,7 +95,6 @@ class WpExhibitActivationTools {
                           $creation_sql);
     }
     
-    
     static function setup_post_exhibits_table() {
         $creation_sql = "  (
             postid INT,
@@ -105,7 +121,6 @@ class WpExhibitActivationTools {
             WpExhibitConfig::$DB_VERSION) {
            require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
            dbDelta($sql);
-           echo "done building table $table_name";
         }
     }
 

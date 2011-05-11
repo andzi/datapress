@@ -2,8 +2,8 @@
 /*
 Plugin Name: Datapress
 Plugin URI: http://projects.csail.mit.edu/datapress
-Description: A Wordpress Plugin for the Exhibit Web Framework
-Version: 1.0
+Description: Show maps, timelines, and rich data visualizations in your blog!
+Version: 1.5
 Author: The Haystack Group @ MIT
 Author URI: http://haystack.csail.mit.edu/
 */
@@ -99,6 +99,10 @@ class WpExhibit {
 	function activate_plugin() {
         WpExhibitActivationTools::activate_plugin();
 	}
+
+	function migrate_plugin() {
+        WpExhibitActivationTools::migrate();
+	}
 	
 	function deactivate_plugin() {
 		delete_option('datapress_privacy_notice_shown');
@@ -169,6 +173,7 @@ class WpExhibit {
 }
 
 $exhibit = new WpExhibit();
+$exhibit->migrate_plugin();
 
 add_action('wp_head', array($exhibit, 'exhibit_include'));
 add_action('admin_head', array($exhibit, 'exhibit_admin_include'));
