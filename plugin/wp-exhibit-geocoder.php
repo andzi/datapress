@@ -8,15 +8,17 @@ class WpExhibitGeocoder {
         /*
          * Delete everything that isn't one of datum_ids and is associated with exhibit_id,address_field
          */
+    	$table = WpExhibitConfig::table_name(WpExhibitConfig::$GEOCODE_TABLE_KEY);
         $sql = "DELETE FROM $table WHERE exhibit_id = %d AND addressField = %s AND datum_id NOT IN (%s);";
         $list_of_ids = array();
-        for ($i =0; i<count($datum_ids); $i++) {
+        for ($i =0; $i<count($datum_ids); $i++) {
             $list_of_ids[$i] = "'" . $datum_ids[$i] . "'";
         }
         $theList = join(", ", $list_of_ids);
-        
+        global $wpdb;
         $query = $wpdb->prepare($sql, $exhibit_id, $address_field, $theList);
 	    $row = $wpdb->query($query);
+	    echo $query;
          
     	if(count($datum_ids) == count($addresses)) {
     		for($i = 0; $i < count($datum_ids); $i++) {
@@ -107,33 +109,6 @@ class WpExhibitGeocoder {
 	    return $latlng_json;
     }
 
-    static function test() {
-	$address_ids = array('1856 E Shelby St., Seattle, WA 98112',
-	 '1600 Amphitheatre Parkway, Mountain View, CA', 
-	 '3 Ames Street, Cambridge, MA', 
-	 '77 Massachusetts Avenue, Cambridge, MA',
-	 'One Microsoft Way, Redmond, WA',
-	 'blashsdlkfjsdjfds');
-
-	$ex_id = 1;
-	$dat_ids = array(1, 2, 3, 4, 5, 6);
-	$address_ids = 	WpExhibitGeocoder::batch_add($ex_id, $dat_ids, $address_ids);
-
-	if(WpExhibitGeocoder::doesExhibitContainGeocodedData($ex_id)) {
-	//	print WpExhibitGeocoder::json_for($ex_id);
-	}
-	//else echo "doesn't contain data";
-    }
-    static function make_json() {
-	$address_ids = array('1856 E Shelby St., Seattle, WA 98112',
-	 '1600 Amphitheatre Parkway, Mountain View, CA', 
-	 '3 Ames Street, Cambridge, MA', 
-	 '77 Massachusetts Avenue, Cambridge, MA',
-	 'One Microsoft Way, Redmond, WA',);
-	$json = array('items'=>array('address'=>$address_ids[0]));
-	print json_encode($json);
-    }
-    
 }
 
 

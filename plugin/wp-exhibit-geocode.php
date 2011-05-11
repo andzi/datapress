@@ -17,7 +17,6 @@ if(isset($_GET['exhibit-id'])) {
 } else if (isset($_POST['exhibitid']) and isset($_POST['datumids']) and isset($_POST['addresses'])) {
 	WpExhibitGeocoder::batch_add($_POST['exhibitid'], $_POST['addressField'], $_POST['datumids'], $_POST['addresses']);	
 } else {
-	print_r($_POST);	
 }
 
 ?>
