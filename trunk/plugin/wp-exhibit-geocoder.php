@@ -9,17 +9,18 @@ class WpExhibitGeocoder {
          * Delete everything that isn't one of datum_ids and is associated with exhibit_id,address_field
          */
     	$table = WpExhibitConfig::table_name(WpExhibitConfig::$GEOCODE_TABLE_KEY);
-        $sql = "DELETE FROM $table WHERE exhibit_id = %d AND addressField = %s AND datum_id NOT IN (%s);";
+        global $wpdb;
+
+        // Prepare the list of things they're asking about
         $list_of_ids = array();
         for ($i =0; $i<count($datum_ids); $i++) {
-            $list_of_ids[$i] = "'" . $datum_ids[$i] . "'";
+            $list_of_ids[$i] = $wpdb->prepare("%s",$datum_ids[$i]);
         }
         $theList = join(", ", $list_of_ids);
-        global $wpdb;
-        $query = $wpdb->prepare($sql, $exhibit_id, $address_field, $theList);
+
+        $sql = "DELETE FROM $table WHERE exhibit_id = %d AND addressField = %s AND datum_id NOT IN ($theList);";
+        $query = $wpdb->prepare($sql, $exhibit_id, $address_field);
 	    $row = $wpdb->query($query);
-	    echo $query;
-         
     	if(count($datum_ids) == count($addresses)) {
     		for($i = 0; $i < count($datum_ids); $i++) {
     			WpExhibitGeocoder::lookup($exhibit_id, $address_field, $datum_ids[$i], $addresses[$i]);		
@@ -56,29 +57,28 @@ class WpExhibitGeocoder {
     static function lookup($exhibit_id, $address_field, $datum_id, $address) {
 	    global $wpdb;
 	    $table = WpExhibitConfig::table_name(WpExhibitConfig::$GEOCODE_TABLE_KEY);
-	    $query = "SELECT lat, lng FROM $table WHERE exhibit_id = %d AND addressField = %s AND datum_id = %s AND address = %s";
-	    $query = $wpdb->prepare($query, $exhibit_id, $address_field, $datum_id, $address);
+	    $sql = "SELECT lat, lng FROM $table WHERE exhibit_id = %d AND addressField = %s AND datum_id = %s AND address = %s;";
+	    $query = $wpdb->prepare($sql, $exhibit_id, $address_field, $datum_id, $address);
 	    $row = $wpdb->get_row($query, ARRAY_A);
 	    if($row != NULL) {
-		return array($row['lat'], $row['lng']);
+		    return array($row['lat'], $row['lng']);
 	    }
 	    else {
 		try {
 		    // Delete any old address for <ExhibitID, AddressField, DatumID, *>
 		    $deleteSQL = "DELETE FROM $table WHERE exhibit_id = %d AND addressField = %s AND datum_id = %s;";
-		    echo $deleteSQL;
 		    $deleteQuery = $wpdb->prepare($deleteSQL, $exhibit_id, $address_field, $datum_id);
 		    $wpdb->query($deleteQuery);
 		    
 			$geo_results = json_decode(WpExhibitGeocoder::geocode($address), true);
 			$latlng = $geo_results['results'][0]['geometry']['location'];
-			if($latlng['lat'] == 0 && $latlng['lng'] == 0)
+			if($latlng['lat'] == 0 && $latlng['lng'] == 0) {
 				return false;
+			}
 			$query = "INSERT INTO $table(lat, lng, exhibit_id, addressField, datum_id, address) VALUES(%f, %f, %d, %s, %s, %s)";
 			$query = $wpdb->prepare($query, $latlng['lat'], $latlng['lng'], $exhibit_id, $address_field, $datum_id, $address);
 			$wpdb->query($query);
 		} catch(Exception $e) {
-			print $e;
 			return null;
 		}
 		return $latlng;

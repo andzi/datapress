@@ -56,9 +56,9 @@ function getItemProps(propertyName) {
 		if(obj != null) {
 			ret[item] = obj;
 		}
-		else {
-		    ret[item] = "";
-		}
+        // else {
+        //     ret[item] = "";
+        // }
 	});
 	return ret;
 }
