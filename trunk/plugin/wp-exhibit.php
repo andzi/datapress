@@ -240,5 +240,4 @@ wp_register_style( 'dp-jquery', "$wp_datapress_plugin_url/js/jQueryUI1.7.3/smoot
 wp_register_style( 'dp-template', "$wp_datapress_plugin_url/css/template.css");
 
 include_once('facet_widget.php');
-
 ?>

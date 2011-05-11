@@ -41,7 +41,7 @@ class WpExhibitGeocoder {
     static function lookup($exhibit_id, $address_field, $datum_id, $address) {
 	    global $wpdb;
 	    $table = WpExhibitConfig::table_name(WpExhibitConfig::$GEOCODE_TABLE_KEY);
-	    $query = "SELECT lat, lng FROM $table WHERE exhibit_id = %d AND addressField = %s AND datum_id = %d AND address = %s";
+	    $query = "SELECT lat, lng FROM $table WHERE exhibit_id = %d AND addressField = %s AND datum_id = %s AND address = %s";
 	    $query = $wpdb->prepare($query, $exhibit_id, $address_field, $datum_id, $address);
 	    $row = $wpdb->get_row($query, ARRAY_A);
 	    if($row != NULL) {
