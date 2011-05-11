@@ -5,14 +5,27 @@ class WpExhibitGeocoder {
     // Perform the geocoding for a batch of items. Returns false if
     // $datum_ids and $addresses are a different size.
     static function batch_add($exhibit_id, $address_field, $datum_ids, $addresses) {
-	if(count($datum_ids) == count($addresses)) {
-		for($i = 0; $i < count($datum_ids); $i++) {
-			WpExhibitGeocoder::lookup($exhibit_id, $address_field, $datum_ids[$i], $addresses[$i]);		
-		}
-		return true;
-	} else {
-		return false;
-	}
+        /*
+         * Delete everything that isn't one of datum_ids and is associated with exhibit_id,address_field
+         */
+        $sql = "DELETE FROM $table WHERE exhibit_id = %d AND addressField = %s AND datum_id NOT IN (%s);";
+        $list_of_ids = array();
+        for ($i =0; i<count($datum_ids); $i++) {
+            $list_of_ids[$i] = "'" . $datum_ids[$i] . "'";
+        }
+        $theList = join(", ", $list_of_ids);
+        
+        $query = $wpdb->prepare($sql, $exhibit_id, $address_field, $theList);
+	    $row = $wpdb->query($query);
+         
+    	if(count($datum_ids) == count($addresses)) {
+    		for($i = 0; $i < count($datum_ids); $i++) {
+    			WpExhibitGeocoder::lookup($exhibit_id, $address_field, $datum_ids[$i], $addresses[$i]);		
+    		}
+    		return true;
+    	} else {
+    		return false;
+    	}
     }
     
     // Returns true if the Exhibit contains any geocoded data, false otherwise. 
