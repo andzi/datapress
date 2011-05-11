@@ -20,7 +20,6 @@ Exhibit.Functions["contains"] = {
                 return true;
             }
         });
-        
         return new Exhibit.Expression._Collection([ result ? "true" : "false" ], "boolean");
     }
 };
@@ -123,7 +122,7 @@ function updateGeocode() {
                     	SimileAjax. jQuery('head').append("<?php echo("<link href='$exhibituri/wp-exhibit-geocode.php?exhibit-id=$exhibit_id' type='application/json' rel='exhibit/data' alt='geocoded_data' />") ?>");
 			            callBacks -= 1;
                         if (callBacks == 0) {
-                            window.database = Exhibit.Database.create(); 
+                            window.database = Exhibit.Database.create();                             
                             window.database.loadDataLinks(onAllDataLoaded); 
                         }
 			        }
