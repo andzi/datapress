@@ -28,57 +28,33 @@ function is_exhibit($type) {
     return ($type == "exhibit");
 }
 
-function scrape_google_spreadsheet($url, $type, $contents) {
-    // Looking for
-    // <link rel="alternate" type="application/rss+xml" title="Test - Google Docs" href="http://spreadsheets.google.com/feeds/list/pCz0APNvpf1wnpfX4oUZMWg/od6/public/basic">
-    $pattern = "/<link[^>]*rel=\"alternate\"[^>]*type=\"application\/rss\+xml\"[^>]*>/";
-    
-	preg_match_all($pattern, $contents, $links, PREG_SET_ORDER);
-	
-	$linkdatas = array();
-	$errors = array();
+function scrape_google_spreadsheet($url, $type, $contents, $name) {
+    // match: https://docs.google.com/spreadsheet/pub?key=0AnWPOdSwW93adGtnM2lEY0R1TlNxcGJPZmJ2TkRPOHc&output=html
+    $pattern = "/pub\?.*key=([^&]+)/";
+
+    $linkdatas = array();
+    $errors = array();
     $warnings = array();
-    
-	foreach ($links as $link) {
-		$linkval = $link[0];
-
-		$rel_pattern = "/rel=\"([^\"]*)\"/";
-		$title_pattern = "/title=\"([^\"]*)\"/";
-		$href_pattern = "/href=\"([^\"]*)\"/";
-		$type_pattern = "/type=\"([^\"]*)\"/";
-	
-		$rel_matched = preg_match($rel_pattern, $linkval, $relmatch);		
-		$href_matched = preg_match($href_pattern, $linkval, $hrefmatch);
-		$title_matched = preg_match($title_pattern, $linkval, $titlematch);
-		$type_matched = preg_match($type_pattern, $linkval, $typematch);
-		
-		if (($rel_matched && ($relmatch[1] == "alternate")) && ($type_matched && ($typematch[1] == "application/rss+xml")))  {
-		    // This is the link to the rssfeed
-			$href=$hrefmatch[1];
-            $title=$titlematch[1];
-			$type="google-spreadsheet";
-			
-         // Fix the href
-         if (strpos($href, "?") === false) {
-           $href .= "?";
-         } else {
-           $href .= "&";
-         }
-         $href .= "alt=json-in-script";
-
-			
-			$linkdata = array();
-			$linkdata["href"] = $href;
-			$linkdata["kind"] = $type;
-			$linkdata["alt"] = $title;
-			array_push($linkdatas, $linkdata);
-		}	
-	}
-	if (count($linkdatas) == 0) {
-	    array_push($warnings, "Datapress could not parse the provided URL as a Google Spreadsheet. Are you sure this is the publicly-shared sheet URL?");
-	}
-	send_back($linkdatas, $errors, $warnings);
-    
+    $url = urldecode($url);
+    $matched = preg_match_all($pattern, $url, $ids, PREG_PATTERN_ORDER);
+    if (!$matched) {
+	if (strpos($url, "json-in-script") === false) {
+	    array_push($warnings, "Unable to parse spreadsheet ID.  URL should be of the form https://docs.google.com/spreadsheet/pub?key=SPREADSHEET_ID&output=html");
+        } else {
+     	    $linkdata = array();
+    	    $linkdata["href"] = $url;
+	    $linkdata["kind"] = "google-spreadsheet";
+	    $linkdata["alt"] = $name;
+	    array_push($linkdatas, $linkdata);        
+        }
+    } else {
+	$linkdata = array();
+	$linkdata["href"] = "https://spreadsheets.google.com/feeds/list/" . $ids[1][0] . "/od6/public/basic?hl=en_US&alt=json-in-script";
+	$linkdata["kind"] = "google-spreadsheet";
+	$linkdata["alt"] = $name;
+	array_push($linkdatas, $linkdata);
+    }
+    send_back($linkdatas, $errors, $warnings);
 }
 
 function scrape_json($url, $type, $contents, $name) {
@@ -199,7 +175,7 @@ function import_data_files() {
     if ($msg == null) {
         // OK to proceed!
         if (is_google_spreadsheet($url, $type)) {
-            scrape_google_spreadsheet($url, $type, $contents);
+            scrape_google_spreadsheet($url, $type, $contents, $name);
         }
         else if (is_json($type)) {
             scrape_json($url, $type, $contents, $name);
